@@ -36,6 +36,8 @@ public class XPlayer extends DataAccess {
 	@Column(columnName = LOCATION, dataType = DataType.STRING)
 	public String location;
 	
+	public boolean died;
+	
 	public Location getReturnLocation() {
 		if (returnLocationObj == null && returnLocation != null && !returnLocation.equals("null")) {
 			returnLocationObj = Location.fromString(returnLocation);
