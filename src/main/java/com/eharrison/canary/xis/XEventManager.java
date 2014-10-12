@@ -84,7 +84,6 @@ public class XEventManager implements CommandListener, PluginListener {
 			final Player player = (Player) caller;
 			if (player.getWorld() == world) {
 				final XPlayer xPlayer = players.get(player.getUUIDString());
-				Canary.hooks().callHook(new XExitHook(player, Cause.EXIT));
 				Location returnLocation = xPlayer.getReturnLocation();
 				if (returnLocation == null) {
 					returnLocation = hubLocation;
@@ -99,12 +98,7 @@ public class XEventManager implements CommandListener, PluginListener {
 			DatabaseWriteException {
 		final Player player = hook.getPlayer();
 		if (player.getWorld() == world) {
-			final XPlayer xPlayer = players.get(player.getUUIDString());
-			Location returnLocation = xPlayer.getReturnLocation();
-			if (returnLocation == null) {
-				returnLocation = hubLocation;
-			}
-			player.teleportTo(returnLocation);
+			Canary.hooks().callHook(new XEnterHook(player));
 		}
 	}
 	
@@ -120,17 +114,16 @@ public class XEventManager implements CommandListener, PluginListener {
 	public void onRespawning(final PlayerRespawningHook hook) throws DatabaseReadException,
 			DatabaseWriteException {
 		final Player player = hook.getPlayer();
+		// XPlugin.logger.info("Calling " + player.getDisplayName() + " respawn");
+		
 		if (player.getWorld() == world) {
-			final XPlayer xPlayer = players.get(player.getUUIDString());
-			Location returnLocation = xPlayer.getReturnLocation();
-			if (returnLocation == null) {
-				returnLocation = hubLocation;
-			}
-			hook.setRespawnLocation(returnLocation);
-			if (xPlayer.died) {
-				xPlayer.died = false;
+			if (hook.getRespawnLocation() == null) {
+				final XPlayer xPlayer = players.get(player.getUUIDString());
+				// XPlugin.logger.info("Calling " + player.getDisplayName() + " DEATH");
+				hook.setRespawnLocation(xPlayer.getReturnLocation());
 				Canary.hooks().callHook(new XExitHook(player, Cause.DEATH));
-			} else {
+			} else if (hook.getRespawnLocation().getWorld() != world) {
+				// XPlugin.logger.info("Calling " + player.getDisplayName() + " EXIT");
 				Canary.hooks().callHook(new XExitHook(player, Cause.EXIT));
 			}
 		}
@@ -145,7 +138,6 @@ public class XEventManager implements CommandListener, PluginListener {
 			xPlayer.setLocation(null);
 			xPlayer.died = true;
 			XData.updateXPlayer(xPlayer);
-			XPlugin.logger.info("DIED xPlayer: " + xPlayer.toString());
 			clearIsland(xPlayer.islandId);
 		}
 	}
@@ -155,8 +147,10 @@ public class XEventManager implements CommandListener, PluginListener {
 		final Player player = hook.getPlayer();
 		final XPlayer xPlayer = XData.getXPlayer(player);
 		players.put(player.getUUIDString(), xPlayer);
-		xPlayer.setReturnLocation(hook.getReturnLocation());
-		XData.updateXPlayer(xPlayer);
+		if (hook.getReturnLocation() != null) {
+			xPlayer.setReturnLocation(hook.getReturnLocation());
+			XData.updateXPlayer(xPlayer);
+		}
 		
 		XPlugin.logger.info(player.getDisplayName() + " entered XIS");
 	}
@@ -299,16 +293,21 @@ public class XEventManager implements CommandListener, PluginListener {
 	private void clearIsland(final int islandId) {
 		XPlugin.logger.info("Deleting island " + islandId);
 		
-		final int maxSize = config.getMaxSize();
-		final int centerX = islandId * maxSize;
-		final int centerZ = 0;
-		
-		for (int x = maxSize / -2; x <= maxSize / 2; x++) {
-			for (int y = 0; y <= 255; y++) {
-				for (int z = maxSize / -2; z <= maxSize / 2; z++) {
-					world.setBlockAt(centerX + x, y, centerZ + z, BlockType.Air);
+		new Thread() {
+			@Override
+			public void run() {
+				final int maxSize = config.getMaxSize();
+				final int centerX = islandId * maxSize;
+				final int centerZ = 0;
+				
+				for (int x = maxSize / -2; x <= maxSize / 2; x++) {
+					for (int y = 0; y <= 255; y++) {
+						for (int z = maxSize / -2; z <= maxSize / 2; z++) {
+							world.setBlockAt(centerX + x, y, centerZ + z, BlockType.Air);
+						}
+					}
 				}
 			}
-		}
+		}.start();
 	}
 }
