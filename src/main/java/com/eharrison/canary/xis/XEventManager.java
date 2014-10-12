@@ -6,11 +6,14 @@ import java.util.Map;
 
 import net.canarymod.Canary;
 import net.canarymod.api.entity.living.humanoid.Player;
+import net.canarymod.api.inventory.ItemType;
 import net.canarymod.api.world.DimensionType;
 import net.canarymod.api.world.World;
 import net.canarymod.api.world.WorldManager;
 import net.canarymod.api.world.WorldType;
+import net.canarymod.api.world.blocks.Block;
 import net.canarymod.api.world.blocks.BlockType;
+import net.canarymod.api.world.blocks.Chest;
 import net.canarymod.api.world.position.Location;
 import net.canarymod.chat.MessageReceiver;
 import net.canarymod.commandsys.Command;
@@ -231,14 +234,14 @@ public class XEventManager implements CommandListener, PluginListener {
 		// Layer 6
 		y++;
 		
-		// // Create starting chest
-		// final Block block = world.getBlockAt(x - 1, y, z);
-		// block.setType(BlockType.CHEST);
-		// final Chest chest = (Chest) block.getState();
-		// final Inventory inventory = chest.getInventory();
-		// inventory.clear();
-		// // final ItemStack[] items;
-		// // inventory.setContents(items);
+		// Create starting chest
+		final Block block = world.getBlockAt(x - 1, y, z);
+		block.setType(BlockType.Chest);
+		world.setBlock(block);
+		final Chest chest = (Chest) block.getTileEntity();
+		chest.clearContents();
+		chest.addItem(ItemType.MelonSlice);
+		chest.addItem(ItemType.Ice, 2);
 		
 		// Create starting tree
 		world.setBlockAt(x, y, z, BlockType.OakLog);
