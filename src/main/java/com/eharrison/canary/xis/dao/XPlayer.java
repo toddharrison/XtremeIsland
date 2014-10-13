@@ -1,16 +1,40 @@
-package com.eharrison.canary.xis;
+package com.eharrison.canary.xis.dao;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.api.world.position.Location;
 import net.canarymod.database.Column;
 import net.canarymod.database.Column.ColumnType;
 import net.canarymod.database.Column.DataType;
 import net.canarymod.database.DataAccess;
+import net.canarymod.database.Database;
+import net.canarymod.database.exceptions.DatabaseReadException;
+import net.canarymod.database.exceptions.DatabaseWriteException;
 
 public class XPlayer extends DataAccess {
 	public static final String PLAYER_UUID = "player_uuid";
 	public static final String ISLAND_ID = "island_id";
 	public static final String RETURN_LOCATION = "return_location";
 	public static final String LOCATION = "location";
+	
+	public static XPlayer getXPlayer(final Player player) throws DatabaseReadException,
+			DatabaseWriteException {
+		XPlayer xPlayer = new XPlayer();
+		final Map<String, Object> filters = new HashMap<String, Object>();
+		filters.put(XPlayer.PLAYER_UUID, player.getUUIDString());
+		Database.get().load(xPlayer, filters);
+		
+		if (xPlayer.hasData()) {
+			return xPlayer;
+		} else {
+			xPlayer = new XPlayer();
+			xPlayer.playerUuid = player.getUUIDString();
+			xPlayer.update();
+			return getXPlayer(player);
+		}
+	}
 	
 	private Location returnLocationObj;
 	private Location locationObj;
@@ -68,6 +92,12 @@ public class XPlayer extends DataAccess {
 			loc = location.toString();
 		}
 		this.location = loc;
+	}
+	
+	public void update() throws DatabaseWriteException {
+		final Map<String, Object> filters = new HashMap<String, Object>();
+		filters.put(XPlayer.PLAYER_UUID, playerUuid);
+		Database.get().update(this, filters);
 	}
 	
 	@Override

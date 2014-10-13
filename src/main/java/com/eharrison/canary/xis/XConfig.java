@@ -8,11 +8,12 @@ public class XConfig {
 	
 	public XConfig(final XPlugin plugin) {
 		cfg = Configuration.getPluginConfig(plugin);
+		// cfg.save();
 	}
 	
-	// public String getHubWorld() {
-	// return cfg.getString("worldName", "default");
-	// }
+	public String getHubWorld() {
+		return cfg.getString("hubWorld", "default");
+	}
 	
 	public String getWorldName() {
 		return cfg.getString("worldName", "xis");

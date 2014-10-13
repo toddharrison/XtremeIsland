@@ -1,4 +1,4 @@
-package com.eharrison.canary.xis;
+package com.eharrison.canary.xis.hook;
 
 import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.api.world.position.Location;
