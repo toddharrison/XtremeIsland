@@ -18,13 +18,16 @@ public class XCommand implements CommandListener {
 	private final XWorldManager worldManager;
 	private final XIslandManager islandManager;
 	private final XPlayerManager playerManager;
+	private final XGuiManager guiManager;
 	
 	public XCommand(final XConfig config, final XWorldManager worldManager,
-			final XIslandManager islandManager, final XPlayerManager playerManager) {
+			final XIslandManager islandManager, final XPlayerManager playerManager,
+			final XGuiManager guiManager) {
 		this.config = config;
 		this.worldManager = worldManager;
 		this.islandManager = islandManager;
 		this.playerManager = playerManager;
+		this.guiManager = guiManager;
 	}
 	
 	@Command(aliases = {
@@ -51,6 +54,8 @@ public class XCommand implements CommandListener {
 					location = new Location(world, x, y + 5, z - 1, 0, 0);
 				}
 				player.teleportTo(location);
+			} else {
+				guiManager.openGui(player);
 			}
 		} else {
 			XPlugin.logger.info(playerManager.getActivePlayerIds());

@@ -12,7 +12,9 @@ public class XPlugin extends Plugin {
 	private final XWorldManager worldManager;
 	private final XIslandManager islandManager;
 	private final XPlayerManager playerManager;
+	private final XGuiManager guiManager;
 	private final XCommand command;
+	private final XScoreboard scoreboard;
 	
 	public XPlugin() {
 		XPlugin.logger = getLogman();
@@ -20,7 +22,9 @@ public class XPlugin extends Plugin {
 		worldManager = new XWorldManager(config);
 		islandManager = new XIslandManager(config);
 		playerManager = new XPlayerManager(worldManager, islandManager);
-		command = new XCommand(config, worldManager, islandManager, playerManager);
+		guiManager = new XGuiManager();
+		command = new XCommand(config, worldManager, islandManager, playerManager, guiManager);
+		scoreboard = new XScoreboard(worldManager, playerManager);
 		
 		if (worldManager.createWorld()) {
 			XPlugin.logger.info("Created XtremeIsland world");
@@ -37,7 +41,8 @@ public class XPlugin extends Plugin {
 		if (success = worldManager.load()) {
 			Canary.hooks().registerListener(worldManager, this);
 			Canary.hooks().registerListener(playerManager, this);
-			Canary.hooks().registerListener(new XScoreboard(worldManager, playerManager), this);
+			Canary.hooks().registerListener(scoreboard, this);
+			Canary.hooks().registerListener(guiManager, this);
 			
 			try {
 				Canary.commands().registerCommands(command, this, false);
