@@ -37,6 +37,7 @@ public class XPlugin extends Plugin {
 		if (success = worldManager.load()) {
 			Canary.hooks().registerListener(worldManager, this);
 			Canary.hooks().registerListener(playerManager, this);
+			Canary.hooks().registerListener(new XScoreboard(worldManager, playerManager), this);
 			
 			try {
 				Canary.commands().registerCommands(command, this, false);
