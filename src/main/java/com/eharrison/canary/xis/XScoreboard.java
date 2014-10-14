@@ -21,14 +21,12 @@ public class XScoreboard implements PluginListener {
 	private static final String NAME = "xis_scoreboard";
 	
 	private final XWorldManager worldManager;
-	private final XPlayerManager playerManager;
 	private final Scoreboard scoreboard;
 	private ScoreObjective scoreObjective;
 	private ScoreObjective highScoreObjective;
 	
-	public XScoreboard(final XWorldManager worldManager, final XPlayerManager playerManager) {
+	public XScoreboard(final XWorldManager worldManager) {
 		this.worldManager = worldManager;
-		this.playerManager = playerManager;
 		
 		// TODO set the world instead of the name
 		scoreboard = Canary.scoreboards().getScoreboard(NAME);
