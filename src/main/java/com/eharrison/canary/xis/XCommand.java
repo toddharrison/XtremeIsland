@@ -12,8 +12,9 @@ import net.canarymod.database.exceptions.DatabaseWriteException;
 import net.canarymod.hook.HookHandler;
 import net.canarymod.plugin.PluginListener;
 
+import com.eharrison.canary.util.menu.DynaMenuItem;
+import com.eharrison.canary.util.menu.IMenuItem;
 import com.eharrison.canary.util.menu.Menu;
-import com.eharrison.canary.util.menu.MenuItem;
 import com.eharrison.canary.util.menu.hook.MenuSelectHook;
 import com.eharrison.canary.xis.dao.XPlayer;
 import com.eharrison.canary.xis.hook.XEnterHook;
@@ -91,9 +92,13 @@ public class XCommand implements CommandListener, PluginListener {
 		final Menu menu = hook.getMenu();
 		if (this.menu == menu) {
 			final Player player = hook.getPlayer();
-			final MenuItem menuItem = hook.getMenuItem();
+			final IMenuItem menuItem = hook.getMenuItem();
 			XPlugin.logger.info(player.getDisplayName() + " selected " + menuItem.getName() + " from "
 					+ menu.getName());
+			if (menuItem instanceof DynaMenuItem) {
+				final DynaMenuItem dMenuItem = (DynaMenuItem) menuItem;
+				dMenuItem.setMode("disabled");
+			}
 		}
 	}
 }

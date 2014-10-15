@@ -25,15 +25,16 @@ public class Menu implements PluginListener {
 	private static final ObjectFactory FACTORY = Canary.factory().getObjectFactory();
 	
 	private final String name;
-	private final Map<String, MenuItem> itemMap;
+	private final Map<String, IMenuItem> itemMap;
 	private final Inventory inventory;
 	
-	public Menu(final String name, final int rows, final MenuItem... menuItems) {
+	public Menu(final String name, final int rows, final IMenuItem... menuItems) {
 		LOG.info("Creating menu: " + name);
 		this.name = name;
-		itemMap = new HashMap<String, MenuItem>();
+		itemMap = new HashMap<String, IMenuItem>();
 		inventory = FACTORY.newCustomStorageInventory(name, rows);
-		for (final MenuItem menuItem : menuItems) {
+		for (final IMenuItem menuItem : menuItems) {
+			menuItem.setMenu(this);
 			final Item item = menuItem.getItem();
 			itemMap.put(item.getDisplayName(), menuItem);
 			inventory.setSlot(item);
@@ -52,13 +53,19 @@ public class Menu implements PluginListener {
 		}
 	}
 	
+	public void updateMenuItem(final IMenuItem menuItem) {
+		inventory.setSlot(menuItem.getItem());
+	}
+	
 	@HookHandler
 	public void onSlotClick(final SlotClickHook hook) {
 		if (hook.getInventory() == inventory) {
 			final Player player = hook.getPlayer();
-			final MenuItem menuItem = itemMap.get(hook.getItem().getDisplayName());
-			if (menuItem != null && !menuItem.isDisabled()) {
-				Canary.hooks().callHook(new MenuSelectHook(player, this, menuItem));
+			if (hook.getItem() != null) {
+				final IMenuItem menuItem = itemMap.get(hook.getItem().getDisplayName());
+				if (menuItem != null && !menuItem.isDisabled()) {
+					Canary.hooks().callHook(new MenuSelectHook(player, this, menuItem));
+				}
 			}
 			hook.setCanceled();
 		}

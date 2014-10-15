@@ -6,8 +6,8 @@ import net.canarymod.commandsys.CommandDependencyException;
 import net.canarymod.logger.Logman;
 import net.canarymod.plugin.Plugin;
 
+import com.eharrison.canary.util.menu.DynaMenuItem;
 import com.eharrison.canary.util.menu.Menu;
-import com.eharrison.canary.util.menu.MenuItem;
 
 public class XPlugin extends Plugin {
 	protected static Logman logger;
@@ -17,15 +17,18 @@ public class XPlugin extends Plugin {
 	private final XIslandManager islandManager;
 	private final XPlayerManager playerManager;
 	private final XChallengeManager challengeManager;
+	private final Menu menu;
 	private final XCommand command;
 	private final XScoreboard scoreboard;
-	private final Menu menu;
 	
 	public XPlugin() {
 		XPlugin.logger = getLogman();
+		
+		final DynaMenuItem menuItem = new DynaMenuItem("Help", "Get some help", ItemType.Anvil, 4);
+		menuItem.addMode("disabled", "Help", "Disabled", ItemType.Anvil, true);
+		menu = new Menu("XtremeIsland Menu", 7, menuItem);
+		
 		config = new XConfig(this);
-		menu = new Menu("XtremeIsland Menu", 7,
-				new MenuItem("Help", "Get some help", ItemType.Anvil, 4));
 		worldManager = new XWorldManager(config);
 		islandManager = new XIslandManager(config);
 		playerManager = new XPlayerManager(worldManager, islandManager);

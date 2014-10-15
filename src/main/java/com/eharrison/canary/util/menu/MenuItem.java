@@ -5,7 +5,7 @@ import net.canarymod.api.factory.ItemFactory;
 import net.canarymod.api.inventory.Item;
 import net.canarymod.api.inventory.ItemType;
 
-public class MenuItem {
+public class MenuItem implements IMenuItem {
 	private static final ItemFactory FACTORY = Canary.factory().getItemFactory();
 	
 	private final String name;
@@ -34,14 +34,21 @@ public class MenuItem {
 		item.setSlot(slot);
 	}
 	
+	@Override
+	public void setMenu(final Menu menu) {
+	}
+	
+	@Override
 	public String getName() {
 		return name;
 	}
 	
+	@Override
 	public boolean isDisabled() {
 		return disabled;
 	}
 	
+	@Override
 	public Item getItem() {
 		return item;
 	}
