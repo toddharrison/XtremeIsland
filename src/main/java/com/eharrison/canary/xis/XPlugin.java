@@ -1,9 +1,13 @@
 package com.eharrison.canary.xis;
 
 import net.canarymod.Canary;
+import net.canarymod.api.inventory.ItemType;
 import net.canarymod.commandsys.CommandDependencyException;
 import net.canarymod.logger.Logman;
 import net.canarymod.plugin.Plugin;
+
+import com.eharrison.canary.util.menu.Menu;
+import com.eharrison.canary.util.menu.MenuItem;
 
 public class XPlugin extends Plugin {
 	protected static Logman logger;
@@ -12,18 +16,21 @@ public class XPlugin extends Plugin {
 	private final XWorldManager worldManager;
 	private final XIslandManager islandManager;
 	private final XPlayerManager playerManager;
-	private final XGuiManager guiManager;
+	private final XChallengeManager challengeManager;
 	private final XCommand command;
 	private final XScoreboard scoreboard;
+	private final Menu menu;
 	
 	public XPlugin() {
 		XPlugin.logger = getLogman();
 		config = new XConfig(this);
+		menu = new Menu("XtremeIsland Menu", 7,
+				new MenuItem("Help", "Get some help", ItemType.Anvil, 4));
 		worldManager = new XWorldManager(config);
 		islandManager = new XIslandManager(config);
 		playerManager = new XPlayerManager(worldManager, islandManager);
-		guiManager = new XGuiManager();
-		command = new XCommand(config, worldManager, islandManager, playerManager, guiManager);
+		challengeManager = new XChallengeManager();
+		command = new XCommand(config, worldManager, islandManager, playerManager, menu);
 		scoreboard = new XScoreboard(worldManager);
 		
 		if (worldManager.createWorld()) {
@@ -42,7 +49,8 @@ public class XPlugin extends Plugin {
 			Canary.hooks().registerListener(worldManager, this);
 			Canary.hooks().registerListener(playerManager, this);
 			Canary.hooks().registerListener(scoreboard, this);
-			Canary.hooks().registerListener(guiManager, this);
+			Canary.hooks().registerListener(command, this);
+			Canary.hooks().registerListener(menu, this);
 			
 			try {
 				Canary.commands().registerCommands(command, this, false);

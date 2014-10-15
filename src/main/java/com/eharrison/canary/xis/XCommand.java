@@ -9,25 +9,29 @@ import net.canarymod.commandsys.Command;
 import net.canarymod.commandsys.CommandListener;
 import net.canarymod.database.exceptions.DatabaseReadException;
 import net.canarymod.database.exceptions.DatabaseWriteException;
+import net.canarymod.hook.HookHandler;
+import net.canarymod.plugin.PluginListener;
 
+import com.eharrison.canary.util.menu.Menu;
+import com.eharrison.canary.util.menu.MenuItem;
+import com.eharrison.canary.util.menu.hook.MenuSelectHook;
 import com.eharrison.canary.xis.dao.XPlayer;
 import com.eharrison.canary.xis.hook.XEnterHook;
 
-public class XCommand implements CommandListener {
+public class XCommand implements CommandListener, PluginListener {
 	private final XConfig config;
 	private final XWorldManager worldManager;
 	private final XIslandManager islandManager;
 	private final XPlayerManager playerManager;
-	private final XGuiManager guiManager;
+	private final Menu menu;
 	
 	public XCommand(final XConfig config, final XWorldManager worldManager,
-			final XIslandManager islandManager, final XPlayerManager playerManager,
-			final XGuiManager guiManager) {
+			final XIslandManager islandManager, final XPlayerManager playerManager, final Menu menu) {
 		this.config = config;
 		this.worldManager = worldManager;
 		this.islandManager = islandManager;
 		this.playerManager = playerManager;
-		this.guiManager = guiManager;
+		this.menu = menu;
 	}
 	
 	@Command(aliases = {
@@ -55,7 +59,7 @@ public class XCommand implements CommandListener {
 				}
 				player.teleportTo(location);
 			} else {
-				guiManager.openGui(player);
+				menu.open(player);
 			}
 		} else {
 			XPlugin.logger.info(playerManager.getActivePlayerIds());
@@ -79,6 +83,17 @@ public class XCommand implements CommandListener {
 				}
 				player.teleportTo(returnLocation);
 			}
+		}
+	}
+	
+	@HookHandler
+	public void onMenuSelect(final MenuSelectHook hook) {
+		final Menu menu = hook.getMenu();
+		if (this.menu == menu) {
+			final Player player = hook.getPlayer();
+			final MenuItem menuItem = hook.getMenuItem();
+			XPlugin.logger.info(player.getDisplayName() + " selected " + menuItem.getName() + " from "
+					+ menu.getName());
 		}
 	}
 }
