@@ -40,19 +40,13 @@ public class XScoreboard implements PluginListener {
 			highScoreObjective = scoreboard.addScoreObjective("xHighScore");
 			highScoreObjective.setDisplayName("High Score");
 		}
-		
-		// TODO on plugin enable/disable do the same with the score
-		scoreboard.setScoreboardPosition(ScorePosition.PLAYER_LIST, scoreObjective);
-		scoreboard.setScoreboardPosition(ScorePosition.SIDEBAR, highScoreObjective);
 	}
 	
 	@HookHandler
 	public void onJoin(final XEnterHook hook) {
 		final Player player = hook.getPlayer();
-		final Score score = scoreboard.getScore(player, scoreObjective);
-		// score.setScore(0);
-		// score.setScore(playerManager.getXPlayer(player).score);
-		score.update();
+		scoreboard.setScoreboardPosition(ScorePosition.PLAYER_LIST, scoreObjective, player);
+		scoreboard.setScoreboardPosition(ScorePosition.SIDEBAR, highScoreObjective, player);
 	}
 	
 	@HookHandler
@@ -102,6 +96,8 @@ public class XScoreboard implements PluginListener {
 	
 	@HookHandler
 	public void onLeave(final XExitHook hook) {
-		// TODO remove this player from the scoreboard?
+		final Player player = hook.getPlayer();
+		scoreboard.clearScoreboardPosition(ScorePosition.PLAYER_LIST, player);
+		scoreboard.clearScoreboardPosition(ScorePosition.SIDEBAR, player);
 	}
 }

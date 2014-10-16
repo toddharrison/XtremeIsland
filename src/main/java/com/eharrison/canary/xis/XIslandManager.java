@@ -1,5 +1,6 @@
 package com.eharrison.canary.xis;
 
+import net.canarymod.api.inventory.Inventory;
 import net.canarymod.api.inventory.ItemType;
 import net.canarymod.api.world.World;
 import net.canarymod.api.world.blocks.Block;
@@ -141,7 +142,11 @@ public class XIslandManager {
 				for (int x = maxSize / -2; x <= maxSize / 2; x++) {
 					for (int y = 0; y <= 255; y++) {
 						for (int z = maxSize / -2; z <= maxSize / 2; z++) {
-							// TODO: if the block is a chest, empty it first then set to Air
+							final Block block = world.getBlockAt(centerX + x, y, centerZ + z);
+							if (block.getTileEntity() instanceof Inventory) {
+								final Inventory inv = (Inventory) block.getTileEntity();
+								inv.clearContents();
+							}
 							world.setBlockAt(centerX + x, y, centerZ + z, BlockType.Air);
 						}
 					}
