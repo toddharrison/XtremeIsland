@@ -35,6 +35,11 @@ public class DynaMenuItem implements IMenuItem {
 	}
 	
 	public void addMode(final String mode, final String name, final String description,
+			final ItemType icon) {
+		modes.put(mode, new Mode(name, description, icon, false));
+	}
+	
+	public void addMode(final String mode, final String name, final String description,
 			final ItemType icon, final boolean disabled) {
 		modes.put(mode, new Mode(name, description, icon, disabled));
 	}

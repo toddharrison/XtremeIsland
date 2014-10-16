@@ -1,0 +1,32 @@
+<xsb_xchallengelevel>
+  <entry>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">1</id>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">Survivalist</name>
+    <order auto-increment="true" data-type="INTEGER" column-type="UNIQUE" is-list="false">1</order>
+  </entry>
+  <entry>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">2</id>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">Gatherer</name>
+    <order auto-increment="true" data-type="INTEGER" column-type="UNIQUE" is-list="false">2</order>
+  </entry>
+  <entry>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">3</id>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">Hunter</name>
+    <order auto-increment="true" data-type="INTEGER" column-type="UNIQUE" is-list="false">3</order>
+  </entry>
+  <entry>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">4</id>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">Builder</name>
+    <order auto-increment="true" data-type="INTEGER" column-type="UNIQUE" is-list="false">4</order>
+  </entry>
+  <entry>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">5</id>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">Conqueror</name>
+    <order auto-increment="true" data-type="INTEGER" column-type="UNIQUE" is-list="false">5</order>
+  </entry>
+  <entry>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">6</id>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">Xtreme</name>
+    <order auto-increment="true" data-type="INTEGER" column-type="UNIQUE" is-list="false">6</order>
+  </entry>
+</xsb_xchallengelevel>

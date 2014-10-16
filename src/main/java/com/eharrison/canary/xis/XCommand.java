@@ -9,30 +9,25 @@ import net.canarymod.commandsys.Command;
 import net.canarymod.commandsys.CommandListener;
 import net.canarymod.database.exceptions.DatabaseReadException;
 import net.canarymod.database.exceptions.DatabaseWriteException;
-import net.canarymod.hook.HookHandler;
-import net.canarymod.plugin.PluginListener;
 
-import com.eharrison.canary.util.menu.DynaMenuItem;
-import com.eharrison.canary.util.menu.IMenuItem;
-import com.eharrison.canary.util.menu.Menu;
-import com.eharrison.canary.util.menu.hook.MenuSelectHook;
 import com.eharrison.canary.xis.dao.XPlayer;
 import com.eharrison.canary.xis.hook.XEnterHook;
 
-public class XCommand implements CommandListener, PluginListener {
+public class XCommand implements CommandListener {
 	private final XConfig config;
 	private final XWorldManager worldManager;
 	private final XIslandManager islandManager;
 	private final XPlayerManager playerManager;
-	private final Menu menu;
+	private final XChallengeManager challengeManager;
 	
 	public XCommand(final XConfig config, final XWorldManager worldManager,
-			final XIslandManager islandManager, final XPlayerManager playerManager, final Menu menu) {
+			final XIslandManager islandManager, final XPlayerManager playerManager,
+			final XChallengeManager challengeManager) {
 		this.config = config;
 		this.worldManager = worldManager;
 		this.islandManager = islandManager;
 		this.playerManager = playerManager;
-		this.menu = menu;
+		this.challengeManager = challengeManager;
 	}
 	
 	@Command(aliases = {
@@ -60,7 +55,7 @@ public class XCommand implements CommandListener, PluginListener {
 				}
 				player.teleportTo(location);
 			} else {
-				menu.open(player);
+				challengeManager.openMenu(player);
 			}
 		} else {
 			XPlugin.logger.info(playerManager.getActivePlayerIds());
@@ -83,21 +78,6 @@ public class XCommand implements CommandListener, PluginListener {
 					returnLocation = worldManager.getHubLocation();
 				}
 				player.teleportTo(returnLocation);
-			}
-		}
-	}
-	
-	@HookHandler
-	public void onMenuSelect(final MenuSelectHook hook) {
-		final Menu menu = hook.getMenu();
-		if (this.menu == menu) {
-			final Player player = hook.getPlayer();
-			final IMenuItem menuItem = hook.getMenuItem();
-			XPlugin.logger.info(player.getDisplayName() + " selected " + menuItem.getName() + " from "
-					+ menu.getName());
-			if (menuItem instanceof DynaMenuItem) {
-				final DynaMenuItem dMenuItem = (DynaMenuItem) menuItem;
-				dMenuItem.setMode("disabled");
 			}
 		}
 	}

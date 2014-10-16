@@ -1,5 +1,7 @@
 package com.eharrison.canary.xis.dao;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +41,42 @@ public class XChallenge extends DataAccess {
 			return null;
 		}
 	}
+	
+	public static List<XChallenge> getXChallengesForLevel(final String levelName)
+			throws DatabaseReadException {
+		final List<XChallenge> challenges = new ArrayList<XChallenge>();
+		
+		final List<DataAccess> daos = new ArrayList<DataAccess>();
+		final XChallenge xChallenge = new XChallenge();
+		final Map<String, Object> filters = new HashMap<String, Object>();
+		filters.put(XChallenge.LEVEL, levelName);
+		Database.get().loadAll(xChallenge, daos, filters);
+		for (final DataAccess dao : daos) {
+			challenges.add((XChallenge) dao);
+		}
+		
+		challenges.sort(new Comparator<XChallenge>() {
+			@Override
+			public int compare(final XChallenge x1, final XChallenge x2) {
+				return x1.getName().compareTo(x2.getName());
+			}
+		});
+		
+		return challenges;
+	}
+	
+	// public static List<XChallenge> getAllXChallenges() throws DatabaseReadException {
+	// final List<XChallenge> challenges = new ArrayList<XChallenge>();
+	//
+	// final List<DataAccess> daos = new ArrayList<DataAccess>();
+	// final XChallenge xChallenge = new XChallenge();
+	// Database.get().loadAll(xChallenge, daos, new HashMap<String, Object>());
+	// for (final DataAccess dao : daos) {
+	// challenges.add((XChallenge) dao);
+	// }
+	//
+	// return challenges;
+	// }
 	
 	private Map<ItemType, Integer> itemsRequiredMap;
 	private Map<ItemType, Integer> itemsRewardMap;

@@ -1,5 +1,6 @@
 package com.eharrison.canary.util.menu;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +29,17 @@ public class Menu implements PluginListener {
 	private final Map<String, IMenuItem> itemMap;
 	private final Inventory inventory;
 	
+	public Menu(final String name, final int rows) {
+		if (rows > 6 || rows < 1) {
+			throw new IllegalArgumentException("Invalid number of rows: " + rows);
+		}
+		
+		LOG.info("Creating menu: " + name);
+		this.name = name;
+		itemMap = new HashMap<String, IMenuItem>();
+		inventory = FACTORY.newCustomStorageInventory(name, rows);
+	}
+	
 	public Menu(final String name, final int rows, final IMenuItem... menuItems) {
 		LOG.info("Creating menu: " + name);
 		this.name = name;
@@ -50,6 +62,22 @@ public class Menu implements PluginListener {
 		Canary.hooks().callHook(hook);
 		if (!hook.isCanceled()) {
 			player.openInventory(inventory);
+		}
+	}
+	
+	public void setMenuItem(final IMenuItem menuItem) {
+		menuItem.setMenu(this);
+		final Item item = menuItem.getItem();
+		itemMap.put(item.getDisplayName(), menuItem);
+		inventory.setSlot(item);
+	}
+	
+	public void setMenuItems(final Collection<IMenuItem> menuItems) {
+		for (final IMenuItem menuItem : menuItems) {
+			menuItem.setMenu(this);
+			final Item item = menuItem.getItem();
+			itemMap.put(item.getDisplayName(), menuItem);
+			inventory.setSlot(item);
 		}
 	}
 	

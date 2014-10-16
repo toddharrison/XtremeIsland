@@ -1,6 +1,7 @@
 package com.eharrison.canary.xis.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import net.canarymod.api.entity.living.humanoid.Player;
@@ -18,6 +19,7 @@ public class XPlayer extends DataAccess {
 	public static final String ISLAND_ID = "island_id";
 	public static final String RETURN_LOCATION = "return_location";
 	public static final String LOCATION = "location";
+	public static final String CHALLENGES_COMPLETED = "challenges_completed";
 	
 	public static XPlayer getXPlayer(final Player player) throws DatabaseReadException,
 			DatabaseWriteException {
@@ -59,6 +61,9 @@ public class XPlayer extends DataAccess {
 	
 	@Column(columnName = LOCATION, dataType = DataType.STRING)
 	public String location;
+	
+	@Column(columnName = CHALLENGES_COMPLETED, dataType = DataType.STRING, isList = true)
+	public List<String> challengesCompleted;
 	
 	public boolean died;
 	

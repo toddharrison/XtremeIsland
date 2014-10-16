@@ -1,0 +1,693 @@
+<xsb_xchallenge>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Create a cobblestone generator and mine 32 cobblestone.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">1</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:grass:1</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:cobblestone:32</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:cactus:1</list-element>
+      <list-element>minecraft:grass:5</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Survivalist</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">cobblegenerator</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 grass block</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 cactus and 5 grass blocks</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">false</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">3 blocks of still water on your island.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">2</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true"></items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:water:3</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:reeds:1</list-element>
+      <list-element>minecraft:lava_bucket:1</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Survivalist</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">watersource</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">null</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">false</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 reed and 1 lava bucket</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onIsland</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Collect 1 apple from an oak tree.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">3</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:sapling:1:0</list-element>
+	    <list-element>minecraft:sapling:1:1</list-element>
+	    <list-element>minecraft:sapling:1:2</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:apple:1</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:sapling:2:0</list-element>
+      <list-element>minecraft:sapling:2:1</list-element>
+	    <list-element>minecraft:sapling:2:2</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Survivalist</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">applecollector</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 each of spruce, birch, oak sapling</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">2 each of spruce, birch, oak saplings</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Create a melon farm and harvest 32 slices of melon.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">4</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:dirt:1:0</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:melon:32</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:pumpkin_seeds:1</list-element>
+      <list-element>minecraft:dirt:5:0</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Survivalist</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">provisioning</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 dirt block</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 pumpkin seed and 5 dirtblocks</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">false</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Build a house that contains at least 1 oak door, workbench, furnace, chest and torch.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">5</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true"></items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:wooden_door:1</list-element>
+	    <list-element>minecraft:crafting_table:1</list-element>
+	    <list-element>minecraft:furnace:1</list-element>
+	    <list-element>minecraft:chest:1</list-element>
+	    <list-element>minecraft:torch:1</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:brown_mushroom:1</list-element>
+	    <list-element>minecraft:red_mushroom:1</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Survivalist</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">shelter</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">null</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">false</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 brown and 1 red mushroom</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onIsland</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Create a pumpkin farm and harvest 16 pumpkins.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">6</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:iron_ore:1</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:pumpkin:16</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:dirt:5</list-element>
+	    <list-element>minecraft:iron_ore:1</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Gatherer</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">pumpkinfarmer</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 iron ore</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">5 dirt and 1 iron ore</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Create a cactus farm and harvest 16 cacti.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">7</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:iron_ore:1</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:cactus:16</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:sand:5</list-element>
+	    <list-element>minecraft:iron_ore:1</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Gatherer</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">cactusfarmer</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 iron ore</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">5 sand and 1 iron ore</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Create a sugar cane farm and refine 32 units of sugar.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">8</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:sand:2:0</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:sugar:32</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:sand:5</list-element>
+	    <list-element>minecraft:iron_ore:1</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Gatherer</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">sugarfarmer</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 iron ore</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">5 sand and 1 iron ore</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Create a mushroom farm and collect 16 red and 16 brown mushrooms.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">9</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:flint:2</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:brown_mushroom:16</list-element>
+	    <list-element>minecraft:red_mushroom:16</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:mycelium:5</list-element>
+	    <list-element>minecraft:flint:8</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Gatherer</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">shroompicker</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">2 flint</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">5 mycelium blocks and 8 flint</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Create a tree farm and collect 16 oak, birch and spruce logs.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">10</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:sapling:1:3</list-element>
+	    <list-element>minecraft:sapling:1:5</list-element>
+	    <list-element>minecraft:sapling:1:4</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:log:16:0</list-element>
+	    <list-element>minecraft:log:16:1</list-element>
+	    <list-element>minecraft:log:16:2</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:sapling:4:3</list-element>
+	    <list-element>minecraft:sapling:4:5</list-element>
+	    <list-element>minecraft:sapling:4:4</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Gatherer</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">lumberjack</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 each of jungle, dark oak, acacia saplings</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 each of jungle, dark oak, acacia saplings</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Collect 16 eggs from wandering fowl.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">11</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:iron_ore:1</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:egg:16</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:dye:2:3</list-element>
+	    <list-element>minecraft:iron_ore:1</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Gatherer</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">scrambledeggs</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 iron ore</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">2 cocoa beans and 1 iron ore</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Collect 8 bones from slaying skeletons.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">12</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:redstone:4</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:bone:8</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:redstone:16</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Hunter</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">dembones</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">4 redstone dust</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">16 redstone dust</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Collect 2 spider eyes from slaying spiders.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">13</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:iron_ore:1</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:spider_eye:2</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:iron_ore:5</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Hunter</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">arachnophobia</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 iron ore</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">5 iron ore</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Collect 8 rotten flesh from slaying zombies.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">14</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:redstone:4</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:rotten_flesh:8</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:redstone:16</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Hunter</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">morebrains</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">4 redstone dust</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">16 redstone dust</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Collect 8 gunpowder from slaying creepers.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">15</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:iron_ore:1</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:gunpowder:8</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:iron_ore:5</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Hunter</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">ssss</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 iron ore</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">5 iron ore</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Make a fishing pond, catch and cook 2 salmon and 4 fish.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">16</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:gold_ore:1</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:cooked_fished:4:1</list-element>
+	    <list-element>minecraft:cooked_fished:4:0</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:redstone:16</list-element>
+	    <list-element>minecraft:gold_ore:1</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Hunter</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">fisherman</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 gold ore</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">16 redstone dust and 1 gold ore</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Craft 8 hay bales from wheat farming.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">17</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:gold_ore:1</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:hay_block:8</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:diamond:1</list-element>
+	    <list-element>minecraft:gold_ore:5</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Builder</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">hayfever</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 gold ore</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 diamond and 5 gold ore</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Collect 32 logs from each of the 6 types of trees.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">18</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:diamond:1</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:log:32:0</list-element>
+  	  <list-element>minecraft:log:32:1</list-element>
+	    <list-element>minecraft:log:32:2</list-element>
+	    <list-element>minecraft:log:32:3</list-element>
+	    <list-element>minecraft:log:32:4</list-element>
+	    <list-element>minecraft:log:32:5</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:diamond:1</list-element>
+	    <list-element>minecraft:iron_ore:5</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Builder</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">forestry</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 diamond</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 diamond and 5 iron ore</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Pull out your tools and craft 6 trapdoors, 6 levers, 6 stone buttons and 6 stone pressure plates.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">19</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:redstone:2</list-element>
+	    <list-element>minecraft:snowball:2</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:trapdoor:6</list-element>
+	    <list-element>minecraft:lever:6</list-element>
+	    <list-element>minecraft:stone_button:6</list-element>
+  	  <list-element>minecraft:stone_pressure_plate:6</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:redstone:8</list-element>
+	    <list-element>minecraft:snowball:8</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Builder</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">jrengineer</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">2 redstone ore and 2 snowballs</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">8 redstone ore and 8 snowballs</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">false</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Build a house that contains at least 1 bed, bookshelf, painting, jukebox and window (glass block).</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">20</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true"></items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:bed:1</list-element>
+	    <list-element>minecraft:bookshelf:1</list-element>
+  	  <list-element>minecraft:painting:1</list-element>
+  	  <list-element>minecraft:jukebox:1</list-element>
+	    <list-element>minecraft:glass:1</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:record_wait:1</list-element>
+  	  <list-element>minecraft:diamond_ore:1</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Builder</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">homeowner</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">null</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">false</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 music disk(wait) and 1 diamond ore</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onIsland</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Whip together 5 cakes, 5 pumpkin pies and 32 cookies.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">21</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:diamond:1</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:cake:5</list-element>
+	    <list-element>minecraft:pumpkin_pie:5</list-element>
+	    <list-element>minecraft:cookie:32</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:diamond:1</list-element>
+	    <list-element>minecraft:iron_ore:5</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Builder</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">baker</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 diamond</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 diamond and 5 iron ore</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Carefully craft 1 tnt, 16 firework rockets, 1 dispenser and 1 wooden button.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">22</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:iron_ore:4</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:tnt:1</list-element>
+	    <list-element>minecraft:fireworks:16</list-element>
+	    <list-element>minecraft:dispenser:1</list-element>
+	    <list-element>minecraft:wooden_button:1</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:skull:6:4</list-element>
+	    <list-element>minecraft:iron_ore:10</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Conqueror</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">pyromaniac</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">4 iron ore</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">6 creeper heads and 10 iron ore</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Collect 6 enderpearls from endermen.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">23</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:diamond:1</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:ender_pearl:6</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:gold_ore:5</list-element>
+	    <list-element>minecraft:diamond_ore:1</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Conqueror</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">pearlcollector</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 diamond</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">5 gold ore and 1 diamond ore</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Catch 2 clownfish and 4 pufferfish.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">24</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:diamond:1</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:fish:2:2</list-element>
+	    <list-element>minecraft:fish:4:3</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:dye:12:0</list-element>
+	    <list-element>minecraft:diamond_ore:1</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Conqueror</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">bassmaster</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 diamond</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">12 ink sacs and 1 diamond ore</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Collect and turn in 32 dandelions, 12 poppies, 12 daisies.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">25</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:emerald_ore:1</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:yellow_flower:32</list-element>
+	    <list-element>minecraft:red_flower:12:0</list-element>
+	    <list-element>minecraft:red_flower:12:8</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:lapis_block:2</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Xtreme</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">gardener</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 emerald ore</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">2 lapis blocks</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Breed and collect 64 raw porkchop, 64 wool block(white), 64 feathers, 16 leather (and 4 rabbit's feet).</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">26</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:diamond_ore:1</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:porkchop:64</list-element>
+	    <list-element>minecraft:wool:64:0</list-element>
+	    <list-element>minecraft:feather:64</list-element>
+	    <list-element>minecraft:leather:16</list-element>
+	    <!--
+	    <list-element>minecraft:rabbit_foot:4</list-element>
+	    -->
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:spawn_egg:2:96</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Xtreme</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">rancher</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 diamond ore</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">2 mooshroom spawn eggs</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">false</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Place an enchanting table and 15 bookshelf on your island.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">27</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true"></items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:enchanting_table:1</list-element>
+	    <list-element>minecraft:bookshelf:15</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:beacon:1</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Xtreme</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">librarian</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">null</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">false</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 Beacon</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onIsland</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Collect 1 of every kind of cooked or crafted edible food (nothing raw, zombie flesh, or golden).</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">28</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:emerald_ore:1</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:mushroom_stew:1</list-element>
+		  <list-element>minecraft:bread:1</list-element>
+		  <list-element>minecraft:cooked_porkchop:1</list-element>
+		  <list-element>minecraft:cooked_fished:1:0</list-element>
+		  <list-element>minecraft:cooked_fished:1:1</list-element>
+		  <list-element>minecraft:cooked_fished:1:2</list-element>
+		  <list-element>minecraft:cooked_fished:1:3</list-element>
+		  <list-element>minecraft:cake:1</list-element>
+		  <list-element>minecraft:cookie:1</list-element>
+		  <list-element>minecraft:cooked_beef:1</list-element>
+		  <list-element>minecraft:cooked_chicken:1</list-element>
+		  <list-element>minecraft:baked_potato:1</list-element>
+		  <list-element>minecraft:pumpkin_pie:1</list-element>
+		  <!--
+		  <list-element>minecraft:cooked_rabbit:1</list-element>
+		  <list-element>minecraft:rabbit_stew:1</list-element>
+		  <list-element>minecraft:cooked_mutton:1</list-element>
+		  -->
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:spawn_egg:2:120</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Xtreme</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">ironchef</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 emerald ore</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">2 villager spawn eggs</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Dye or shear 5 of every color of wool.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">29</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:diamond_ore:1</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:wool:5:0</list-element>
+		  <list-element>minecraft:wool:5:1</list-element>
+		  <list-element>minecraft:wool:5:2</list-element>
+		  <list-element>minecraft:wool:5:3</list-element>
+		  <list-element>minecraft:wool:5:4</list-element>
+		  <list-element>minecraft:wool:5:5</list-element>
+		  <list-element>minecraft:wool:5:6</list-element>
+		  <list-element>minecraft:wool:5:7</list-element>
+		  <list-element>minecraft:wool:5:8</list-element>
+		  <list-element>minecraft:wool:5:9</list-element>
+		  <list-element>minecraft:wool:5:10</list-element>
+		  <list-element>minecraft:wool:5:11</list-element>
+		  <list-element>minecraft:wool:5:12</list-element>
+		  <list-element>minecraft:wool:5:13</list-element>
+		  <list-element>minecraft:wool:5:14</list-element>
+		  <list-element>minecraft:wool:5:15</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:spawn_egg:2:95</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Xtreme</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">woolly</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 diamond ore</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">2 wolf spawn eggs</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
+    <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Collect 32 saplings from each of the 6 tree types.</description>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">29</id>
+    <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:emerald_ore:1</list-element>
+    </items_repeat_reward>
+    <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:sapling:32:0</list-element>
+		  <list-element>minecraft:sapling:32:1</list-element>
+		  <list-element>minecraft:sapling:32:2</list-element>
+		  <list-element>minecraft:sapling:32:3</list-element>
+		  <list-element>minecraft:sapling:32:4</list-element>
+		  <list-element>minecraft:sapling:32:5</list-element>
+    </items_required>
+    <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
+      <list-element>minecraft:spawn_egg:2:98</list-element>
+    </items_reward>
+    <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Xtreme</level>
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">johnnyappleseed</name>
+    <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">1 emerald ore</repeat_reward_description>
+    <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</repeatable>
+    <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">2 ocelot spawn eggs</reward_description>
+    <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
+  </entry>
+</xsb_xchallenge>
