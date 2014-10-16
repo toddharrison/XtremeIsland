@@ -6,13 +6,13 @@ import java.util.Map;
 import net.canarymod.Canary;
 import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.api.inventory.Inventory;
-import net.canarymod.api.inventory.Item;
 import net.canarymod.api.inventory.ItemType;
 import net.canarymod.database.exceptions.DatabaseReadException;
 import net.canarymod.database.exceptions.DatabaseWriteException;
 import net.canarymod.hook.HookHandler;
 import net.canarymod.plugin.PluginListener;
 
+import com.eharrison.canary.util.InventoryUtil;
 import com.eharrison.canary.util.menu.DynaMenuItem;
 import com.eharrison.canary.util.menu.IMenuItem;
 import com.eharrison.canary.util.menu.Menu;
@@ -64,44 +64,13 @@ public class XChallengeManager implements PluginListener {
 					// Verify the player has the needed items
 					final Inventory inv = player.getInventory();
 					final Map<ItemType, Integer> requiredItems = xChallenge.getItemsRequired();
-					boolean allItemsPresent = false;
-					for (final ItemType itemType : requiredItems.keySet()) {
-						final int count = requiredItems.get(itemType);
-						int curCount = 0;
-						for (final Item item : inv.getContents()) {
-							if (item != null && item.getType() == itemType) {
-								curCount += item.getAmount();
-							}
-							if (curCount >= count) {
-								allItemsPresent = true;
-								break;
-							}
-						}
-					}
+					final boolean allItemsPresent = InventoryUtil.hasItems(inv, requiredItems);
 					
-					XPlugin.logger.info("All items present? " + allItemsPresent);
+					// XPlugin.logger.info("All items present? " + allItemsPresent);
 					
 					if (allItemsPresent) {
-						// Remove items from player's inventory if appropriate to the challenge
 						if (xChallenge.consumeItems) {
-							for (final ItemType itemType : requiredItems.keySet()) {
-								final int count = requiredItems.get(itemType);
-								int curCount = count;
-								for (final Item item : inv.getContents()) {
-									if (item != null && item.getType() == itemType) {
-										if (item.getAmount() <= curCount) {
-											inv.removeItem(item);
-											curCount -= item.getAmount();
-										} else {
-											item.setAmount(item.getAmount() - curCount);
-											curCount = 0;
-										}
-									}
-									if (curCount == 0) {
-										break;
-									}
-								}
-							}
+							InventoryUtil.removeItems(inv, requiredItems);
 						}
 						
 						// Give player reward
