@@ -7,7 +7,7 @@ import net.canarymod.logger.Logman;
 import net.canarymod.plugin.Plugin;
 
 public class XPlugin extends Plugin {
-	protected static Logman logger;
+	public static Logman logger;
 	
 	private final XConfig config;
 	private final XWorldManager worldManager;

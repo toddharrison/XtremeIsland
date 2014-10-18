@@ -83,7 +83,11 @@ public class Menu implements PluginListener {
 	public void setMenuItems(final MenuItem... menuItems) {
 		if (menuItems.length > 0) {
 			if (menuConfig != null) {
-				menuConfig.configure(menuItems);
+				if (menuFactory != null) {
+					menuConfig.configure(menuItems, menuFactory.getPlayer(this));
+				} else {
+					menuConfig.configure(menuItems);
+				}
 			}
 			for (final MenuItem menuItem : menuItems) {
 				menuItem.setMenu(this);

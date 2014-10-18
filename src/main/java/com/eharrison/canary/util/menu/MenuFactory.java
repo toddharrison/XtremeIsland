@@ -2,7 +2,9 @@ package com.eharrison.canary.util.menu;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
+import net.canarymod.Canary;
 import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.plugin.Plugin;
 
@@ -30,6 +32,16 @@ public class MenuFactory {
 		menus = new HashMap<String, Menu>();
 	}
 	
+	public Player getPlayer(final Menu menu) {
+		Player player = null;
+		for (final Entry<String, Menu> entry : menus.entrySet()) {
+			if (entry.getValue() == menu) {
+				player = Canary.getServer().getPlayerFromUUID(entry.getKey());
+			}
+		}
+		return player;
+	}
+	
 	public Menu getMenu(final Player player) {
 		final String playerId = player.getUUIDString();
 		Menu menu = menus.get(playerId);
@@ -38,11 +50,9 @@ public class MenuFactory {
 			for (int i = 0; i < menuItems.length; i++) {
 				newMenuItems[i] = new MenuItem(menuItems[i]);
 			}
-			if (menuConfig != null) {
-				menuConfig.configure(newMenuItems);
-			}
-			menu = new Menu(plugin, this, title, rows, menuConfig, newMenuItems);
+			menu = new Menu(plugin, this, title, rows, menuConfig);
 			menus.put(playerId, menu);
+			menu.setMenuItems(newMenuItems);
 		}
 		return menu;
 	}

@@ -37,7 +37,11 @@ public class XPlayerManager implements PluginListener {
 	}
 	
 	public XPlayer getXPlayer(final Player player) {
-		return players.get(player.getUUIDString());
+		XPlayer xPlayer = null;
+		if (player != null) {
+			xPlayer = players.get(player.getUUIDString());
+		}
+		return xPlayer;
 	}
 	
 	public XPlayer addPlayer(final Player player) throws DatabaseReadException,

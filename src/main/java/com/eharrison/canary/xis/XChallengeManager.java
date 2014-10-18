@@ -42,7 +42,34 @@ public class XChallengeManager implements PluginListener {
 			}
 		}
 		
-		final MenuConfiguration menuConfig = null;
+		final MenuConfiguration menuConfig = new MenuConfiguration() {
+			@Override
+			public void configure(final MenuItem[] menuItems) {
+				// TODO
+				XPlugin.logger.info("MenuConfiguration.configure(menuItems)");
+			}
+			
+			@Override
+			public void configure(final MenuItem[] menuItems, final Player player) {
+				final XPlayer xPlayer = playerManager.getXPlayer(player);
+				for (final MenuItem menuItem : menuItems) {
+					try {
+						final String challengeName = menuItem.getName();
+						final XChallenge challenge = XChallenge.getXChallenge(challengeName);
+						if (xPlayer.challengesCompleted.contains(challengeName)) {
+							if (challenge.repeatable) {
+								menuItem.setIcon(ItemType.WoolLightBlue);
+							} else {
+								menuItem.setIcon(ItemType.WoolLightGray);
+								menuItem.setDisabled(true);
+							}
+						}
+					} catch (final Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		};
 		menuFactory = new MenuFactory(plugin, "XtremeIsland Challenges", 6, menuConfig,
 				menuItems.toArray(new MenuItem[menuItems.size()]));
 	}
@@ -108,14 +135,10 @@ public class XChallengeManager implements PluginListener {
 		final Menu menu = hook.getMenu();
 		if (menu.getMenuFactory() == menuFactory) {
 			final Player player = hook.getPlayer();
-			
 			final MenuItem menuItem = hook.getMenuItem();
-			XPlugin.logger.info(player.getDisplayName() + " selected " + menuItem.getName() + " from "
-					+ menu.getTitle());
-			
 			if (completeChallenge(player, menuItem.getName())) {
-				menuItem.setIcon(ItemType.WoolLightGray);
-				menuItem.setDisabled(true);
+				XPlugin.logger.info(player.getDisplayName() + " completed " + menuItem.getName());
+				menuItem.update();
 			}
 		}
 	}

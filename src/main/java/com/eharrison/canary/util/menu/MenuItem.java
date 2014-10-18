@@ -47,7 +47,6 @@ public class MenuItem {
 	
 	public void setDescription(final String description) {
 		this.description = description;
-		update();
 	}
 	
 	public ItemType getIcon() {
@@ -57,7 +56,6 @@ public class MenuItem {
 	public void setIcon(final ItemType icon) {
 		if (!this.icon.equals(icon)) {
 			this.icon = icon;
-			update();
 		}
 	}
 	
@@ -83,7 +81,6 @@ public class MenuItem {
 	public void setDisabled(final boolean disabled) {
 		if (disabled != this.disabled) {
 			this.disabled = disabled;
-			update();
 		}
 	}
 	
