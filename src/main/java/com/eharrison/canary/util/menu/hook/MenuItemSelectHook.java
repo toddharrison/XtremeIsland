@@ -1,17 +1,17 @@
 package com.eharrison.canary.util.menu.hook;
 
 import net.canarymod.api.entity.living.humanoid.Player;
-import net.canarymod.hook.Hook;
+import net.canarymod.hook.CancelableHook;
 
-import com.eharrison.canary.util.menu.IMenuItem;
 import com.eharrison.canary.util.menu.Menu;
+import com.eharrison.canary.util.menu.MenuItem;
 
-public class MenuSelectHook extends Hook {
+public class MenuItemSelectHook extends CancelableHook {
 	private final Player player;
 	private final Menu menu;
-	private final IMenuItem menuItem;
+	private final MenuItem menuItem;
 	
-	public MenuSelectHook(final Player player, final Menu menu, final IMenuItem menuItem) {
+	public MenuItemSelectHook(final Player player, final Menu menu, final MenuItem menuItem) {
 		this.player = player;
 		this.menu = menu;
 		this.menuItem = menuItem;
@@ -25,7 +25,7 @@ public class MenuSelectHook extends Hook {
 		return menu;
 	}
 	
-	public IMenuItem getMenuItem() {
+	public MenuItem getMenuItem() {
 		return menuItem;
 	}
 }

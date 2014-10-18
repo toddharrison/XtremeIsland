@@ -1,6 +1,5 @@
 package com.eharrison.canary.util.menu;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,51 +12,88 @@ import net.canarymod.hook.CancelableHook;
 import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.player.InventoryHook;
 import net.canarymod.hook.player.SlotClickHook;
-import net.canarymod.logger.Logman;
 import net.canarymod.plugin.Plugin;
 import net.canarymod.plugin.PluginListener;
 
 import com.eharrison.canary.util.menu.hook.MenuCloseHook;
+import com.eharrison.canary.util.menu.hook.MenuItemSelectHook;
 import com.eharrison.canary.util.menu.hook.MenuOpenHook;
-import com.eharrison.canary.util.menu.hook.MenuSelectHook;
 
 public class Menu implements PluginListener {
-	private static final Logman LOG = Logman.getLogman("Menu");
 	private static final ObjectFactory FACTORY = Canary.factory().getObjectFactory();
 	
-	private final String name;
-	private final Map<String, IMenuItem> itemMap;
+	private final MenuFactory menuFactory;
+	
+	private final String title;
+	private final int rows;
+	private final MenuConfiguration menuConfig;
+	private final Map<String, MenuItem> menuItems;
+	
 	private final Inventory inventory;
 	
-	public Menu(final String name, final int rows) {
-		if (rows > 6 || rows < 1) {
-			throw new IllegalArgumentException("Invalid number of rows: " + rows);
-		}
+	public Menu(final Plugin plugin, final String title, final int rows) {
+		this(plugin, null, title, rows, (MenuConfiguration) null);
+	}
+	
+	public Menu(final Plugin plugin, final MenuFactory menuFactory, final String title, final int rows) {
+		this(plugin, menuFactory, title, rows, (MenuConfiguration) null);
+	}
+	
+	public Menu(final Plugin plugin, final MenuFactory menuFactory, final String title,
+			final int rows, final MenuConfiguration menuConfig) {
+		this.menuFactory = menuFactory;
+		this.title = title;
+		this.rows = rows;
+		this.menuConfig = menuConfig;
+		menuItems = new HashMap<String, MenuItem>();
+		inventory = FACTORY.newCustomStorageInventory(title, rows);
 		
-		LOG.info("Creating menu: " + name);
-		this.name = name;
-		itemMap = new HashMap<String, IMenuItem>();
-		inventory = FACTORY.newCustomStorageInventory(name, rows);
+		Canary.hooks().registerListener(this, plugin);
 	}
 	
-	public Menu(final String name, final int rows, final IMenuItem... menuItems) {
-		LOG.info("Creating menu: " + name);
-		this.name = name;
-		itemMap = new HashMap<String, IMenuItem>();
-		inventory = FACTORY.newCustomStorageInventory(name, rows);
-		for (final IMenuItem menuItem : menuItems) {
-			menuItem.setMenu(this);
-			final Item item = menuItem.getItem();
-			itemMap.put(item.getDisplayName(), menuItem);
-			inventory.setSlot(item);
+	public Menu(final Plugin plugin, final String title, final int rows, final MenuItem... menuItems) {
+		this(plugin, title, rows);
+		setMenuItems(menuItems);
+	}
+	
+	public Menu(final Plugin plugin, final MenuFactory menuFactory, final String title,
+			final int rows, final MenuItem... menuItems) {
+		this(plugin, menuFactory, title, rows);
+		setMenuItems(menuItems);
+	}
+	
+	public Menu(final Plugin plugin, final MenuFactory menuFactory, final String title,
+			final int rows, final MenuConfiguration menuConfig, final MenuItem... menuItems) {
+		this(plugin, menuFactory, title, rows, menuConfig);
+		setMenuItems(menuItems);
+	}
+	
+	public MenuFactory getMenuFactory() {
+		return menuFactory;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	
+	public int getRows() {
+		return rows;
+	}
+	
+	public void setMenuItems(final MenuItem... menuItems) {
+		if (menuItems.length > 0) {
+			if (menuConfig != null) {
+				menuConfig.configure(menuItems);
+			}
+			for (final MenuItem menuItem : menuItems) {
+				menuItem.setMenu(this);
+				this.menuItems.put(menuItem.getName(), menuItem);
+				inventory.setSlot(menuItem.getItem());
+			}
 		}
 	}
 	
-	public String getName() {
-		return name;
-	}
-	
-	public void open(final Player player) {
+	public void display(final Player player) {
 		final CancelableHook hook = new MenuOpenHook(player, this);
 		Canary.hooks().callHook(hook);
 		if (!hook.isCanceled()) {
@@ -65,34 +101,25 @@ public class Menu implements PluginListener {
 		}
 	}
 	
-	public void setMenuItem(final IMenuItem menuItem) {
-		menuItem.setMenu(this);
-		final Item item = menuItem.getItem();
-		itemMap.put(item.getDisplayName(), menuItem);
-		inventory.setSlot(item);
+	public void clear() {
+		inventory.clearContents();
+		menuItems.clear();
 	}
 	
-	public void setMenuItems(final Collection<IMenuItem> menuItems) {
-		for (final IMenuItem menuItem : menuItems) {
-			menuItem.setMenu(this);
-			final Item item = menuItem.getItem();
-			itemMap.put(item.getDisplayName(), menuItem);
-			inventory.setSlot(item);
-		}
-	}
-	
-	public void updateMenuItem(final IMenuItem menuItem) {
-		inventory.setSlot(menuItem.getItem());
+	public void destroy() {
+		menuItems.clear();
+		inventory.clearContents();
+		Canary.hooks().unregisterPluginListener(this);
 	}
 	
 	@HookHandler
 	public void onSlotClick(final SlotClickHook hook) {
 		if (hook.getInventory() == inventory) {
-			final Player player = hook.getPlayer();
-			if (hook.getItem() != null) {
-				final IMenuItem menuItem = itemMap.get(hook.getItem().getDisplayName());
+			final Item item = hook.getItem();
+			if (item != null) {
+				final MenuItem menuItem = menuItems.get(item.getDisplayName());
 				if (menuItem != null && !menuItem.isDisabled()) {
-					Canary.hooks().callHook(new MenuSelectHook(player, this, menuItem));
+					Canary.hooks().callHook(new MenuItemSelectHook(hook.getPlayer(), this, menuItem));
 				}
 			}
 			hook.setCanceled();
@@ -102,16 +129,7 @@ public class Menu implements PluginListener {
 	@HookHandler
 	public void onInventoryClose(final InventoryHook hook) {
 		if (hook.isClosing() && hook.getInventory() == inventory) {
-			final Player player = hook.getPlayer();
-			Canary.hooks().callHook(new MenuCloseHook(player, this));
+			Canary.hooks().callHook(new MenuCloseHook(hook.getPlayer(), this));
 		}
-	}
-	
-	protected void register(final Plugin plugin) {
-		Canary.hooks().registerListener(this, plugin);
-	}
-	
-	protected void unregister() {
-		Canary.hooks().unregisterPluginListener(this);
 	}
 }

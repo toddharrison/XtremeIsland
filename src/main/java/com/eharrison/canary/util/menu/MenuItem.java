@@ -5,12 +5,16 @@ import net.canarymod.api.factory.ItemFactory;
 import net.canarymod.api.inventory.Item;
 import net.canarymod.api.inventory.ItemType;
 
-public class MenuItem implements IMenuItem {
+public class MenuItem {
 	private static final ItemFactory FACTORY = Canary.factory().getItemFactory();
 	
 	private final String name;
-	private final boolean disabled;
-	private final Item item;
+	private final int slot;
+	
+	private String description;
+	private ItemType icon;
+	private boolean disabled;
+	private Menu menu;
 	
 	public MenuItem(final String name, final ItemType icon, final int slot) {
 		this(name, null, icon, slot, false);
@@ -23,33 +27,73 @@ public class MenuItem implements IMenuItem {
 	public MenuItem(final String name, final String description, final ItemType icon, final int slot,
 			final boolean disabled) {
 		this.name = name;
+		this.description = description;
+		this.icon = icon;
+		this.slot = slot;
 		this.disabled = disabled;
-		
-		item = FACTORY.newItem(icon);
-		item.setDisplayName(name);
-		if (description != null) {
-			item.setLore(description);
-		}
-		item.setAmount(1);
-		item.setSlot(slot);
 	}
 	
-	@Override
-	public void setMenu(final Menu menu) {
+	public MenuItem(final MenuItem menuItem) {
+		this(menuItem.name, menuItem.description, menuItem.icon, menuItem.slot, menuItem.disabled);
 	}
 	
-	@Override
 	public String getName() {
 		return name;
 	}
 	
-	@Override
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription(final String description) {
+		this.description = description;
+		update();
+	}
+	
+	public ItemType getIcon() {
+		return icon;
+	}
+	
+	public void setIcon(final ItemType icon) {
+		if (!this.icon.equals(icon)) {
+			this.icon = icon;
+			update();
+		}
+	}
+	
+	public Item getItem() {
+		final Item item = FACTORY.newItem(icon);
+		item.setDisplayName(name);
+		if (description != null) {
+			item.setLore(description.split("\\r?\\n"));
+		}
+		item.setAmount(1);
+		item.setSlot(slot);
+		return item;
+	}
+	
+	public int getSlot() {
+		return slot;
+	}
+	
 	public boolean isDisabled() {
 		return disabled;
 	}
 	
-	@Override
-	public Item getItem() {
-		return item;
+	public void setDisabled(final boolean disabled) {
+		if (disabled != this.disabled) {
+			this.disabled = disabled;
+			update();
+		}
+	}
+	
+	public void setMenu(final Menu menu) {
+		this.menu = menu;
+	}
+	
+	public void update() {
+		if (menu != null) {
+			menu.setMenuItems(this);
+		}
 	}
 }

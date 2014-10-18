@@ -1,9 +1,9 @@
 package com.eharrison.canary.xis;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import net.canarymod.Canary;
 import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.api.inventory.Inventory;
 import net.canarymod.api.inventory.ItemType;
@@ -13,44 +13,42 @@ import net.canarymod.hook.HookHandler;
 import net.canarymod.plugin.PluginListener;
 
 import com.eharrison.canary.util.InventoryUtil;
-import com.eharrison.canary.util.menu.DynaMenuItem;
-import com.eharrison.canary.util.menu.IMenuItem;
 import com.eharrison.canary.util.menu.Menu;
-import com.eharrison.canary.util.menu.hook.MenuSelectHook;
+import com.eharrison.canary.util.menu.MenuConfiguration;
+import com.eharrison.canary.util.menu.MenuFactory;
+import com.eharrison.canary.util.menu.MenuItem;
+import com.eharrison.canary.util.menu.hook.MenuItemSelectHook;
 import com.eharrison.canary.xis.dao.XChallenge;
 import com.eharrison.canary.xis.dao.XChallengeLevel;
 import com.eharrison.canary.xis.dao.XPlayer;
 
 public class XChallengeManager implements PluginListener {
 	private final XPlayerManager playerManager;
-	private final Menu menu;
+	private final MenuFactory menuFactory;
 	
 	public XChallengeManager(final XPlugin plugin, final XPlayerManager playerManager)
 			throws DatabaseReadException {
 		this.playerManager = playerManager;
 		
-		menu = new Menu("XtremeIsland Challenges", 6);
+		final List<MenuItem> menuItems = new ArrayList<MenuItem>();
+		
 		final List<XChallengeLevel> levels = XChallengeLevel.getAllXChallengeLevels();
 		for (int row = 0; row < levels.size(); row++) {
-			final XChallengeLevel level = levels.get(row);
-			final List<XChallenge> challenges = XChallenge.getXChallengesForLevel(level.name);
+			final List<XChallenge> challenges = XChallenge.getXChallengesForLevel(levels.get(row).name);
 			for (int column = 0; column < challenges.size(); column++) {
 				final XChallenge challenge = challenges.get(column);
-				final int slot = row * 9 + column;
-				final DynaMenuItem menuItem = new DynaMenuItem(challenge.name, challenge.description,
-						ItemType.WoolLightGreen, slot);
-				menuItem.addMode("completed", challenge.name, challenge.description, ItemType.WoolYellow);
-				menuItem.addMode("noRepeat", challenge.name, challenge.description, ItemType.WoolRed, true);
-				menuItem
-						.addMode("disabled", challenge.name, challenge.description, ItemType.WoolGray, true);
-				menu.setMenuItem(menuItem);
+				menuItems.add(new MenuItem(challenge.name, challenge.description, ItemType.WoolLightGreen,
+						row * 9 + column, false));
 			}
 		}
-		Canary.hooks().registerListener(menu, plugin);
+		
+		final MenuConfiguration menuConfig = null;
+		menuFactory = new MenuFactory(plugin, "XtremeIsland Challenges", 6, menuConfig,
+				menuItems.toArray(new MenuItem[menuItems.size()]));
 	}
 	
 	public void openMenu(final Player player) {
-		menu.open(player);
+		menuFactory.getMenu(player).display(player);
 	}
 	
 	public boolean completeChallenge(final Player player, final String name)
@@ -105,21 +103,19 @@ public class XChallengeManager implements PluginListener {
 	}
 	
 	@HookHandler
-	public void onMenuSelect(final MenuSelectHook hook) throws DatabaseReadException,
+	public void onMenuSelect(final MenuItemSelectHook hook) throws DatabaseReadException,
 			DatabaseWriteException {
 		final Menu menu = hook.getMenu();
-		if (this.menu == menu) {
+		if (menu.getMenuFactory() == menuFactory) {
 			final Player player = hook.getPlayer();
-			final IMenuItem menuItem = hook.getMenuItem();
+			
+			final MenuItem menuItem = hook.getMenuItem();
 			XPlugin.logger.info(player.getDisplayName() + " selected " + menuItem.getName() + " from "
-					+ menu.getName());
+					+ menu.getTitle());
 			
 			if (completeChallenge(player, menuItem.getName())) {
-				if (menuItem instanceof DynaMenuItem) {
-					final DynaMenuItem dMenuItem = (DynaMenuItem) menuItem;
-					// TODO change the state of the menu options
-					// dMenuItem.setMode("disabled");
-				}
+				menuItem.setIcon(ItemType.WoolLightGray);
+				menuItem.setDisabled(true);
 			}
 		}
 	}

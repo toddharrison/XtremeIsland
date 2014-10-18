@@ -1,9 +1,9 @@
 package com.eharrison.canary.util.menu.hook;
 
-import com.eharrison.canary.util.menu.Menu;
-
 import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.hook.Hook;
+
+import com.eharrison.canary.util.menu.Menu;
 
 public class MenuCloseHook extends Hook {
 	private final Player player;
