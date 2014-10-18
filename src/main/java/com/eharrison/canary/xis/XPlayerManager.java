@@ -102,6 +102,7 @@ public class XPlayerManager implements PluginListener {
 		if (player.getWorld() == world) {
 			final XPlayer xPlayer = getXPlayer(player);
 			xPlayer.setLocation(null);
+			xPlayer.challengesCompleted.clear();
 			xPlayer.died = true;
 			persist(xPlayer);
 			islandManager.clearIsland(world, xPlayer.islandId);

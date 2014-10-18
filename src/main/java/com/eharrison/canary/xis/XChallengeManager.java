@@ -131,9 +131,6 @@ public class XChallengeManager implements PluginListener {
 									final int typeId = block.getTypeId();
 									final int data = block.getData();
 									final ItemType itemType = ItemType.fromIdAndData(typeId, data);
-									XPlugin.logger.info("block: " + block);
-									XPlugin.logger.info("Item: " + typeId + " " + data);
-									XPlugin.logger.info("ItemType: " + itemType);
 									if (requiredItems.containsKey(itemType)) {
 										int neededCount = requiredItems.get(itemType);
 										if (--neededCount <= 0) {
