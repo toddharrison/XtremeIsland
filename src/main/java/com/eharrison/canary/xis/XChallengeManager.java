@@ -7,6 +7,9 @@ import java.util.Map;
 import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.api.inventory.Inventory;
 import net.canarymod.api.inventory.ItemType;
+import net.canarymod.api.world.World;
+import net.canarymod.api.world.blocks.Block;
+import net.canarymod.api.world.position.Location;
 import net.canarymod.database.exceptions.DatabaseReadException;
 import net.canarymod.database.exceptions.DatabaseWriteException;
 import net.canarymod.hook.HookHandler;
@@ -84,14 +87,12 @@ public class XChallengeManager implements PluginListener {
 		
 		final XChallenge xChallenge = XChallenge.getXChallenge(name);
 		if (xChallenge != null) {
+			final Map<ItemType, Integer> requiredItems = xChallenge.getItemsRequired();
+			final Inventory inv = player.getInventory();
 			switch (xChallenge.type) {
 				case "onPlayer":
 					// Verify the player has the needed items
-					final Inventory inv = player.getInventory();
-					final Map<ItemType, Integer> requiredItems = xChallenge.getItemsRequired();
 					final boolean allItemsPresent = InventoryUtil.hasItems(inv, requiredItems);
-					
-					// XPlugin.logger.info("All items present? " + allItemsPresent);
 					
 					if (allItemsPresent) {
 						if (xChallenge.consumeItems) {
@@ -110,6 +111,56 @@ public class XChallengeManager implements PluginListener {
 					}
 					break;
 				case "onIsland":
+					XPlugin.logger.info(player.getDisplayName() + " onIsland check");
+					final int range = 10;
+					
+					final Location loc = player.getLocation();
+					final World world = loc.getWorld();
+					final int xMin = loc.getBlockX() - range;
+					final int yMin = Math.max(0, loc.getBlockY() - range);
+					final int zMin = loc.getBlockZ() - range;
+					final int xMax = loc.getBlockX() + range;
+					final int yMax = Math.min(255, loc.getBlockY() + range);
+					final int zMax = loc.getBlockZ() + range;
+					
+					for (int x = xMin; x < xMax; x++) {
+						for (int y = yMin; y < yMax; y++) {
+							for (int z = zMin; z < zMax; z++) {
+								final Block block = world.getBlockAt(x, y, z);
+								if (!block.isAir()) {
+									final int typeId = block.getTypeId();
+									final int data = block.getData();
+									final ItemType itemType = ItemType.fromIdAndData(typeId, data);
+									XPlugin.logger.info("block: " + block);
+									XPlugin.logger.info("Item: " + typeId + " " + data);
+									XPlugin.logger.info("ItemType: " + itemType);
+									if (requiredItems.containsKey(itemType)) {
+										int neededCount = requiredItems.get(itemType);
+										if (--neededCount <= 0) {
+											requiredItems.remove(itemType);
+										} else {
+											requiredItems.put(itemType, neededCount);
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					XPlugin.logger.info(player.getDisplayName() + " " + requiredItems);
+					
+					if (requiredItems.isEmpty()) {
+						// Give player reward
+						for (final ItemType itemType : xChallenge.getItemsReward().keySet()) {
+							final int count = xChallenge.getItemsReward().get(itemType);
+							for (int i = 0; i < count; i++) {
+								inv.addItem(itemType);
+							}
+						}
+						
+						success = true;
+					}
+					
 					break;
 				default:
 					throw new IllegalStateException("Unrecognized xChallenge type: " + xChallenge.type);
