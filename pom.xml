@@ -20,6 +20,13 @@
     </dependency>
 
     <dependency>
+		  <groupId>com.eharrison.canary</groupId>
+		  <artifactId>player-state</artifactId>
+		  <version>0.0.6-SNAPSHOT</version>
+		  <scope>provided</scope>
+    </dependency>
+
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>${junit.version}</version>
@@ -34,8 +41,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
+          <source>1.6</source>
+          <target>1.6</target>
         </configuration>
       </plugin>
     </plugins>

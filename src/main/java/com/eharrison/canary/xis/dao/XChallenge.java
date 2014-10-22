@@ -1,6 +1,7 @@
 package com.eharrison.canary.xis.dao;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -55,7 +56,7 @@ public class XChallenge extends DataAccess {
 			challenges.add((XChallenge) dao);
 		}
 		
-		challenges.sort(new Comparator<XChallenge>() {
+		Collections.sort(challenges, new Comparator<XChallenge>() {
 			@Override
 			public int compare(final XChallenge x1, final XChallenge x2) {
 				return x1.getName().compareTo(x2.getName());

@@ -89,78 +89,75 @@ public class XChallengeManager implements PluginListener {
 		if (xChallenge != null) {
 			final Map<ItemType, Integer> requiredItems = xChallenge.getItemsRequired();
 			final Inventory inv = player.getInventory();
-			switch (xChallenge.type) {
-				case "onPlayer":
-					// Verify the player has the needed items
-					final boolean allItemsPresent = InventoryUtil.hasItems(inv, requiredItems);
-					
-					if (allItemsPresent) {
-						if (xChallenge.consumeItems) {
-							InventoryUtil.removeItems(inv, requiredItems);
-						}
-						
-						// Give player reward
-						for (final ItemType itemType : xChallenge.getItemsReward().keySet()) {
-							final int count = xChallenge.getItemsReward().get(itemType);
-							for (int i = 0; i < count; i++) {
-								inv.addItem(itemType);
-							}
-						}
-						
-						success = true;
+			if ("onPlayer".equals(xChallenge.type)) {
+				// Verify the player has the needed items
+				final boolean allItemsPresent = InventoryUtil.hasItems(inv, requiredItems);
+				
+				if (allItemsPresent) {
+					if (xChallenge.consumeItems) {
+						InventoryUtil.removeItems(inv, requiredItems);
 					}
-					break;
-				case "onIsland":
-					XPlugin.logger.info(player.getDisplayName() + " onIsland check");
-					final int range = 10;
 					
-					final Location loc = player.getLocation();
-					final World world = loc.getWorld();
-					final int xMin = loc.getBlockX() - range;
-					final int yMin = Math.max(0, loc.getBlockY() - range);
-					final int zMin = loc.getBlockZ() - range;
-					final int xMax = loc.getBlockX() + range;
-					final int yMax = Math.min(255, loc.getBlockY() + range);
-					final int zMax = loc.getBlockZ() + range;
+					// Give player reward
+					for (final ItemType itemType : xChallenge.getItemsReward().keySet()) {
+						final int count = xChallenge.getItemsReward().get(itemType);
+						for (int i = 0; i < count; i++) {
+							inv.addItem(itemType);
+						}
+					}
 					
-					for (int x = xMin; x < xMax; x++) {
-						for (int y = yMin; y < yMax; y++) {
-							for (int z = zMin; z < zMax; z++) {
-								final Block block = world.getBlockAt(x, y, z);
-								if (!block.isAir()) {
-									final int typeId = block.getTypeId();
-									final int data = block.getData();
-									final ItemType itemType = ItemType.fromIdAndData(typeId, data);
-									if (requiredItems.containsKey(itemType)) {
-										int neededCount = requiredItems.get(itemType);
-										if (--neededCount <= 0) {
-											requiredItems.remove(itemType);
-										} else {
-											requiredItems.put(itemType, neededCount);
-										}
+					success = true;
+				}
+			} else if ("onIsland".equals(xChallenge.type)) {
+				XPlugin.logger.info(player.getDisplayName() + " onIsland check");
+				final int range = 10;
+				
+				final Location loc = player.getLocation();
+				final World world = loc.getWorld();
+				final int xMin = loc.getBlockX() - range;
+				final int yMin = Math.max(0, loc.getBlockY() - range);
+				final int zMin = loc.getBlockZ() - range;
+				final int xMax = loc.getBlockX() + range;
+				final int yMax = Math.min(255, loc.getBlockY() + range);
+				final int zMax = loc.getBlockZ() + range;
+				
+				for (int x = xMin; x < xMax; x++) {
+					for (int y = yMin; y < yMax; y++) {
+						for (int z = zMin; z < zMax; z++) {
+							final Block block = world.getBlockAt(x, y, z);
+							if (!block.isAir()) {
+								final int typeId = block.getTypeId();
+								final int data = block.getData();
+								final ItemType itemType = ItemType.fromIdAndData(typeId, data);
+								if (requiredItems.containsKey(itemType)) {
+									int neededCount = requiredItems.get(itemType);
+									if (--neededCount <= 0) {
+										requiredItems.remove(itemType);
+									} else {
+										requiredItems.put(itemType, neededCount);
 									}
 								}
 							}
 						}
 					}
-					
-					XPlugin.logger.info(player.getDisplayName() + " " + requiredItems);
-					
-					if (requiredItems.isEmpty()) {
-						// Give player reward
-						for (final ItemType itemType : xChallenge.getItemsReward().keySet()) {
-							final int count = xChallenge.getItemsReward().get(itemType);
-							for (int i = 0; i < count; i++) {
-								inv.addItem(itemType);
-							}
+				}
+				
+				XPlugin.logger.info(player.getDisplayName() + " " + requiredItems);
+				
+				if (requiredItems.isEmpty()) {
+					// Give player reward
+					for (final ItemType itemType : xChallenge.getItemsReward().keySet()) {
+						final int count = xChallenge.getItemsReward().get(itemType);
+						for (int i = 0; i < count; i++) {
+							inv.addItem(itemType);
 						}
-						
-						success = true;
 					}
 					
-					break;
-				default:
-					throw new IllegalStateException("Unrecognized xChallenge type: " + xChallenge.type);
+					success = true;
+				}
+				
+			} else {
+				throw new IllegalStateException("Unrecognized xChallenge type: " + xChallenge.type);
 			}
 		}
 		
