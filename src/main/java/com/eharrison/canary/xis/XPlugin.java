@@ -23,9 +23,9 @@ public class XPlugin extends Plugin {
 		config = new XConfig(this);
 		worldManager = new XWorldManager(config);
 		islandManager = new XIslandManager(config);
-		playerManager = new XPlayerManager(worldManager, islandManager);
+		playerManager = new XPlayerManager(config, worldManager, islandManager);
 		challengeManager = new XChallengeManager(this, playerManager);
-		command = new XCommand(config, worldManager, islandManager, playerManager, challengeManager);
+		command = new XCommand(worldManager, playerManager, challengeManager);
 		scoreboard = new XScoreboard(worldManager);
 		
 		if (worldManager.createWorld()) {
@@ -41,7 +41,6 @@ public class XPlugin extends Plugin {
 		logger.info("Authored by " + getAuthor());
 		
 		if (success = worldManager.load()) {
-			Canary.hooks().registerListener(worldManager, this);
 			Canary.hooks().registerListener(playerManager, this);
 			Canary.hooks().registerListener(challengeManager, this);
 			Canary.hooks().registerListener(scoreboard, this);

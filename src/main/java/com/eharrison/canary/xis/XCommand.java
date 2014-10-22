@@ -1,6 +1,5 @@
 package com.eharrison.canary.xis;
 
-import net.canarymod.Canary;
 import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.api.world.World;
 import net.canarymod.api.world.position.Location;
@@ -11,21 +10,15 @@ import net.canarymod.database.exceptions.DatabaseReadException;
 import net.canarymod.database.exceptions.DatabaseWriteException;
 
 import com.eharrison.canary.xis.dao.XPlayer;
-import com.eharrison.canary.xis.hook.XEnterHook;
 
 public class XCommand implements CommandListener {
-	private final XConfig config;
 	private final XWorldManager worldManager;
-	private final XIslandManager islandManager;
 	private final XPlayerManager playerManager;
 	private final XChallengeManager challengeManager;
 	
-	public XCommand(final XConfig config, final XWorldManager worldManager,
-			final XIslandManager islandManager, final XPlayerManager playerManager,
+	public XCommand(final XWorldManager worldManager, final XPlayerManager playerManager,
 			final XChallengeManager challengeManager) {
-		this.config = config;
 		this.worldManager = worldManager;
-		this.islandManager = islandManager;
 		this.playerManager = playerManager;
 		this.challengeManager = challengeManager;
 	}
@@ -33,7 +26,7 @@ public class XCommand implements CommandListener {
 	@Command(aliases = {
 			"xis", "xisland"
 	}, description = "XtremeIsland commands", permissions = {
-		"xis.join"
+		"xis.command"
 	}, toolTip = "/xis")
 	public void islandCommand(final MessageReceiver caller, final String[] parameters)
 			throws DatabaseReadException, DatabaseWriteException {
@@ -42,18 +35,7 @@ public class XCommand implements CommandListener {
 			final World world = worldManager.getWorld();
 			
 			if (player.getWorld() != world) {
-				Canary.hooks().callHook(new XEnterHook(player, player.getLocation()));
-				final XPlayer xPlayer = playerManager.getXPlayer(player);
-				Location location = xPlayer.getLocation();
-				if (location == null) {
-					// TODO: Make tile algorithm instead of row
-					final int x = xPlayer.islandId * config.getMaxSize();
-					final int y = config.getHeight();
-					final int z = 0;
-					islandManager.generateIsland(world, x, y, z);
-					location = new Location(world, x, y + 5, z - 1, 0, 0);
-				}
-				player.teleportTo(location);
+				player.teleportTo(playerManager.getIslandLocation(player));
 			} else {
 				challengeManager.openMenu(player);
 			}
@@ -65,9 +47,9 @@ public class XCommand implements CommandListener {
 	@Command(aliases = {
 			"exit", "quit"
 	}, parent = "xis", helpLookup = "xis exit", description = "Leave XtremeIsland", permissions = {
-		"xis.exit"
+		"xis.command.exit"
 	}, toolTip = "/xis <exit>")
-	public void groupAdd(final MessageReceiver caller, final String[] parameters)
+	public void exitIsland(final MessageReceiver caller, final String[] parameters)
 			throws DatabaseReadException, DatabaseWriteException {
 		if (caller instanceof Player) {
 			final Player player = (Player) caller;

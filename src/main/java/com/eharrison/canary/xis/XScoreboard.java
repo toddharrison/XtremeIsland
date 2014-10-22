@@ -14,8 +14,8 @@ import net.canarymod.hook.player.BlockPlaceHook;
 import net.canarymod.hook.player.PlayerDeathHook;
 import net.canarymod.plugin.PluginListener;
 
-import com.eharrison.canary.xis.hook.XEnterHook;
-import com.eharrison.canary.xis.hook.XExitHook;
+import com.eharrison.canary.playerstate.hook.WorldEnterHook;
+import com.eharrison.canary.playerstate.hook.WorldExitHook;
 
 public class XScoreboard implements PluginListener {
 	private static final String NAME = "xis_scoreboard";
@@ -43,10 +43,21 @@ public class XScoreboard implements PluginListener {
 	}
 	
 	@HookHandler
-	public void onJoin(final XEnterHook hook) {
-		final Player player = hook.getPlayer();
-		scoreboard.setScoreboardPosition(ScorePosition.PLAYER_LIST, scoreObjective, player);
-		scoreboard.setScoreboardPosition(ScorePosition.SIDEBAR, highScoreObjective, player);
+	public void onWorldEnter(final WorldEnterHook hook) {
+		if (hook.getWorld() == worldManager.getWorld()) {
+			final Player player = hook.getPlayer();
+			scoreboard.setScoreboardPosition(ScorePosition.PLAYER_LIST, scoreObjective, player);
+			scoreboard.setScoreboardPosition(ScorePosition.SIDEBAR, highScoreObjective, player);
+		}
+	}
+	
+	@HookHandler
+	public void onLeave(final WorldExitHook hook) {
+		if (hook.getWorld() == worldManager.getWorld()) {
+			final Player player = hook.getPlayer();
+			scoreboard.clearScoreboardPosition(ScorePosition.PLAYER_LIST, player);
+			scoreboard.clearScoreboardPosition(ScorePosition.SIDEBAR, player);
+		}
 	}
 	
 	@HookHandler
@@ -92,12 +103,5 @@ public class XScoreboard implements PluginListener {
 			score.setScore(0);
 			score.update();
 		}
-	}
-	
-	@HookHandler
-	public void onLeave(final XExitHook hook) {
-		final Player player = hook.getPlayer();
-		scoreboard.clearScoreboardPosition(ScorePosition.PLAYER_LIST, player);
-		scoreboard.clearScoreboardPosition(ScorePosition.SIDEBAR, player);
 	}
 }

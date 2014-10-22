@@ -2,3 +2,5 @@ main-class=com.eharrison.canary.xis.XPlugin
 author=Rusli
 version=0.0.1-SNAPSHOT
 name=XtremeIsland
+
+dependencies=PlayerState

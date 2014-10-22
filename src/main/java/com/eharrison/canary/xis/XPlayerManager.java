@@ -4,29 +4,28 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import net.canarymod.Canary;
 import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.api.world.World;
+import net.canarymod.api.world.position.Location;
 import net.canarymod.database.exceptions.DatabaseReadException;
 import net.canarymod.database.exceptions.DatabaseWriteException;
 import net.canarymod.hook.HookHandler;
-import net.canarymod.hook.player.ConnectionHook;
-import net.canarymod.hook.player.DisconnectionHook;
 import net.canarymod.hook.player.PlayerDeathHook;
-import net.canarymod.hook.player.PlayerRespawningHook;
 import net.canarymod.plugin.PluginListener;
 
+import com.eharrison.canary.playerstate.hook.WorldEnterHook;
+import com.eharrison.canary.playerstate.hook.WorldExitHook;
 import com.eharrison.canary.xis.dao.XPlayer;
-import com.eharrison.canary.xis.hook.XEnterHook;
-import com.eharrison.canary.xis.hook.XExitHook;
-import com.eharrison.canary.xis.hook.XExitHook.Cause;
 
 public class XPlayerManager implements PluginListener {
+	private final XConfig config;
 	private final XWorldManager worldManager;
 	private final XIslandManager islandManager;
 	private final Map<String, XPlayer> players;
 	
-	public XPlayerManager(final XWorldManager worldManager, final XIslandManager islandManager) {
+	public XPlayerManager(final XConfig config, final XWorldManager worldManager,
+			final XIslandManager islandManager) {
+		this.config = config;
 		this.worldManager = worldManager;
 		this.islandManager = islandManager;
 		players = new HashMap<String, XPlayer>();
@@ -44,6 +43,22 @@ public class XPlayerManager implements PluginListener {
 		return xPlayer;
 	}
 	
+	public Location getIslandLocation(final Player player) throws DatabaseReadException,
+			DatabaseWriteException {
+		final World world = worldManager.getWorld();
+		final XPlayer xPlayer = addPlayer(player);
+		Location location = xPlayer.getLocation();
+		if (location == null) {
+			// TODO: Make tile algorithm instead of row
+			final int x = xPlayer.islandId * config.getMaxSize();
+			final int y = config.getHeight();
+			final int z = 0;
+			islandManager.generateIsland(world, x, y, z);
+			location = new Location(world, x, y + 5, z - 1, 0, 0);
+		}
+		return location;
+	}
+	
 	public XPlayer addPlayer(final Player player) throws DatabaseReadException,
 			DatabaseWriteException {
 		final XPlayer xPlayer = XPlayer.getXPlayer(player);
@@ -57,40 +72,6 @@ public class XPlayerManager implements PluginListener {
 	
 	public void persist(final XPlayer xPlayer) throws DatabaseWriteException {
 		xPlayer.update();
-	}
-	
-	@HookHandler
-	public void onConnect(final ConnectionHook hook) throws DatabaseReadException,
-			DatabaseWriteException {
-		final Player player = hook.getPlayer();
-		if (player.getWorld() == worldManager.getWorld()) {
-			Canary.hooks().callHook(new XEnterHook(player));
-		}
-	}
-	
-	@HookHandler
-	public void onDisconnect(final DisconnectionHook hook) {
-		final Player player = hook.getPlayer();
-		if (player.getWorld() == worldManager.getWorld()) {
-			Canary.hooks().callHook(new XExitHook(player, Cause.EXIT));
-		}
-	}
-	
-	@HookHandler
-	public void onRespawning(final PlayerRespawningHook hook) throws DatabaseReadException,
-			DatabaseWriteException {
-		final Player player = hook.getPlayer();
-		final World world = worldManager.getWorld();
-		
-		if (player.getWorld() == world) {
-			if (hook.getRespawnLocation() == null) {
-				final XPlayer xPlayer = getXPlayer(player);
-				hook.setRespawnLocation(xPlayer.getReturnLocation());
-				Canary.hooks().callHook(new XExitHook(player, Cause.DEATH));
-			} else if (hook.getRespawnLocation().getWorld() != world) {
-				Canary.hooks().callHook(new XExitHook(player, Cause.EXIT));
-			}
-		}
 	}
 	
 	@HookHandler
@@ -110,26 +91,36 @@ public class XPlayerManager implements PluginListener {
 	}
 	
 	@HookHandler
-	public void onXEnter(final XEnterHook hook) throws DatabaseReadException, DatabaseWriteException {
-		final Player player = hook.getPlayer();
-		final XPlayer xPlayer = addPlayer(player);
-		if (hook.getReturnLocation() != null) {
-			xPlayer.setReturnLocation(hook.getReturnLocation());
-			persist(xPlayer);
+	public void onWorldEnter(final WorldEnterHook hook) throws DatabaseReadException,
+			DatabaseWriteException {
+		if (hook.getWorld() == worldManager.getWorld()) {
+			final Player player = hook.getPlayer();
+			final XPlayer xPlayer = addPlayer(player);
+			
+			final Location fromLocation = hook.getFromLocation();
+			if (fromLocation != null) {
+				xPlayer.setReturnLocation(fromLocation);
+				persist(xPlayer);
+			}
+			
+			final Location toLocation = getIslandLocation(player);
+			hook.setToLocation(toLocation);
+			
+			XPlugin.logger.info(player.getDisplayName() + " entered XIS");
 		}
-		
-		XPlugin.logger.info(player.getDisplayName() + " entered XIS");
 	}
 	
 	@HookHandler
-	public void onXExit(final XExitHook hook) throws DatabaseReadException, DatabaseWriteException {
-		final Player player = hook.getPlayer();
-		if (hook.getCause() == Cause.EXIT) {
+	public void onWorldExit(final WorldExitHook hook) throws DatabaseWriteException {
+		if (hook.getWorld() == worldManager.getWorld()) {
+			final Player player = hook.getPlayer();
 			final XPlayer xPlayer = removePlayer(player);
-			xPlayer.setLocation(player.getLocation());
+			
+			final Location fromLocation = hook.getFromLocation();
+			xPlayer.setLocation(fromLocation);
 			persist(xPlayer);
+			
+			XPlugin.logger.info(player.getDisplayName() + " left XIS");
 		}
-		
-		XPlugin.logger.info(player.getDisplayName() + " left XIS");
 	}
 }
