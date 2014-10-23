@@ -10,7 +10,6 @@ import net.canarymod.api.world.position.Location;
 import net.canarymod.database.exceptions.DatabaseReadException;
 import net.canarymod.database.exceptions.DatabaseWriteException;
 import net.canarymod.hook.HookHandler;
-import net.canarymod.hook.player.PlayerDeathHook;
 import net.canarymod.plugin.PluginListener;
 
 import com.eharrison.canary.playerstate.hook.WorldEnterHook;
@@ -74,21 +73,20 @@ public class XPlayerManager implements PluginListener {
 		xPlayer.update();
 	}
 	
-	@HookHandler
-	public void onDeath(final PlayerDeathHook hook) throws DatabaseReadException,
-			DatabaseWriteException {
-		final Player player = hook.getPlayer();
-		final World world = worldManager.getWorld();
-		
-		if (player.getWorld() == world) {
-			final XPlayer xPlayer = getXPlayer(player);
-			xPlayer.setLocation(null);
-			xPlayer.challengesCompleted.clear();
-			xPlayer.died = true;
-			persist(xPlayer);
-			islandManager.clearIsland(world, xPlayer.islandId);
-		}
-	}
+	// @HookHandler
+	// public void onDeath(final PlayerDeathHook hook) throws DatabaseReadException,
+	// DatabaseWriteException {
+	// final Player player = hook.getPlayer();
+	// final World world = worldManager.getWorld();
+	//
+	// if (player.getWorld() == world) {
+	// final XPlayer xPlayer = getXPlayer(player);
+	// xPlayer.setLocation(null);
+	// xPlayer.challengesCompleted.clear();
+	// persist(xPlayer);
+	// islandManager.clearIsland(world, xPlayer.islandId);
+	// }
+	// }
 	
 	@HookHandler
 	public void onWorldEnter(final WorldEnterHook hook) throws DatabaseReadException,
@@ -116,9 +114,17 @@ public class XPlayerManager implements PluginListener {
 			final Player player = hook.getPlayer();
 			final XPlayer xPlayer = removePlayer(player);
 			
-			final Location fromLocation = hook.getFromLocation();
-			xPlayer.setLocation(fromLocation);
-			persist(xPlayer);
+			if (hook.isPlayerDead()) {
+				xPlayer.setLocation(null);
+				xPlayer.challengesCompleted.clear();
+				persist(xPlayer);
+				islandManager.clearIsland(hook.getWorld(), xPlayer.islandId);
+				hook.setToLocation(xPlayer.getReturnLocation());
+			} else {
+				final Location fromLocation = hook.getFromLocation();
+				xPlayer.setLocation(fromLocation);
+				persist(xPlayer);
+			}
 			
 			XPlugin.logger.info(player.getDisplayName() + " left XIS");
 		}

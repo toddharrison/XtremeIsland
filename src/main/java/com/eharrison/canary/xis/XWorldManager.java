@@ -10,6 +10,8 @@ import net.canarymod.config.Configuration;
 import net.canarymod.config.WorldConfiguration;
 import net.visualillusionsent.utils.PropertiesFile;
 
+import com.eharrison.canary.playerstate.PlayerState;
+
 public class XWorldManager {
 	private static final DimensionType X_DIMENSION = DimensionType.NORMAL;
 	private static final WorldType X_TYPE = WorldType.SUPERFLAT;
@@ -56,11 +58,13 @@ public class XWorldManager {
 	
 	public boolean load() {
 		world = worldManager.getWorld(config.getWorldName(), true);
+		PlayerState.registerWorld(world);
 		return world != null;
 	}
 	
 	public void unload() {
 		worldManager.unloadWorld(config.getWorldName(), X_DIMENSION, true);
+		PlayerState.unregisterWorld(world);
 	}
 	
 	public World getWorld() {

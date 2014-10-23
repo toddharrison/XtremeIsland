@@ -65,8 +65,6 @@ public class XPlayer extends DataAccess {
 	@Column(columnName = CHALLENGES_COMPLETED, dataType = DataType.STRING, isList = true)
 	public List<String> challengesCompleted;
 	
-	public boolean died;
-	
 	public Location getReturnLocation() {
 		if (returnLocationObj == null && returnLocation != null && !returnLocation.equals("null")) {
 			returnLocationObj = Location.fromString(returnLocation);
