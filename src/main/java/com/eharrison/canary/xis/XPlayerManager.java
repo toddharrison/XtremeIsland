@@ -14,6 +14,7 @@ import net.canarymod.plugin.PluginListener;
 
 import com.eharrison.canary.playerstate.hook.WorldEnterHook;
 import com.eharrison.canary.playerstate.hook.WorldExitHook;
+import com.eharrison.canary.playerstate.hook.WorldExitHook.ExitCause;
 import com.eharrison.canary.xis.dao.XPlayer;
 
 public class XPlayerManager implements PluginListener {
@@ -73,21 +74,6 @@ public class XPlayerManager implements PluginListener {
 		xPlayer.update();
 	}
 	
-	// @HookHandler
-	// public void onDeath(final PlayerDeathHook hook) throws DatabaseReadException,
-	// DatabaseWriteException {
-	// final Player player = hook.getPlayer();
-	// final World world = worldManager.getWorld();
-	//
-	// if (player.getWorld() == world) {
-	// final XPlayer xPlayer = getXPlayer(player);
-	// xPlayer.setLocation(null);
-	// xPlayer.challengesCompleted.clear();
-	// persist(xPlayer);
-	// islandManager.clearIsland(world, xPlayer.islandId);
-	// }
-	// }
-	
 	@HookHandler
 	public void onWorldEnter(final WorldEnterHook hook) throws DatabaseReadException,
 			DatabaseWriteException {
@@ -114,7 +100,7 @@ public class XPlayerManager implements PluginListener {
 			final Player player = hook.getPlayer();
 			final XPlayer xPlayer = removePlayer(player);
 			
-			if (hook.isPlayerDead()) {
+			if (hook.getCause() == ExitCause.DEATH) {
 				xPlayer.setLocation(null);
 				xPlayer.challengesCompleted.clear();
 				persist(xPlayer);
@@ -126,7 +112,7 @@ public class XPlayerManager implements PluginListener {
 				persist(xPlayer);
 			}
 			
-			XPlugin.logger.info(player.getDisplayName() + " left XIS");
+			XPlugin.logger.info(player.getDisplayName() + " left XIS because of " + hook.getCause());
 		}
 	}
 }
