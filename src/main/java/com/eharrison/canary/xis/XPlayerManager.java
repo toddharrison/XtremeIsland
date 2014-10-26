@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import net.canarymod.Canary;
 import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.api.world.World;
 import net.canarymod.api.world.position.Location;
@@ -90,6 +91,8 @@ public class XPlayerManager implements PluginListener {
 			final Location toLocation = getIslandLocation(player);
 			hook.setToLocation(toLocation);
 			
+			Canary.getServer().consoleCommand("gamerule naturalRegeneration false", player);
+			
 			XPlugin.logger.info(player.getDisplayName() + " entered XIS");
 		}
 	}
@@ -111,6 +114,8 @@ public class XPlayerManager implements PluginListener {
 				xPlayer.setLocation(fromLocation);
 				persist(xPlayer);
 			}
+			
+			Canary.getServer().consoleCommand("gamerule naturalRegeneration true", player);
 			
 			XPlugin.logger.info(player.getDisplayName() + " left XIS because of " + hook.getCause());
 		}
