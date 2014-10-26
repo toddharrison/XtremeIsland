@@ -11,7 +11,7 @@ public class MenuItem {
 	private final String name;
 	private final int slot;
 	
-	private String description;
+	private String[] description;
 	private ItemType icon;
 	private boolean disabled;
 	private Menu menu;
@@ -20,12 +20,12 @@ public class MenuItem {
 		this(name, null, icon, slot, false);
 	}
 	
-	public MenuItem(final String name, final String description, final ItemType icon, final int slot) {
+	public MenuItem(final String name, final String[] description, final ItemType icon, final int slot) {
 		this(name, description, icon, slot, false);
 	}
 	
-	public MenuItem(final String name, final String description, final ItemType icon, final int slot,
-			final boolean disabled) {
+	public MenuItem(final String name, final String[] description, final ItemType icon,
+			final int slot, final boolean disabled) {
 		this.name = name;
 		this.description = description;
 		this.icon = icon;
@@ -41,11 +41,11 @@ public class MenuItem {
 		return name;
 	}
 	
-	public String getDescription() {
+	public String[] getDescription() {
 		return description;
 	}
 	
-	public void setDescription(final String description) {
+	public void setDescription(final String[] description) {
 		this.description = description;
 	}
 	
@@ -63,7 +63,7 @@ public class MenuItem {
 		final Item item = FACTORY.newItem(icon);
 		item.setDisplayName(name);
 		if (description != null) {
-			item.setLore(description.split("\\r?\\n"));
+			item.setLore(description);
 		}
 		item.setAmount(1);
 		item.setSlot(slot);

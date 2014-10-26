@@ -45,8 +45,8 @@
     <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">3</id>
     <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:sapling:1:0</list-element>
-	    <list-element>minecraft:sapling:1:1</list-element>
-	    <list-element>minecraft:sapling:1:2</list-element>
+      <list-element>minecraft:sapling:1:1</list-element>
+      <list-element>minecraft:sapling:1:2</list-element>
     </items_repeat_reward>
     <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:apple:1</list-element>
@@ -54,7 +54,7 @@
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:sapling:2:0</list-element>
       <list-element>minecraft:sapling:2:1</list-element>
-	    <list-element>minecraft:sapling:2:2</list-element>
+      <list-element>minecraft:sapling:2:2</list-element>
     </items_reward>
     <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Survivalist</level>
     <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">applecollector</name>
@@ -91,14 +91,14 @@
     <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true"></items_repeat_reward>
     <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:wooden_door:1</list-element>
-	    <list-element>minecraft:crafting_table:1</list-element>
-	    <list-element>minecraft:furnace:1</list-element>
-	    <list-element>minecraft:chest:1</list-element>
-	    <list-element>minecraft:torch:1</list-element>
+      <list-element>minecraft:crafting_table:1</list-element>
+      <list-element>minecraft:furnace:1</list-element>
+      <list-element>minecraft:chest:1</list-element>
+      <list-element>minecraft:torch:1</list-element>
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:brown_mushroom:1</list-element>
-	    <list-element>minecraft:red_mushroom:1</list-element>
+      <list-element>minecraft:red_mushroom:1</list-element>
     </items_reward>
     <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Survivalist</level>
     <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">shelter</name>
@@ -119,7 +119,7 @@
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:dirt:5</list-element>
-	    <list-element>minecraft:iron_ore:1</list-element>
+      <list-element>minecraft:iron_ore:1</list-element>
     </items_reward>
     <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Gatherer</level>
     <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">pumpkinfarmer</name>
@@ -140,7 +140,7 @@
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:sand:5</list-element>
-	    <list-element>minecraft:iron_ore:1</list-element>
+      <list-element>minecraft:iron_ore:1</list-element>
     </items_reward>
     <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Gatherer</level>
     <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">cactusfarmer</name>
@@ -161,7 +161,7 @@
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:sand:5</list-element>
-	    <list-element>minecraft:iron_ore:1</list-element>
+      <list-element>minecraft:iron_ore:1</list-element>
     </items_reward>
     <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Gatherer</level>
     <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">sugarfarmer</name>
@@ -179,11 +179,11 @@
     </items_repeat_reward>
     <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:brown_mushroom:16</list-element>
-	    <list-element>minecraft:red_mushroom:16</list-element>
+      <list-element>minecraft:red_mushroom:16</list-element>
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:mycelium:5</list-element>
-	    <list-element>minecraft:flint:8</list-element>
+      <list-element>minecraft:flint:8</list-element>
     </items_reward>
     <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Gatherer</level>
     <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">shroompicker</name>
@@ -198,18 +198,18 @@
     <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">10</id>
     <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:sapling:1:3</list-element>
-	    <list-element>minecraft:sapling:1:5</list-element>
-	    <list-element>minecraft:sapling:1:4</list-element>
+      <list-element>minecraft:sapling:1:5</list-element>
+      <list-element>minecraft:sapling:1:4</list-element>
     </items_repeat_reward>
     <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:log:16:0</list-element>
-	    <list-element>minecraft:log:16:1</list-element>
-	    <list-element>minecraft:log:16:2</list-element>
+      <list-element>minecraft:log:16:1</list-element>
+      <list-element>minecraft:log:16:2</list-element>
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:sapling:4:3</list-element>
-	    <list-element>minecraft:sapling:4:5</list-element>
-	    <list-element>minecraft:sapling:4:4</list-element>
+      <list-element>minecraft:sapling:4:5</list-element>
+      <list-element>minecraft:sapling:4:4</list-element>
     </items_reward>
     <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Gatherer</level>
     <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">lumberjack</name>
@@ -230,7 +230,7 @@
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:dye:2:3</list-element>
-	    <list-element>minecraft:iron_ore:1</list-element>
+      <list-element>minecraft:iron_ore:1</list-element>
     </items_reward>
     <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Gatherer</level>
     <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">scrambledeggs</name>
@@ -328,11 +328,11 @@
     </items_repeat_reward>
     <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:cooked_fished:4:1</list-element>
-	    <list-element>minecraft:cooked_fished:4:0</list-element>
+      <list-element>minecraft:cooked_fished:4:0</list-element>
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:redstone:16</list-element>
-	    <list-element>minecraft:gold_ore:1</list-element>
+      <list-element>minecraft:gold_ore:1</list-element>
     </items_reward>
     <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Hunter</level>
     <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">fisherman</name>
@@ -353,7 +353,7 @@
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:diamond:1</list-element>
-	    <list-element>minecraft:gold_ore:5</list-element>
+      <list-element>minecraft:gold_ore:5</list-element>
     </items_reward>
     <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Builder</level>
     <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">hayfever</name>
@@ -371,15 +371,15 @@
     </items_repeat_reward>
     <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:log:32:0</list-element>
-  	  <list-element>minecraft:log:32:1</list-element>
-	    <list-element>minecraft:log:32:2</list-element>
-	    <list-element>minecraft:log:32:3</list-element>
-	    <list-element>minecraft:log:32:4</list-element>
-	    <list-element>minecraft:log:32:5</list-element>
+      <list-element>minecraft:log:32:1</list-element>
+      <list-element>minecraft:log:32:2</list-element>
+      <list-element>minecraft:log:32:3</list-element>
+      <list-element>minecraft:log:32:4</list-element>
+      <list-element>minecraft:log:32:5</list-element>
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:diamond:1</list-element>
-	    <list-element>minecraft:iron_ore:5</list-element>
+      <list-element>minecraft:iron_ore:5</list-element>
     </items_reward>
     <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Builder</level>
     <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">forestry</name>
@@ -394,17 +394,17 @@
     <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">19</id>
     <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:redstone:2</list-element>
-	    <list-element>minecraft:snowball:2</list-element>
+      <list-element>minecraft:snowball:2</list-element>
     </items_repeat_reward>
     <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:trapdoor:6</list-element>
-	    <list-element>minecraft:lever:6</list-element>
-	    <list-element>minecraft:stone_button:6</list-element>
-  	  <list-element>minecraft:stone_pressure_plate:6</list-element>
+      <list-element>minecraft:lever:6</list-element>
+      <list-element>minecraft:stone_button:6</list-element>
+      <list-element>minecraft:stone_pressure_plate:6</list-element>
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:redstone:8</list-element>
-	    <list-element>minecraft:snowball:8</list-element>
+      <list-element>minecraft:snowball:8</list-element>
     </items_reward>
     <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Builder</level>
     <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">jrengineer</name>
@@ -420,14 +420,14 @@
     <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true"></items_repeat_reward>
     <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:bed:1</list-element>
-	    <list-element>minecraft:bookshelf:1</list-element>
-  	  <list-element>minecraft:painting:1</list-element>
-  	  <list-element>minecraft:jukebox:1</list-element>
-	    <list-element>minecraft:glass:1</list-element>
+      <list-element>minecraft:bookshelf:1</list-element>
+      <list-element>minecraft:painting:1</list-element>
+      <list-element>minecraft:jukebox:1</list-element>
+      <list-element>minecraft:glass:1</list-element>
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:record_wait:1</list-element>
-  	  <list-element>minecraft:diamond_ore:1</list-element>
+      <list-element>minecraft:diamond_ore:1</list-element>
     </items_reward>
     <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Builder</level>
     <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">homeowner</name>
@@ -445,12 +445,12 @@
     </items_repeat_reward>
     <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:cake:5</list-element>
-	    <list-element>minecraft:pumpkin_pie:5</list-element>
-	    <list-element>minecraft:cookie:32</list-element>
+      <list-element>minecraft:pumpkin_pie:5</list-element>
+      <list-element>minecraft:cookie:32</list-element>
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:diamond:1</list-element>
-	    <list-element>minecraft:iron_ore:5</list-element>
+      <list-element>minecraft:iron_ore:5</list-element>
     </items_reward>
     <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Builder</level>
     <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">baker</name>
@@ -468,13 +468,13 @@
     </items_repeat_reward>
     <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:tnt:1</list-element>
-	    <list-element>minecraft:fireworks:16</list-element>
-	    <list-element>minecraft:dispenser:1</list-element>
-	    <list-element>minecraft:wooden_button:1</list-element>
+      <list-element>minecraft:fireworks:16</list-element>
+      <list-element>minecraft:dispenser:1</list-element>
+      <list-element>minecraft:wooden_button:1</list-element>
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:skull:6:4</list-element>
-	    <list-element>minecraft:iron_ore:10</list-element>
+      <list-element>minecraft:iron_ore:10</list-element>
     </items_reward>
     <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Conqueror</level>
     <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">pyromaniac</name>
@@ -495,7 +495,7 @@
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:gold_ore:5</list-element>
-	    <list-element>minecraft:diamond_ore:1</list-element>
+      <list-element>minecraft:diamond_ore:1</list-element>
     </items_reward>
     <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Conqueror</level>
     <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">pearlcollector</name>
@@ -513,11 +513,11 @@
     </items_repeat_reward>
     <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:fish:2:2</list-element>
-	    <list-element>minecraft:fish:4:3</list-element>
+      <list-element>minecraft:fish:4:3</list-element>
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:dye:12:0</list-element>
-	    <list-element>minecraft:diamond_ore:1</list-element>
+      <list-element>minecraft:diamond_ore:1</list-element>
     </items_reward>
     <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Conqueror</level>
     <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">bassmaster</name>
@@ -535,8 +535,8 @@
     </items_repeat_reward>
     <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:yellow_flower:32</list-element>
-	    <list-element>minecraft:red_flower:12:0</list-element>
-	    <list-element>minecraft:red_flower:12:8</list-element>
+      <list-element>minecraft:red_flower:12:0</list-element>
+      <list-element>minecraft:red_flower:12:8</list-element>
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:lapis_block:2</list-element>
@@ -557,10 +557,10 @@
     </items_repeat_reward>
     <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:porkchop:64</list-element>
-	    <list-element>minecraft:wool:64:0</list-element>
-	    <list-element>minecraft:feather:64</list-element>
-	    <list-element>minecraft:leather:16</list-element>
-	    <!--
+      <list-element>minecraft:wool:64:0</list-element>
+      <list-element>minecraft:feather:64</list-element>
+      <list-element>minecraft:leather:16</list-element>
+      <!--
 	    <list-element>minecraft:rabbit_foot:4</list-element>
 	    -->
     </items_required>
@@ -581,7 +581,7 @@
     <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true"></items_repeat_reward>
     <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:enchanting_table:1</list-element>
-	    <list-element>minecraft:bookshelf:15</list-element>
+      <list-element>minecraft:bookshelf:15</list-element>
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:beacon:1</list-element>
@@ -602,19 +602,19 @@
     </items_repeat_reward>
     <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:mushroom_stew:1</list-element>
-		  <list-element>minecraft:bread:1</list-element>
-		  <list-element>minecraft:cooked_porkchop:1</list-element>
-		  <list-element>minecraft:cooked_fished:1:0</list-element>
-		  <list-element>minecraft:cooked_fished:1:1</list-element>
-		  <list-element>minecraft:cooked_fished:1:2</list-element>
-		  <list-element>minecraft:cooked_fished:1:3</list-element>
-		  <list-element>minecraft:cake:1</list-element>
-		  <list-element>minecraft:cookie:1</list-element>
-		  <list-element>minecraft:cooked_beef:1</list-element>
-		  <list-element>minecraft:cooked_chicken:1</list-element>
-		  <list-element>minecraft:baked_potato:1</list-element>
-		  <list-element>minecraft:pumpkin_pie:1</list-element>
-		  <!--
+      <list-element>minecraft:bread:1</list-element>
+      <list-element>minecraft:cooked_porkchop:1</list-element>
+      <list-element>minecraft:cooked_fished:1:0</list-element>
+      <list-element>minecraft:cooked_fished:1:1</list-element>
+      <list-element>minecraft:cooked_fished:1:2</list-element>
+      <list-element>minecraft:cooked_fished:1:3</list-element>
+      <list-element>minecraft:cake:1</list-element>
+      <list-element>minecraft:cookie:1</list-element>
+      <list-element>minecraft:cooked_beef:1</list-element>
+      <list-element>minecraft:cooked_chicken:1</list-element>
+      <list-element>minecraft:baked_potato:1</list-element>
+      <list-element>minecraft:pumpkin_pie:1</list-element>
+      <!--
 		  <list-element>minecraft:cooked_rabbit:1</list-element>
 		  <list-element>minecraft:rabbit_stew:1</list-element>
 		  <list-element>minecraft:cooked_mutton:1</list-element>
@@ -639,21 +639,21 @@
     </items_repeat_reward>
     <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:wool:5:0</list-element>
-		  <list-element>minecraft:wool:5:1</list-element>
-		  <list-element>minecraft:wool:5:2</list-element>
-		  <list-element>minecraft:wool:5:3</list-element>
-		  <list-element>minecraft:wool:5:4</list-element>
-		  <list-element>minecraft:wool:5:5</list-element>
-		  <list-element>minecraft:wool:5:6</list-element>
-		  <list-element>minecraft:wool:5:7</list-element>
-		  <list-element>minecraft:wool:5:8</list-element>
-		  <list-element>minecraft:wool:5:9</list-element>
-		  <list-element>minecraft:wool:5:10</list-element>
-		  <list-element>minecraft:wool:5:11</list-element>
-		  <list-element>minecraft:wool:5:12</list-element>
-		  <list-element>minecraft:wool:5:13</list-element>
-		  <list-element>minecraft:wool:5:14</list-element>
-		  <list-element>minecraft:wool:5:15</list-element>
+      <list-element>minecraft:wool:5:1</list-element>
+      <list-element>minecraft:wool:5:2</list-element>
+      <list-element>minecraft:wool:5:3</list-element>
+      <list-element>minecraft:wool:5:4</list-element>
+      <list-element>minecraft:wool:5:5</list-element>
+      <list-element>minecraft:wool:5:6</list-element>
+      <list-element>minecraft:wool:5:7</list-element>
+      <list-element>minecraft:wool:5:8</list-element>
+      <list-element>minecraft:wool:5:9</list-element>
+      <list-element>minecraft:wool:5:10</list-element>
+      <list-element>minecraft:wool:5:11</list-element>
+      <list-element>minecraft:wool:5:12</list-element>
+      <list-element>minecraft:wool:5:13</list-element>
+      <list-element>minecraft:wool:5:14</list-element>
+      <list-element>minecraft:wool:5:15</list-element>
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:spawn_egg:2:95</list-element>
@@ -674,11 +674,11 @@
     </items_repeat_reward>
     <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:sapling:32:0</list-element>
-		  <list-element>minecraft:sapling:32:1</list-element>
-		  <list-element>minecraft:sapling:32:2</list-element>
-		  <list-element>minecraft:sapling:32:3</list-element>
-		  <list-element>minecraft:sapling:32:4</list-element>
-		  <list-element>minecraft:sapling:32:5</list-element>
+      <list-element>minecraft:sapling:32:1</list-element>
+      <list-element>minecraft:sapling:32:2</list-element>
+      <list-element>minecraft:sapling:32:3</list-element>
+      <list-element>minecraft:sapling:32:4</list-element>
+      <list-element>minecraft:sapling:32:5</list-element>
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:spawn_egg:2:98</list-element>

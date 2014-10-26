@@ -1,6 +1,7 @@
 package com.eharrison.canary.xis;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import net.canarymod.api.inventory.ItemType;
 import net.canarymod.api.world.World;
 import net.canarymod.api.world.blocks.Block;
 import net.canarymod.api.world.position.Location;
+import net.canarymod.chat.Colors;
 import net.canarymod.database.exceptions.DatabaseReadException;
 import net.canarymod.database.exceptions.DatabaseWriteException;
 import net.canarymod.hook.HookHandler;
@@ -40,8 +42,8 @@ public class XChallengeManager implements PluginListener {
 			final List<XChallenge> challenges = XChallenge.getXChallengesForLevel(levels.get(row).name);
 			for (int column = 0; column < challenges.size(); column++) {
 				final XChallenge challenge = challenges.get(column);
-				menuItems.add(new MenuItem(challenge.name, challenge.description, ItemType.WoolLightGreen,
-						row * 9 + column, false));
+				menuItems.add(new MenuItem(challenge.name, createDescription(challenge),
+						ItemType.WoolLightGreen, row * 9 + column, false));
 			}
 		}
 		
@@ -62,9 +64,11 @@ public class XChallengeManager implements PluginListener {
 						if (xPlayer.challengesCompleted.contains(challengeName)) {
 							if (challenge.repeatable) {
 								menuItem.setIcon(ItemType.WoolLightBlue);
+								menuItem.setDescription(createRepeatDescription(challenge));
 							} else {
 								menuItem.setIcon(ItemType.WoolLightGray);
 								menuItem.setDisabled(true);
+								menuItem.setDescription(null);
 							}
 						}
 					} catch (final Exception e) {
@@ -186,5 +190,44 @@ public class XChallengeManager implements PluginListener {
 				menuItem.update();
 			}
 		}
+	}
+	
+	private String[] createDescription(final XChallenge challenge) {
+		final List<String> description = new LinkedList<String>();
+		description.addAll(splitString(challenge.description, Colors.LIGHT_GREEN));
+		description.addAll(splitString(challenge.rewardDescription, Colors.GREEN));
+		return description.toArray(new String[description.size()]);
+	}
+	
+	private String[] createRepeatDescription(final XChallenge challenge) {
+		final List<String> description = new LinkedList<String>();
+		description.addAll(splitString(challenge.description, Colors.LIGHT_GREEN));
+		description.addAll(splitString(challenge.repeatRewardDescription, Colors.GREEN));
+		return description.toArray(new String[description.size()]);
+	}
+	
+	private List<String> splitString(final String s, final String prefix) {
+		final List<String> list = new LinkedList<String>();
+		final int wordWrap = 40;
+		int i = 0;
+		while (i < s.length()) {
+			if (i + wordWrap >= s.length()) {
+				if (prefix != null) {
+					list.add(prefix + s.substring(i));
+				} else {
+					list.add(s.substring(i));
+				}
+				i = s.length();
+			} else {
+				final int j = s.lastIndexOf(" ", i + wordWrap) + 1;
+				if (prefix != null) {
+					list.add(prefix + s.substring(i, j));
+				} else {
+					list.add(s.substring(i, j));
+				}
+				i = j;
+			}
+		}
+		return list;
 	}
 }
