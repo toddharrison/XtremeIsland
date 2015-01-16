@@ -1,4 +1,4 @@
-<xsb_xchallengelevel>
+<xis_xchallengelevel>
   <entry>
     <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">1</id>
     <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">Survivalist</name>
@@ -29,4 +29,4 @@
     <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">Xtreme</name>
     <order auto-increment="true" data-type="INTEGER" column-type="UNIQUE" is-list="false">6</order>
   </entry>
-</xsb_xchallengelevel>
+</xis_xchallengelevel>

@@ -1,4 +1,4 @@
-<xsb_xchallenge>
+<xis_xchallenge>
   <entry>
     <consume_items auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false">true</consume_items>
     <description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">Create a cobblestone generator and mine 32 cobblestone.</description>
@@ -690,4 +690,4 @@
     <reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">2 ocelot spawn eggs</reward_description>
     <type auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false">onPlayer</type>
   </entry>
-</xsb_xchallenge>
+</xis_xchallenge>
