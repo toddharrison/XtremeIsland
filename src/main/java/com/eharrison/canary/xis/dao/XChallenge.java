@@ -84,7 +84,7 @@ public class XChallenge extends DataAccess {
 	private Map<ItemType, Integer> itemsRepeatRewardMap;
 	
 	public XChallenge() {
-		super("xsb_xchallenge");
+		super("xis_xchallenge");
 	}
 	
 	@Override

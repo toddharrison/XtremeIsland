@@ -40,7 +40,7 @@ public class XChallengeLevel extends DataAccess {
 	}
 	
 	public XChallengeLevel() {
-		super("xsb_xchallengelevel");
+		super("xis_xchallengelevel");
 	}
 	
 	@Override

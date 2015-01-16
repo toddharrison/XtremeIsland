@@ -23,7 +23,7 @@
     <dependency>
 		  <groupId>com.eharrison.canary</groupId>
 		  <artifactId>player-state</artifactId>
-		  <version>0.0.6</version>
+		  <version>0.1.0</version>
 		  <scope>provided</scope>
     </dependency>
 
@@ -45,6 +45,11 @@
           <source>1.6</source>
           <target>1.6</target>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+        <version>2.1</version>
       </plugin>
     </plugins>
   </build>

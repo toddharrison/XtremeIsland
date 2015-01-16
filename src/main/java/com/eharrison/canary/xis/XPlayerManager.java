@@ -13,9 +13,9 @@ import net.canarymod.database.exceptions.DatabaseWriteException;
 import net.canarymod.hook.HookHandler;
 import net.canarymod.plugin.PluginListener;
 
+import com.eharrison.canary.playerstate.hook.WorldChangeCause;
 import com.eharrison.canary.playerstate.hook.WorldEnterHook;
 import com.eharrison.canary.playerstate.hook.WorldExitHook;
-import com.eharrison.canary.playerstate.hook.WorldExitHook.ExitCause;
 import com.eharrison.canary.xis.dao.XPlayer;
 
 public class XPlayerManager implements PluginListener {
@@ -103,7 +103,7 @@ public class XPlayerManager implements PluginListener {
 			final Player player = hook.getPlayer();
 			final XPlayer xPlayer = removePlayer(player);
 			
-			if (hook.getCause() == ExitCause.DEATH) {
+			if (hook.getCause() == WorldChangeCause.DEATH) {
 				xPlayer.setLocation(null);
 				xPlayer.challengesCompleted.clear();
 				persist(xPlayer);

@@ -11,7 +11,7 @@ import net.canarymod.api.inventory.ItemType;
 import net.canarymod.api.world.World;
 import net.canarymod.api.world.blocks.Block;
 import net.canarymod.api.world.position.Location;
-import net.canarymod.chat.Colors;
+import net.canarymod.chat.ChatFormat;
 import net.canarymod.database.exceptions.DatabaseReadException;
 import net.canarymod.database.exceptions.DatabaseWriteException;
 import net.canarymod.hook.HookHandler;
@@ -43,7 +43,7 @@ public class XChallengeManager implements PluginListener {
 			for (int column = 0; column < challenges.size(); column++) {
 				final XChallenge challenge = challenges.get(column);
 				menuItems.add(new MenuItem(challenge.name, createDescription(challenge),
-						ItemType.WoolLightGreen, row * 9 + column, false));
+						ItemType.GreenGlassPane, row * 9 + column, false));
 			}
 		}
 		
@@ -63,10 +63,10 @@ public class XChallengeManager implements PluginListener {
 						final XChallenge challenge = XChallenge.getXChallenge(challengeName);
 						if (xPlayer.challengesCompleted.contains(challengeName)) {
 							if (challenge.repeatable) {
-								menuItem.setIcon(ItemType.WoolLightBlue);
+								menuItem.setIcon(ItemType.LightBlueGlassPane);
 								menuItem.setDescription(createRepeatDescription(challenge));
 							} else {
-								menuItem.setIcon(ItemType.WoolLightGray);
+								menuItem.setIcon(ItemType.LightGrayGlassPane);
 								menuItem.setDisabled(true);
 								menuItem.setDescription(null);
 							}
@@ -194,19 +194,19 @@ public class XChallengeManager implements PluginListener {
 	
 	private String[] createDescription(final XChallenge challenge) {
 		final List<String> description = new LinkedList<String>();
-		description.addAll(splitString(challenge.description, Colors.LIGHT_GREEN));
-		description.addAll(splitString(challenge.rewardDescription, Colors.GREEN));
+		description.addAll(splitString(challenge.description, ChatFormat.GREEN));
+		description.addAll(splitString(challenge.rewardDescription, ChatFormat.DARK_GREEN));
 		return description.toArray(new String[description.size()]);
 	}
 	
 	private String[] createRepeatDescription(final XChallenge challenge) {
 		final List<String> description = new LinkedList<String>();
-		description.addAll(splitString(challenge.description, Colors.LIGHT_GREEN));
-		description.addAll(splitString(challenge.repeatRewardDescription, Colors.GREEN));
+		description.addAll(splitString(challenge.description, ChatFormat.GREEN));
+		description.addAll(splitString(challenge.repeatRewardDescription, ChatFormat.DARK_GREEN));
 		return description.toArray(new String[description.size()]);
 	}
 	
-	private List<String> splitString(final String s, final String prefix) {
+	private List<String> splitString(final String s, final ChatFormat prefix) {
 		final List<String> list = new LinkedList<String>();
 		final int wordWrap = 40;
 		int i = 0;

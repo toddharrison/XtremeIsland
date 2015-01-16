@@ -42,7 +42,7 @@ public class XPlayer extends DataAccess {
 	private Location locationObj;
 	
 	public XPlayer() {
-		super("xsb_xplayer");
+		super("xis_xplayer");
 	}
 	
 	@Override

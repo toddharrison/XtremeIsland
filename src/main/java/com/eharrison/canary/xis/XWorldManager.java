@@ -11,6 +11,7 @@ import net.canarymod.config.WorldConfiguration;
 import net.visualillusionsent.utils.PropertiesFile;
 
 import com.eharrison.canary.playerstate.PlayerState;
+import com.eharrison.canary.playerstate.PlayerState.Save;
 
 public class XWorldManager {
 	private static final DimensionType X_DIMENSION = DimensionType.NORMAL;
@@ -58,7 +59,9 @@ public class XWorldManager {
 	
 	public boolean load() {
 		world = worldManager.getWorld(config.getWorldName(), true);
-		PlayerState.registerWorld(world);
+		PlayerState.registerWorld(world, new Save[] {
+				Save.CONDITIONS, Save.INVENTORY, Save.LOCATIONS
+		});
 		return world != null;
 	}
 	
