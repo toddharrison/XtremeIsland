@@ -560,9 +560,7 @@
       <list-element>minecraft:wool:64:0</list-element>
       <list-element>minecraft:feather:64</list-element>
       <list-element>minecraft:leather:16</list-element>
-      <!--
-	    <list-element>minecraft:rabbit_foot:4</list-element>
-	    -->
+      <list-element>minecraft:rabbit_foot:4</list-element>
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:spawn_egg:2:96</list-element>
@@ -614,11 +612,9 @@
       <list-element>minecraft:cooked_chicken:1</list-element>
       <list-element>minecraft:baked_potato:1</list-element>
       <list-element>minecraft:pumpkin_pie:1</list-element>
-      <!--
-		  <list-element>minecraft:cooked_rabbit:1</list-element>
-		  <list-element>minecraft:rabbit_stew:1</list-element>
-		  <list-element>minecraft:cooked_mutton:1</list-element>
-		  -->
+	    <list-element>minecraft:cooked_rabbit:1</list-element>
+	    <list-element>minecraft:rabbit_stew:1</list-element>
+	    <list-element>minecraft:cooked_mutton:1</list-element>
     </items_required>
     <items_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true">
       <list-element>minecraft:spawn_egg:2:120</list-element>

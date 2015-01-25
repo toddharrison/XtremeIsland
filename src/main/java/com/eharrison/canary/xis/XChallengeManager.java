@@ -51,7 +51,7 @@ public class XChallengeManager implements PluginListener {
 			@Override
 			public void configure(final MenuItem[] menuItems) {
 				// TODO
-				XPlugin.logger.info("MenuConfiguration.configure(menuItems)");
+				XPlugin.LOG.info("MenuConfiguration.configure(menuItems)");
 			}
 			
 			@Override
@@ -113,7 +113,7 @@ public class XChallengeManager implements PluginListener {
 					success = true;
 				}
 			} else if ("onIsland".equals(xChallenge.type)) {
-				XPlugin.logger.info(player.getDisplayName() + " onIsland check");
+				XPlugin.LOG.info(player.getDisplayName() + " onIsland check");
 				final int range = 10;
 				
 				final Location loc = player.getLocation();
@@ -146,7 +146,7 @@ public class XChallengeManager implements PluginListener {
 					}
 				}
 				
-				XPlugin.logger.info(player.getDisplayName() + " " + requiredItems);
+				XPlugin.LOG.info(player.getDisplayName() + " " + requiredItems);
 				
 				if (requiredItems.isEmpty()) {
 					// Give player reward
@@ -171,7 +171,7 @@ public class XChallengeManager implements PluginListener {
 			if (!xPlayer.challengesCompleted.contains(name)) {
 				xPlayer.challengesCompleted.add(name);
 				xPlayer.update();
-				XPlugin.logger.info(player.getDisplayName() + " has completed " + name);
+				XPlugin.LOG.info(player.getDisplayName() + " has completed " + name);
 			}
 		}
 		
@@ -186,7 +186,7 @@ public class XChallengeManager implements PluginListener {
 			final Player player = hook.getPlayer();
 			final MenuItem menuItem = hook.getMenuItem();
 			if (completeChallenge(player, menuItem.getName())) {
-				XPlugin.logger.info(player.getDisplayName() + " completed " + menuItem.getName());
+				XPlugin.LOG.info(player.getDisplayName() + " completed " + menuItem.getName());
 				menuItem.update();
 			}
 		}

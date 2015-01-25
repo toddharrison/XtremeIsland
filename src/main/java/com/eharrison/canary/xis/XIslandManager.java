@@ -15,7 +15,7 @@ public class XIslandManager {
 	}
 	
 	public void generateIsland(final World world, final int x, int y, final int z) {
-		XPlugin.logger.info("Generating island at " + x + ":" + y + ":" + z);
+		XPlugin.LOG.info("Generating island at " + x + ":" + y + ":" + z);
 		
 		// Layer 1
 		world.setBlockAt(x, y, z, BlockType.Stone);
@@ -129,7 +129,7 @@ public class XIslandManager {
 	}
 	
 	public void clearIsland(final World world, final int islandId) {
-		XPlugin.logger.info("Deleting island " + islandId);
+		XPlugin.LOG.info("Deleting island " + islandId);
 		
 		// TODO worker Thread instantiated once
 		new Thread() {

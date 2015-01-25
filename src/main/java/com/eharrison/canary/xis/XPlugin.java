@@ -1,13 +1,18 @@
 package com.eharrison.canary.xis;
 
+import java.io.File;
+import java.io.IOException;
+
 import net.canarymod.Canary;
 import net.canarymod.commandsys.CommandDependencyException;
 import net.canarymod.database.exceptions.DatabaseReadException;
 import net.canarymod.logger.Logman;
 import net.canarymod.plugin.Plugin;
 
+import com.eharrison.canary.util.JarUtil;
+
 public class XPlugin extends Plugin {
-	public static Logman logger;
+	public static Logman LOG;
 	
 	private final XConfig config;
 	private final XWorldManager worldManager;
@@ -18,7 +23,14 @@ public class XPlugin extends Plugin {
 	private final XScoreboard scoreboard;
 	
 	public XPlugin() throws DatabaseReadException {
-		XPlugin.logger = getLogman();
+		XPlugin.LOG = getLogman();
+		
+		try {
+			JarUtil.exportResource(this, "xis_xchallenge.xml", new File("db"));
+			JarUtil.exportResource(this, "xis_xchallengelevel.xml", new File("db"));
+		} catch (final IOException e) {
+			LOG.warn("Failed to create the default challenge data files.", e);
+		}
 		
 		config = new XConfig(this);
 		worldManager = new XWorldManager(config);
@@ -29,7 +41,7 @@ public class XPlugin extends Plugin {
 		scoreboard = new XScoreboard(worldManager);
 		
 		if (worldManager.createWorld()) {
-			XPlugin.logger.info("Created XtremeIsland world");
+			XPlugin.LOG.info("Created XtremeIsland world");
 		}
 	}
 	
@@ -37,8 +49,8 @@ public class XPlugin extends Plugin {
 	public boolean enable() {
 		boolean success = false;
 		
-		logger.info("Enabling " + getName() + " Version " + getVersion());
-		logger.info("Authored by " + getAuthor());
+		LOG.info("Enabling " + getName() + " Version " + getVersion());
+		LOG.info("Authored by " + getAuthor());
 		
 		if (success = worldManager.load()) {
 			Canary.hooks().registerListener(playerManager, this);
@@ -48,7 +60,7 @@ public class XPlugin extends Plugin {
 			try {
 				Canary.commands().registerCommands(command, this, false);
 			} catch (final CommandDependencyException e) {
-				logger.error("Error registering commands: ", e);
+				LOG.error("Error registering commands: ", e);
 				success = false;
 			}
 		}
@@ -58,7 +70,7 @@ public class XPlugin extends Plugin {
 	
 	@Override
 	public void disable() {
-		logger.info("Disabling " + getName());
+		LOG.info("Disabling " + getName());
 		Canary.commands().unregisterCommands(this);
 		Canary.hooks().unregisterPluginListeners(this);
 		

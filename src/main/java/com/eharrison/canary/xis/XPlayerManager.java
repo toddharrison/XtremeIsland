@@ -78,6 +78,7 @@ public class XPlayerManager implements PluginListener {
 	@HookHandler
 	public void onWorldEnter(final WorldEnterHook hook) throws DatabaseReadException,
 			DatabaseWriteException {
+		// XPlugin.LOG.info("World Enter");
 		if (hook.getWorld() == worldManager.getWorld()) {
 			final Player player = hook.getPlayer();
 			final XPlayer xPlayer = addPlayer(player);
@@ -88,17 +89,20 @@ public class XPlayerManager implements PluginListener {
 				persist(xPlayer);
 			}
 			
-			final Location toLocation = getIslandLocation(player);
-			hook.setToLocation(toLocation);
+			// TODO: This happens in the command instead
+			// final Location toLocation = getIslandLocation(player);
+			// hook.setToLocation(toLocation);
 			
 			Canary.getServer().consoleCommand("gamerule naturalRegeneration false", player);
 			
-			XPlugin.logger.info(player.getDisplayName() + " entered XIS");
+			XPlugin.LOG.info(player.getDisplayName() + " entered XIS");
 		}
 	}
 	
 	@HookHandler
-	public void onWorldExit(final WorldExitHook hook) throws DatabaseWriteException {
+	public void onWorldExit(final WorldExitHook hook) throws DatabaseReadException,
+			DatabaseWriteException {
+		// XPlugin.LOG.info("World Exit");
 		if (hook.getWorld() == worldManager.getWorld()) {
 			final Player player = hook.getPlayer();
 			final XPlayer xPlayer = removePlayer(player);
@@ -117,7 +121,7 @@ public class XPlayerManager implements PluginListener {
 			
 			Canary.getServer().consoleCommand("gamerule naturalRegeneration true", player);
 			
-			XPlugin.logger.info(player.getDisplayName() + " left XIS because of " + hook.getCause());
+			XPlugin.LOG.info(player.getDisplayName() + " left XIS because of " + hook.getCause());
 		}
 	}
 }

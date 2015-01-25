@@ -40,7 +40,7 @@ public class XCommand implements CommandListener {
 				challengeManager.openMenu(player);
 			}
 		} else {
-			XPlugin.logger.info(playerManager.getActivePlayerIds());
+			XPlugin.LOG.info(playerManager.getActivePlayerIds());
 		}
 	}
 	
