@@ -17,8 +17,8 @@ public class XPlugin extends Plugin {
 	private final XConfig config;
 	private final XWorldManager worldManager;
 	private final XIslandManager islandManager;
-	private final XPlayerManager playerManager;
 	private final XChallengeManager challengeManager;
+	private final XPlayerManager playerManager;
 	private final XCommand command;
 	private final XScoreboard scoreboard;
 	
@@ -35,8 +35,8 @@ public class XPlugin extends Plugin {
 		config = new XConfig(this);
 		worldManager = new XWorldManager(config);
 		islandManager = new XIslandManager(config);
-		playerManager = new XPlayerManager(config, worldManager, islandManager);
-		challengeManager = new XChallengeManager(this, playerManager);
+		challengeManager = new XChallengeManager(this);
+		playerManager = new XPlayerManager(config, worldManager, islandManager, challengeManager);
 		command = new XCommand(worldManager, playerManager, challengeManager);
 		scoreboard = new XScoreboard(worldManager);
 		

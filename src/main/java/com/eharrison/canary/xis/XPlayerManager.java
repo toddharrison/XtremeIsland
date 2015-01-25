@@ -22,13 +22,16 @@ public class XPlayerManager implements PluginListener {
 	private final XConfig config;
 	private final XWorldManager worldManager;
 	private final XIslandManager islandManager;
+	private final XChallengeManager challengeManager;
 	private final Map<String, XPlayer> players;
 	
 	public XPlayerManager(final XConfig config, final XWorldManager worldManager,
-			final XIslandManager islandManager) {
+			final XIslandManager islandManager, final XChallengeManager challengeManager) {
 		this.config = config;
 		this.worldManager = worldManager;
 		this.islandManager = islandManager;
+		this.challengeManager = challengeManager;
+		this.challengeManager.setPlayerManager(this);
 		players = new HashMap<String, XPlayer>();
 	}
 	
@@ -78,7 +81,6 @@ public class XPlayerManager implements PluginListener {
 	@HookHandler
 	public void onWorldEnter(final WorldEnterHook hook) throws DatabaseReadException,
 			DatabaseWriteException {
-		// XPlugin.LOG.info("World Enter");
 		if (hook.getWorld() == worldManager.getWorld()) {
 			final Player player = hook.getPlayer();
 			final XPlayer xPlayer = addPlayer(player);
@@ -89,10 +91,6 @@ public class XPlayerManager implements PluginListener {
 				persist(xPlayer);
 			}
 			
-			// TODO: This happens in the command instead
-			// final Location toLocation = getIslandLocation(player);
-			// hook.setToLocation(toLocation);
-			
 			Canary.getServer().consoleCommand("gamerule naturalRegeneration false", player);
 			
 			XPlugin.LOG.info(player.getDisplayName() + " entered XIS");
@@ -102,13 +100,13 @@ public class XPlayerManager implements PluginListener {
 	@HookHandler
 	public void onWorldExit(final WorldExitHook hook) throws DatabaseReadException,
 			DatabaseWriteException {
-		// XPlugin.LOG.info("World Exit");
 		if (hook.getWorld() == worldManager.getWorld()) {
 			final Player player = hook.getPlayer();
 			final XPlayer xPlayer = removePlayer(player);
 			
 			if (hook.getCause() == WorldChangeCause.DEATH) {
 				xPlayer.setLocation(null);
+				challengeManager.resetMenu(player);
 				xPlayer.challengesCompleted.clear();
 				persist(xPlayer);
 				islandManager.clearIsland(hook.getWorld(), xPlayer.islandId);

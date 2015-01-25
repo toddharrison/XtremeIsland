@@ -28,13 +28,10 @@ import com.eharrison.canary.xis.dao.XChallengeLevel;
 import com.eharrison.canary.xis.dao.XPlayer;
 
 public class XChallengeManager implements PluginListener {
-	private final XPlayerManager playerManager;
 	private final MenuFactory menuFactory;
+	private XPlayerManager playerManager;
 	
-	public XChallengeManager(final XPlugin plugin, final XPlayerManager playerManager)
-			throws DatabaseReadException {
-		this.playerManager = playerManager;
-		
+	public XChallengeManager(final XPlugin plugin) throws DatabaseReadException {
 		final List<MenuItem> menuItems = new ArrayList<MenuItem>();
 		
 		final List<XChallengeLevel> levels = XChallengeLevel.getAllXChallengeLevels();
@@ -72,7 +69,7 @@ public class XChallengeManager implements PluginListener {
 							}
 						}
 					} catch (final Exception e) {
-						e.printStackTrace();
+						XPlugin.LOG.error("Error configuring menu items for player " + player.getName(), e);
 					}
 				}
 			}
@@ -83,6 +80,10 @@ public class XChallengeManager implements PluginListener {
 	
 	public void openMenu(final Player player) {
 		menuFactory.getMenu(player).display(player);
+	}
+	
+	public void resetMenu(final Player player) {
+		menuFactory.removeMenu(player);
 	}
 	
 	public boolean completeChallenge(final Player player, final String name)
@@ -190,6 +191,10 @@ public class XChallengeManager implements PluginListener {
 				menuItem.update();
 			}
 		}
+	}
+	
+	protected void setPlayerManager(final XPlayerManager playerManager) {
+		this.playerManager = playerManager;
 	}
 	
 	private String[] createDescription(final XChallenge challenge) {
