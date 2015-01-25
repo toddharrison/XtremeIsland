@@ -104,10 +104,22 @@ public class XChallengeManager implements PluginListener {
 					}
 					
 					// Give player reward
-					for (final ItemType itemType : xChallenge.getItemsReward().keySet()) {
-						final int count = xChallenge.getItemsReward().get(itemType);
-						for (int i = 0; i < count; i++) {
-							inv.addItem(itemType);
+					final XPlayer xPlayer = playerManager.getXPlayer(player);
+					if (xPlayer.challengesCompleted.contains(name)) {
+						// Repeat
+						for (final ItemType itemType : xChallenge.getItemsRepeatReward().keySet()) {
+							final int count = xChallenge.getItemsRepeatReward().get(itemType);
+							for (int i = 0; i < count; i++) {
+								inv.addItem(itemType);
+							}
+						}
+					} else {
+						// First time
+						for (final ItemType itemType : xChallenge.getItemsReward().keySet()) {
+							final int count = xChallenge.getItemsReward().get(itemType);
+							for (int i = 0; i < count; i++) {
+								inv.addItem(itemType);
+							}
 						}
 					}
 					
@@ -146,8 +158,6 @@ public class XChallengeManager implements PluginListener {
 						}
 					}
 				}
-				
-				XPlugin.LOG.info(player.getDisplayName() + " " + requiredItems);
 				
 				if (requiredItems.isEmpty()) {
 					// Give player reward
