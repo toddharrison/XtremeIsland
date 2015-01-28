@@ -7,7 +7,7 @@ XtremeIsland is a single player game where you are transported to an empty world
 XtremeIsland is built against the latest 1.2.0-SNAPSHOT of [canarymod](http://www.canarymod.net/) and supports Minecraft 1.8.
 
 **WARNING:
-This is still a beta plugin and there have been observed bugs. Please backup your server and report any bugs that you find.**
+This is still a beta plugin and there have been observed bugs. Please backup your server regularly and report any bugs that you find. Wait 30 seconds or so after you die before executing `/xis` again until I add the forced wait.**
 
 ## Installation
 XtremeIsland requires PlayerState v.0.1.2 to be deployed.
