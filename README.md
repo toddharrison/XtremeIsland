@@ -1,13 +1,13 @@
 XtremeIsland
 ============
-v.0.1.0
+v.0.1.1
 
 XtremeIsland is a single player game where you are transported to an empty world where all you have is a tiny island and a meager set of supplies to survive. Challenges may be completed for additional resources and your overall score is tracked realtime against other players. You get one chance to expand your island score as high as possible before falling prey to clumsiness or the dangers of a ruthless world. The difficulty is hard and natural health recovery is disabled. If you die, it's all over. Your island is removed and your score reset.
 
 XtremeIsland is built against the latest 1.2.0-SNAPSHOT of [canarymod](http://www.canarymod.net/) and supports Minecraft 1.8.
 
 **WARNING:
-This is still a beta plugin and there have been observed bugs. Please backup your server regularly and report any bugs that you find. Wait 30 seconds or so after you die before executing `/xis` again until I add the forced wait.**
+This is still a beta plugin and there have been observed bugs. Please backup your server regularly and report any bugs that you find.**
 
 ## Installation
 XtremeIsland requires PlayerState v.0.1.2 to be deployed.
@@ -35,11 +35,11 @@ The challenges are organized into levels, which will be relevant in the future.
 * Inventory management between worlds using PlayerState
 * Destroys islands on a separate thread to lessen impact on server
 * Scoreboard for players based upon the work they do on their island
+* Forces the player to wait until the island is deleted before allowing them to return
 
 ## Known Issues / TODO
 * Implement level restrictions and requirements for challenges
 * Allow more configuration options for XtremeIsland settings
-* Force player to wait after they respawn from death before running `/xis` so that island can completely delete first
 * Abstract score to a set of levels
 * Vary scores based upon block types
 * Add to score by completing challenges
