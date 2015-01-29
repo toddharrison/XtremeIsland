@@ -109,7 +109,7 @@ public class XPlayerManager implements PluginListener {
 				challengeManager.resetMenu(player);
 				xPlayer.challengesCompleted.clear();
 				persist(xPlayer);
-				islandManager.clearIsland(hook.getWorld(), xPlayer.islandId);
+				islandManager.clearIsland(hook.getWorld(), player, xPlayer.islandId);
 				hook.setToLocation(xPlayer.getReturnLocation());
 			} else {
 				final Location fromLocation = hook.getFromLocation();

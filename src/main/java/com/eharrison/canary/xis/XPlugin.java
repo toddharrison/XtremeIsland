@@ -37,7 +37,7 @@ public class XPlugin extends Plugin {
 		islandManager = new XIslandManager(config);
 		challengeManager = new XChallengeManager(this);
 		playerManager = new XPlayerManager(config, worldManager, islandManager, challengeManager);
-		command = new XCommand(worldManager, playerManager, challengeManager);
+		command = new XCommand(worldManager, playerManager, challengeManager, islandManager);
 		scoreboard = new XScoreboard(worldManager);
 		
 		if (worldManager.createWorld()) {

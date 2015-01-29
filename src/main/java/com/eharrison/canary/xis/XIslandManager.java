@@ -1,17 +1,27 @@
 package com.eharrison.canary.xis;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+
+import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.api.inventory.Inventory;
 import net.canarymod.api.inventory.ItemType;
 import net.canarymod.api.world.World;
 import net.canarymod.api.world.blocks.Block;
 import net.canarymod.api.world.blocks.BlockType;
 import net.canarymod.api.world.blocks.Chest;
+import net.visualillusionsent.utils.TaskManager;
 
 public class XIslandManager {
 	private final XConfig config;
 	
+	private final Set<UUID> islandsDeleting;
+	
 	public XIslandManager(final XConfig config) {
 		this.config = config;
+		islandsDeleting = Collections.synchronizedSet(new HashSet<UUID>());
 	}
 	
 	public void generateIsland(final World world, final int x, int y, final int z) {
@@ -128,11 +138,15 @@ public class XIslandManager {
 		world.setBlockAt(x, y, z, BlockType.OakLeaves);
 	}
 	
-	public void clearIsland(final World world, final int islandId) {
+	public boolean isClearingIsland(final Player player) {
+		return islandsDeleting.contains(player.getUUID());
+	}
+	
+	public void clearIsland(final World world, final Player player, final int islandId) {
 		XPlugin.LOG.info("Deleting island " + islandId);
+		islandsDeleting.add(player.getUUID());
 		
-		// TODO worker Thread instantiated once
-		new Thread() {
+		TaskManager.submitTask(new Runnable() {
 			@Override
 			public void run() {
 				final int maxSize = config.getMaxSize();
@@ -151,7 +165,11 @@ public class XIslandManager {
 						}
 					}
 				}
+				
+				// Deletion completion
+				XPlugin.LOG.info("Island " + islandId + " deleted");
+				islandsDeleting.remove(player.getUUID());
 			}
-		}.start();
+		});
 	}
 }

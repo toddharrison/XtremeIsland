@@ -15,12 +15,14 @@ public class XCommand implements CommandListener {
 	private final XWorldManager worldManager;
 	private final XPlayerManager playerManager;
 	private final XChallengeManager challengeManager;
+	private final XIslandManager islandManager;
 	
 	public XCommand(final XWorldManager worldManager, final XPlayerManager playerManager,
-			final XChallengeManager challengeManager) {
+			final XChallengeManager challengeManager, final XIslandManager islandManager) {
 		this.worldManager = worldManager;
 		this.playerManager = playerManager;
 		this.challengeManager = challengeManager;
+		this.islandManager = islandManager;
 	}
 	
 	@Command(aliases = {
@@ -35,7 +37,11 @@ public class XCommand implements CommandListener {
 			final World world = worldManager.getWorld();
 			
 			if (player.getWorld() != world) {
-				player.teleportTo(playerManager.getIslandLocation(player));
+				if (islandManager.isClearingIsland(player)) {
+					player.message("Your island is still deleting, please wait a moment...");
+				} else {
+					player.teleportTo(playerManager.getIslandLocation(player));
+				}
 			} else {
 				challengeManager.openMenu(player);
 			}
