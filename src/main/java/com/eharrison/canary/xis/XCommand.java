@@ -63,7 +63,7 @@ public class XCommand implements CommandListener {
 				final XPlayer xPlayer = playerManager.getXPlayer(player);
 				Location returnLocation = xPlayer.getReturnLocation();
 				if (returnLocation == null) {
-					returnLocation = worldManager.getHubLocation();
+					returnLocation = worldManager.getDefaultSpawn();
 				}
 				player.teleportTo(returnLocation);
 			}

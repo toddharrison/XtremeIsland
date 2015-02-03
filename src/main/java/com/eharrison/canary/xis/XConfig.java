@@ -15,10 +15,6 @@ public class XConfig {
 		// cfg.save();
 	}
 	
-	public String getHubWorld() {
-		return cfg.getString("hubWorld", "default");
-	}
-	
 	public String getWorldName() {
 		return cfg.getString("worldName", "xis");
 	}
@@ -38,6 +34,7 @@ public class XConfig {
 	
 	// private static final int BLOCK_VERY_EASY = 1;
 	
+	// TODO different block values
 	public void foo() {
 		final Map<BlockType, Integer> bar = new HashMap<BlockType, Integer>();
 		

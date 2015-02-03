@@ -19,14 +19,15 @@ public class XWorldManager {
 	
 	private final XConfig config;
 	private final WorldManager worldManager;
-	private final Location hubLocation;
 	private World world;
 	
 	public XWorldManager(final XConfig config) {
 		this.config = config;
-		hubLocation = Canary.getServer().getWorldManager().getWorld(config.getHubWorld(), true)
-				.getSpawnLocation();
 		worldManager = Canary.getServer().getWorldManager();
+	}
+	
+	public Location getDefaultSpawn() {
+		return Canary.getServer().getDefaultWorld().getSpawnLocation();
 	}
 	
 	public boolean createWorld() {
@@ -72,9 +73,5 @@ public class XWorldManager {
 	
 	public World getWorld() {
 		return world;
-	}
-	
-	public Location getHubLocation() {
-		return hubLocation;
 	}
 }
