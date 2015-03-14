@@ -13,7 +13,8 @@ import net.canarymod.database.exceptions.DatabaseWriteException;
 import net.canarymod.hook.HookHandler;
 import net.canarymod.plugin.PluginListener;
 
-import com.eharrison.canary.playerstate.hook.WorldChangeCause;
+import com.eharrison.canary.playerstate.hook.WorldDeathExitHook;
+import com.eharrison.canary.playerstate.hook.WorldDeathHook;
 import com.eharrison.canary.playerstate.hook.WorldEnterHook;
 import com.eharrison.canary.playerstate.hook.WorldExitHook;
 import com.eharrison.canary.xis.dao.XPlayer;
@@ -78,6 +79,49 @@ public class XPlayerManager implements PluginListener {
 		xPlayer.update();
 	}
 	
+	// @HookHandler
+	// public void onDeath(final PlayerDeathHook hook) throws DatabaseReadException,
+	// DatabaseWriteException {
+	// final Player player = hook.getPlayer();
+	// final World world = player.getWorld();
+	// if (world == worldManager.getWorld()) {
+	// final XPlayer xPlayer = XPlayer.getXPlayer(player);
+	//
+	// xPlayer.setLocation(null);
+	// challengeManager.resetMenu(player);
+	// xPlayer.challengesCompleted.clear();
+	// persist(xPlayer);
+	// islandManager.clearIsland(world, player, xPlayer.islandId);
+	// }
+	// }
+	
+	@HookHandler
+	public void onXisDeath(final WorldDeathHook hook) throws DatabaseReadException,
+			DatabaseWriteException {
+		if (hook.getDeathLocation().getWorld() == worldManager.getWorld()) {
+			final Player player = hook.getPlayer();
+			final XPlayer xPlayer = XPlayer.getXPlayer(player);
+			hook.setSpawnLocation(xPlayer.getReturnLocation());
+		}
+	}
+	
+	@HookHandler
+	public void onXisDeath(final WorldDeathExitHook hook) throws DatabaseReadException,
+			DatabaseWriteException {
+		final World world = hook.getWorld();
+		
+		if (world == worldManager.getWorld()) {
+			final Player player = hook.getPlayer();
+			final XPlayer xPlayer = XPlayer.getXPlayer(player);
+			
+			xPlayer.setLocation(null);
+			challengeManager.resetMenu(player);
+			xPlayer.challengesCompleted.clear();
+			persist(xPlayer);
+			islandManager.clearIsland(world, player, xPlayer.islandId);
+		}
+	}
+	
 	@HookHandler
 	public void onWorldEnter(final WorldEnterHook hook) throws DatabaseReadException,
 			DatabaseWriteException {
@@ -104,22 +148,15 @@ public class XPlayerManager implements PluginListener {
 			final Player player = hook.getPlayer();
 			final XPlayer xPlayer = removePlayer(player);
 			
-			if (hook.getCause() == WorldChangeCause.DEATH) {
-				xPlayer.setLocation(null);
-				challengeManager.resetMenu(player);
-				xPlayer.challengesCompleted.clear();
-				persist(xPlayer);
-				islandManager.clearIsland(hook.getWorld(), player, xPlayer.islandId);
-				hook.setToLocation(xPlayer.getReturnLocation());
-			} else {
-				final Location fromLocation = hook.getFromLocation();
+			final Location fromLocation = hook.getFromLocation();
+			if (fromLocation != null) {
 				xPlayer.setLocation(fromLocation);
 				persist(xPlayer);
 			}
 			
 			Canary.getServer().consoleCommand("gamerule naturalRegeneration true", player);
 			
-			XPlugin.LOG.info(player.getDisplayName() + " left XIS because of " + hook.getCause());
+			XPlugin.LOG.info(player.getDisplayName() + " left XIS");
 		}
 	}
 }
