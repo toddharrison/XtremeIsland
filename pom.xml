@@ -3,7 +3,7 @@
 
   <groupId>com.eharrison.canary</groupId>
   <artifactId>xis</artifactId>
-  <version>0.1.3-SNAPSHOT</version>
+  <version>0.1.3</version>
 
   <name>XtremeIsland</name>
 
@@ -23,7 +23,7 @@
     <dependency>
 		  <groupId>com.eharrison.canary</groupId>
 		  <artifactId>player-state</artifactId>
-		  <version>0.2.2-SNAPSHOT</version>
+		  <version>0.2.2</version>
 		  <scope>provided</scope>
     </dependency>
 
