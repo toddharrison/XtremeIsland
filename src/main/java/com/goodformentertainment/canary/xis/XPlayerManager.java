@@ -1,4 +1,4 @@
-package com.eharrison.canary.xis;
+package com.goodformentertainment.canary.xis;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -16,10 +16,10 @@ import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.player.PlayerDeathHook;
 import net.canarymod.plugin.PluginListener;
 
-import com.eharrison.canary.playerstate.hook.WorldDeathHook;
-import com.eharrison.canary.playerstate.hook.WorldEnterHook;
-import com.eharrison.canary.playerstate.hook.WorldExitHook;
-import com.eharrison.canary.xis.dao.XPlayer;
+import com.goodformentertainment.canary.playerstate.hook.WorldDeathHook;
+import com.goodformentertainment.canary.playerstate.hook.WorldEnterHook;
+import com.goodformentertainment.canary.playerstate.hook.WorldExitHook;
+import com.goodformentertainment.canary.xis.dao.XPlayer;
 
 public class XPlayerManager implements PluginListener {
 	private final XConfig config;

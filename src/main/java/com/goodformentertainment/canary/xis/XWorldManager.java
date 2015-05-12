@@ -1,4 +1,4 @@
-package com.eharrison.canary.xis;
+package com.goodformentertainment.canary.xis;
 
 import net.canarymod.Canary;
 import net.canarymod.api.world.DimensionType;
@@ -10,8 +10,8 @@ import net.canarymod.config.Configuration;
 import net.canarymod.config.WorldConfiguration;
 import net.visualillusionsent.utils.PropertiesFile;
 
-import com.eharrison.canary.playerstate.PlayerState;
-import com.eharrison.canary.playerstate.PlayerState.Save;
+import com.goodformentertainment.canary.playerstate.PlayerState;
+import com.goodformentertainment.canary.playerstate.PlayerState.Save;
 
 public class XWorldManager {
 	private static final DimensionType X_DIMENSION = DimensionType.NORMAL;

@@ -1,4 +1,4 @@
-package com.eharrison.canary.xis;
+package com.goodformentertainment.canary.xis;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -17,15 +17,15 @@ import net.canarymod.database.exceptions.DatabaseWriteException;
 import net.canarymod.hook.HookHandler;
 import net.canarymod.plugin.PluginListener;
 
-import com.eharrison.canary.util.InventoryUtil;
-import com.eharrison.canary.util.menu.Menu;
-import com.eharrison.canary.util.menu.MenuConfiguration;
-import com.eharrison.canary.util.menu.MenuFactory;
-import com.eharrison.canary.util.menu.MenuItem;
-import com.eharrison.canary.util.menu.hook.MenuItemSelectHook;
-import com.eharrison.canary.xis.dao.XChallenge;
-import com.eharrison.canary.xis.dao.XChallengeLevel;
-import com.eharrison.canary.xis.dao.XPlayer;
+import com.goodformentertainment.canary.util.InventoryUtil;
+import com.goodformentertainment.canary.util.menu.Menu;
+import com.goodformentertainment.canary.util.menu.MenuConfiguration;
+import com.goodformentertainment.canary.util.menu.MenuFactory;
+import com.goodformentertainment.canary.util.menu.MenuItem;
+import com.goodformentertainment.canary.util.menu.hook.MenuItemSelectHook;
+import com.goodformentertainment.canary.xis.dao.XChallenge;
+import com.goodformentertainment.canary.xis.dao.XChallengeLevel;
+import com.goodformentertainment.canary.xis.dao.XPlayer;
 
 public class XChallengeManager implements PluginListener {
 	private final MenuFactory menuFactory;

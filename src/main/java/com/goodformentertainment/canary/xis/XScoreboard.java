@@ -1,4 +1,4 @@
-package com.eharrison.canary.xis;
+package com.goodformentertainment.canary.xis;
 
 import net.canarymod.Canary;
 import net.canarymod.api.entity.living.humanoid.Player;
@@ -14,8 +14,8 @@ import net.canarymod.hook.player.BlockPlaceHook;
 import net.canarymod.hook.player.PlayerDeathHook;
 import net.canarymod.plugin.PluginListener;
 
-import com.eharrison.canary.playerstate.hook.WorldEnterHook;
-import com.eharrison.canary.playerstate.hook.WorldExitHook;
+import com.goodformentertainment.canary.playerstate.hook.WorldEnterHook;
+import com.goodformentertainment.canary.playerstate.hook.WorldExitHook;
 
 public class XScoreboard implements PluginListener {
 	private static final String NAME = "xis_scoreboard";

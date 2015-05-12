@@ -1,4 +1,4 @@
-package com.eharrison.canary.xis;
+package com.goodformentertainment.canary.xis;
 
 import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.api.world.World;
@@ -9,7 +9,7 @@ import net.canarymod.commandsys.CommandListener;
 import net.canarymod.database.exceptions.DatabaseReadException;
 import net.canarymod.database.exceptions.DatabaseWriteException;
 
-import com.eharrison.canary.xis.dao.XPlayer;
+import com.goodformentertainment.canary.xis.dao.XPlayer;
 
 public class XCommand implements CommandListener {
 	private final XWorldManager worldManager;

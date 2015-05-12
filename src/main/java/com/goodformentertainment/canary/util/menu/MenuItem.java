@@ -1,4 +1,4 @@
-package com.eharrison.canary.util.menu;
+package com.goodformentertainment.canary.util.menu;
 
 import net.canarymod.Canary;
 import net.canarymod.api.factory.ItemFactory;

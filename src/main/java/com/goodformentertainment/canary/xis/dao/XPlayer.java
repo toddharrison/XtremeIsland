@@ -1,4 +1,4 @@
-package com.eharrison.canary.xis.dao;
+package com.goodformentertainment.canary.xis.dao;
 
 import java.util.HashMap;
 import java.util.List;

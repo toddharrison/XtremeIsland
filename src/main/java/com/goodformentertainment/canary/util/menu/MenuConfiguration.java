@@ -1,4 +1,4 @@
-package com.eharrison.canary.util.menu;
+package com.goodformentertainment.canary.util.menu;
 
 import net.canarymod.api.entity.living.humanoid.Player;
 

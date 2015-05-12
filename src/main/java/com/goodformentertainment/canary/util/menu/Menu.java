@@ -1,4 +1,4 @@
-package com.eharrison.canary.util.menu;
+package com.goodformentertainment.canary.util.menu;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,9 +15,9 @@ import net.canarymod.hook.player.SlotClickHook;
 import net.canarymod.plugin.Plugin;
 import net.canarymod.plugin.PluginListener;
 
-import com.eharrison.canary.util.menu.hook.MenuCloseHook;
-import com.eharrison.canary.util.menu.hook.MenuItemSelectHook;
-import com.eharrison.canary.util.menu.hook.MenuOpenHook;
+import com.goodformentertainment.canary.util.menu.hook.MenuCloseHook;
+import com.goodformentertainment.canary.util.menu.hook.MenuItemSelectHook;
+import com.goodformentertainment.canary.util.menu.hook.MenuOpenHook;
 
 public class Menu implements PluginListener {
 	private static final ObjectFactory FACTORY = Canary.factory().getObjectFactory();

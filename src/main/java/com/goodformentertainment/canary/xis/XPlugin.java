@@ -1,4 +1,4 @@
-package com.eharrison.canary.xis;
+package com.goodformentertainment.canary.xis;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import net.canarymod.database.exceptions.DatabaseReadException;
 import net.canarymod.logger.Logman;
 import net.canarymod.plugin.Plugin;
 
-import com.eharrison.canary.util.JarUtil;
+import com.goodformentertainment.canary.util.JarUtil;
 
 public class XPlugin extends Plugin {
 	public static Logman LOG;

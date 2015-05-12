@@ -1,4 +1,4 @@
-package com.eharrison.canary.util.menu;
+package com.goodformentertainment.canary.util.menu;
 
 import java.util.HashMap;
 import java.util.Map;
