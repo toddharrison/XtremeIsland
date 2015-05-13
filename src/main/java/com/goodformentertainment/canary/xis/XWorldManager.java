@@ -11,7 +11,7 @@ import net.canarymod.config.WorldConfiguration;
 import net.visualillusionsent.utils.PropertiesFile;
 
 import com.goodformentertainment.canary.playerstate.PlayerStatePlugin;
-import com.goodformentertainment.canary.playerstate.api.IWorldManager;
+import com.goodformentertainment.canary.playerstate.api.IWorldStateManager;
 import com.goodformentertainment.canary.playerstate.api.SaveState;
 
 public class XWorldManager {
@@ -61,9 +61,9 @@ public class XWorldManager {
 	
 	public boolean load() {
 		world = worldManager.getWorld(config.getWorldName(), true);
-		final IWorldManager worldManager = PlayerStatePlugin.getWorldManager();
+		final IWorldStateManager worldStateManager = PlayerStatePlugin.getWorldManager();
 		
-		worldManager.registerWorld(world, new SaveState[] {
+		worldStateManager.registerWorld(world, new SaveState[] {
 				SaveState.CONDITIONS, SaveState.INVENTORY, SaveState.LOCATIONS
 		});
 		return world != null;
@@ -71,8 +71,8 @@ public class XWorldManager {
 	
 	public void unload() {
 		worldManager.unloadWorld(config.getWorldName(), X_DIMENSION, true);
-		final IWorldManager worldManager = PlayerStatePlugin.getWorldManager();
-		worldManager.unregisterWorld(world);
+		final IWorldStateManager worldStateManager = PlayerStatePlugin.getWorldManager();
+		worldStateManager.unregisterWorld(world);
 	}
 	
 	public World getWorld() {
