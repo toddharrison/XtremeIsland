@@ -42,6 +42,12 @@ public class XScoreboard implements PluginListener {
 		}
 	}
 	
+	public void addToScore(final Player player, final int value) {
+		final Score score = scoreboard.getScore(player, scoreObjective);
+		score.addToScore(value);
+		score.update();
+	}
+	
 	@HookHandler
 	public void onWorldEnter(final WorldEnterHook hook) {
 		if (hook.getWorld() == worldManager.getWorld()) {
@@ -64,10 +70,14 @@ public class XScoreboard implements PluginListener {
 	public void onPlaceBlock(final BlockPlaceHook hook) {
 		final Block block = hook.getBlockPlaced();
 		if (block.getWorld() == worldManager.getWorld()) {
-			final Player player = hook.getPlayer();
-			final Score score = scoreboard.getScore(player, scoreObjective);
-			score.addToScore(1);
-			score.update();
+			final BlockType type = block.getType();
+			final int value = BlockScoreValue.getPlaceValue(type);
+			if (value > 0) {
+				final Player player = hook.getPlayer();
+				final Score score = scoreboard.getScore(player, scoreObjective);
+				score.addToScore(value);
+				score.update();
+			}
 		}
 	}
 	
@@ -75,16 +85,12 @@ public class XScoreboard implements PluginListener {
 	public void onRemoveBlock(final BlockDestroyHook hook) {
 		final Block block = hook.getBlock();
 		if (block.getWorld() == worldManager.getWorld()) {
-			final BlockType type = hook.getBlock().getType();
-			if (type != BlockType.AcaciaLeaves && type != BlockType.AcaciaLog
-					&& type != BlockType.BirchLeaves && type != BlockType.BirchLog
-					&& type != BlockType.DarkOakLeaves && type != BlockType.DarkOakLog
-					&& type != BlockType.JungleLeaves && type != BlockType.JungleLog
-					&& type != BlockType.OakLeaves && type != BlockType.OakLog
-					&& type != BlockType.PineLeaves && type != BlockType.PineLog && type != BlockType.Cobble) {
+			final BlockType type = block.getType();
+			final int value = BlockScoreValue.getRemoveValue(type);
+			if (value > 0) {
 				final Player player = hook.getPlayer();
 				final Score score = scoreboard.getScore(player, scoreObjective);
-				score.removeFromScore(1);
+				score.removeFromScore(value);
 				score.update();
 			}
 		}

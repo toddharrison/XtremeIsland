@@ -34,11 +34,11 @@ public class XPlugin extends Plugin {
 		
 		config = new XConfig(this);
 		worldManager = new XWorldManager(config);
+		scoreboard = new XScoreboard(worldManager);
 		islandManager = new XIslandManager(config);
-		challengeManager = new XChallengeManager(this);
+		challengeManager = new XChallengeManager(this, scoreboard);
 		playerManager = new XPlayerManager(config, worldManager, islandManager, challengeManager);
 		command = new XCommand(worldManager, playerManager, challengeManager, islandManager);
-		scoreboard = new XScoreboard(worldManager);
 		
 		if (worldManager.createWorld()) {
 			XPlugin.LOG.info("Created XtremeIsland world");

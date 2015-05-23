@@ -28,11 +28,14 @@ import com.goodformentertainment.canary.xis.dao.XChallengeLevel;
 import com.goodformentertainment.canary.xis.dao.XPlayer;
 
 public class XChallengeManager implements PluginListener {
+	private final XScoreboard scoreboard;
 	private final MenuFactory menuFactory;
 	private XPlayerManager playerManager;
 	
-	public XChallengeManager(final XPlugin plugin) throws DatabaseReadException {
+	public XChallengeManager(final XPlugin plugin, final XScoreboard scoreboard)
+			throws DatabaseReadException {
 		final List<MenuItem> menuItems = new ArrayList<MenuItem>();
+		this.scoreboard = scoreboard;
 		
 		final List<XChallengeLevel> levels = XChallengeLevel.getAllXChallengeLevels();
 		for (int row = 0; row < levels.size(); row++) {
@@ -177,8 +180,18 @@ public class XChallengeManager implements PluginListener {
 		}
 		
 		if (success) {
-			// Record that the player completed this challenge
 			final XPlayer xPlayer = playerManager.getXPlayer(player);
+			
+			// Add value to the scoreboard for the value of the challenge
+			if (xPlayer.challengesCompleted.contains(name)) {
+				// Repeat reward
+				scoreboard.addToScore(player, xChallenge.scoreRepeatReward);
+			} else {
+				// First time reward
+				scoreboard.addToScore(player, xChallenge.scoreReward);
+			}
+			
+			// Record that the player completed this challenge
 			if (!xPlayer.challengesCompleted.contains(name)) {
 				xPlayer.challengesCompleted.add(name);
 				xPlayer.update();

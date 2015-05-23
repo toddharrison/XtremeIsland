@@ -1,32 +1,37 @@
 <xis_xchallengelevel>
+  <tableProperties>
+    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false" not-null="false" />
+    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false" not-null="false" />
+    <order auto-increment="true" data-type="INTEGER" column-type="UNIQUE" is-list="false" not-null="false" />
+  </tableProperties>
   <entry>
-    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">1</id>
-    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">Survivalist</name>
-    <order auto-increment="true" data-type="INTEGER" column-type="UNIQUE" is-list="false">1</order>
+    <id>1</id>
+    <name>Survivalist</name>
+    <order>1</order>
   </entry>
   <entry>
-    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">2</id>
-    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">Gatherer</name>
-    <order auto-increment="true" data-type="INTEGER" column-type="UNIQUE" is-list="false">2</order>
+    <id>2</id>
+    <name>Gatherer</name>
+    <order>2</order>
   </entry>
   <entry>
-    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">3</id>
-    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">Hunter</name>
-    <order auto-increment="true" data-type="INTEGER" column-type="UNIQUE" is-list="false">3</order>
+    <id>3</id>
+    <name>Hunter</name>
+    <order>3</order>
   </entry>
   <entry>
-    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">4</id>
-    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">Builder</name>
-    <order auto-increment="true" data-type="INTEGER" column-type="UNIQUE" is-list="false">4</order>
+    <id>4</id>
+    <name>Builder</name>
+    <order>4</order>
   </entry>
   <entry>
-    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">5</id>
-    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">Conqueror</name>
-    <order auto-increment="true" data-type="INTEGER" column-type="UNIQUE" is-list="false">5</order>
+    <id>5</id>
+    <name>Conqueror</name>
+    <order>5</order>
   </entry>
   <entry>
-    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false">6</id>
-    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false">Xtreme</name>
-    <order auto-increment="true" data-type="INTEGER" column-type="UNIQUE" is-list="false">6</order>
+    <id>6</id>
+    <name>Xtreme</name>
+    <order>6</order>
   </entry>
 </xis_xchallengelevel>
