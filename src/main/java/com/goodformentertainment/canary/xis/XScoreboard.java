@@ -21,12 +21,14 @@ public class XScoreboard implements PluginListener {
 	private static final String NAME = "xis_scoreboard";
 	
 	private final XWorldManager worldManager;
+	private final BlockScoreValue blockScoreValues;
 	private final Scoreboard scoreboard;
 	private ScoreObjective scoreObjective;
 	private ScoreObjective highScoreObjective;
 	
-	public XScoreboard(final XWorldManager worldManager) {
+	public XScoreboard(final XWorldManager worldManager, final BlockScoreValue blockScoreValues) {
 		this.worldManager = worldManager;
+		this.blockScoreValues = blockScoreValues;
 		
 		// TODO set the world instead of the name
 		scoreboard = Canary.scoreboards().getScoreboard(NAME);
@@ -71,7 +73,7 @@ public class XScoreboard implements PluginListener {
 		final Block block = hook.getBlockPlaced();
 		if (block.getWorld() == worldManager.getWorld()) {
 			final BlockType type = block.getType();
-			final int value = BlockScoreValue.getPlaceValue(type);
+			final int value = blockScoreValues.getPlaceValue(type);
 			if (value > 0) {
 				final Player player = hook.getPlayer();
 				final Score score = scoreboard.getScore(player, scoreObjective);
@@ -86,7 +88,7 @@ public class XScoreboard implements PluginListener {
 		final Block block = hook.getBlock();
 		if (block.getWorld() == worldManager.getWorld()) {
 			final BlockType type = block.getType();
-			final int value = BlockScoreValue.getRemoveValue(type);
+			final int value = blockScoreValues.getRemoveValue(type);
 			if (value > 0) {
 				final Player player = hook.getPlayer();
 				final Score score = scoreboard.getScore(player, scoreObjective);
