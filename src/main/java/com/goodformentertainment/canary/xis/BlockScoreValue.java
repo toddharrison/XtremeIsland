@@ -83,6 +83,7 @@ public class BlockScoreValue {
 		return values;
 	}
 	
+	public static final String TYPE_COBBLE = "cobble";
 	public static final String TYPE_COBBLESTONE = "cobblestone";
 	public static final String TYPE_TREE = "tree";
 	public static final String TYPE_DIRT = "dirt";
@@ -117,6 +118,11 @@ public class BlockScoreValue {
 		String valueType = null;
 		
 		if (type == BlockType.Cobble) {
+			valueType = TYPE_COBBLE;
+		} else if (type == BlockType.CobbleSlab || type == BlockType.StoneStairs
+				|| type == BlockType.DoubleCobbleSlab || type == BlockType.CobblestoneWall
+				|| type == BlockType.MossyCobble || type == BlockType.MossyCobbleWall
+				|| type == BlockType.BurningFurnace || type == BlockType.Furnace) {
 			valueType = TYPE_COBBLESTONE;
 		} else if (type == BlockType.AcaciaLeaves || type == BlockType.AcaciaLog
 				|| type == BlockType.BirchLeaves || type == BlockType.BirchLog
@@ -180,10 +186,8 @@ public class BlockScoreValue {
 				|| type == BlockType.Granite || type == BlockType.PolishedAndesite
 				|| type == BlockType.PolishedDiorite || type == BlockType.PolishedGranite
 				|| type == BlockType.DoubleStoneBricksSlab || type == BlockType.DoubleStoneSlab
-				|| type == BlockType.MossyCobble || type == BlockType.MossyStoneBrick
-				|| type == BlockType.CobblestoneWall || type == BlockType.MossyCobbleWall
-				|| type == BlockType.CrackedStoneBrick || type == BlockType.Furnace
-				|| type == BlockType.BurningFurnace) {
+				|| type == BlockType.MossyStoneBrick || type == BlockType.CrackedStoneBrick
+				|| type == BlockType.DoubleStoneBricksSlab || type == BlockType.DoubleStoneSlab) {
 			valueType = TYPE_STONE;
 		} else if (type == BlockType.AcaciaDoor || type == BlockType.AcaciaFence
 				|| type == BlockType.AcaciaFenceGate || type == BlockType.AcaciaPlanks
@@ -209,19 +213,18 @@ public class BlockScoreValue {
 				|| type == BlockType.WoodenPressurePlate || type == BlockType.Lever
 				|| type == BlockType.Trapdoor || type == BlockType.Workbench || type == BlockType.Chest
 				|| type == BlockType.TrappedChest || type == BlockType.Torch || type == BlockType.Ladder
-				|| type == BlockType.StandingSign || type == BlockType.WallSign
-		
-		) {
+				|| type == BlockType.StandingSign || type == BlockType.WallSign) {
 			valueType = TYPE_WOOD;
 		} else if (type == BlockType.BrickBlock || type == BlockType.BrickSlab
 				|| type == BlockType.BrickStairs || type == BlockType.NetherBrick
 				|| type == BlockType.NetherBricksSlab || type == BlockType.NetherBrickStairs
-				|| type == BlockType.NetherBrickFence) {
+				|| type == BlockType.NetherBrickFence || type == BlockType.DoubleBrickSlab
+				|| type == BlockType.DoubleNetherBrickSlab) {
 			valueType = TYPE_BRICK;
 		} else if (type == BlockType.QuartzBlock || type == BlockType.QuartzPillarCap
 				|| type == BlockType.QuartzPillarHorizontal || type == BlockType.QuartzPillarVertical
 				|| type == BlockType.QuartzSlab || type == BlockType.QuartzStairs
-				|| type == BlockType.ChiseledQuartzBlock) {
+				|| type == BlockType.ChiseledQuartzBlock || type == BlockType.DoubleQuartzSlab) {
 			valueType = TYPE_QUARTZ;
 		} else if (type == BlockType.Sand || type == BlockType.RedSand) {
 			valueType = TYPE_SAND;
@@ -229,7 +232,8 @@ public class BlockScoreValue {
 				|| type == BlockType.SandStoneSlab || type == BlockType.SandstoneSmooth
 				|| type == BlockType.SandstoneStairs || type == BlockType.RedSandstone
 				|| type == BlockType.RedSandstoneChiseled || type == BlockType.RedSandstoneSlab
-				|| type == BlockType.RedSandstoneSmooth || type == BlockType.RedSandstoneStairs) {
+				|| type == BlockType.RedSandstoneSmooth || type == BlockType.RedSandstoneStairs
+				|| type == BlockType.DoubleSandStoneSlab || type == BlockType.DoubleRedSandstoneSlab) {
 			valueType = TYPE_SANDSTONE;
 		} else if (type == BlockType.CoalBlock) {
 			valueType = TYPE_COAL;
@@ -253,14 +257,14 @@ public class BlockScoreValue {
 			valueType = TYPE_SLIME;
 		} else if (type == BlockType.HayBale) {
 			valueType = TYPE_HAY;
-		} else if (type == BlockType.Ice || type == BlockType.PackedIce || type == BlockType.SnowBlock) {
+		} else if (type == BlockType.Ice || type == BlockType.PackedIce) {
 			valueType = TYPE_ICE;
 		} else if (type == BlockType.Beacon) {
 			valueType = TYPE_BEACON;
 		} else if (type == BlockType.DarkPrismarine || type == BlockType.EndStone
 				|| type == BlockType.GlowStone || type == BlockType.Gravel || type == BlockType.Prismarine
 				|| type == BlockType.PrismarineBricks || type == BlockType.SeaLantern
-				|| type == BlockType.SoulSand || type == BlockType.Sponge) {
+				|| type == BlockType.SoulSand || type == BlockType.Sponge || type == BlockType.SnowBlock) {
 			valueType = TYPE_FANCY;
 		} else if (type == BlockType.RedstoneTorchOff || type == BlockType.RedstoneTorchOn
 				|| type == BlockType.RedstoneLampOff || type == BlockType.RedstoneLampOn
@@ -281,9 +285,7 @@ public class BlockScoreValue {
 				|| type == BlockType.Cauldron || type == BlockType.Hopper || type == BlockType.StickyPiston
 				|| type == BlockType.TNT || type == BlockType.Anvil || type == BlockType.BrewingStand
 				|| type == BlockType.EnchantmentTable || type == BlockType.EnderChest
-				|| type == BlockType.Jukebox
-		
-		) {
+				|| type == BlockType.Jukebox) {
 			valueType = TYPE_SPECIALTY;
 		}
 		
@@ -351,7 +353,7 @@ public class BlockScoreValue {
 		} else if (type == BlockType.CoalOre || type == BlockType.IronOre || type == BlockType.GoldOre
 				|| type == BlockType.RedstoneOre || type == BlockType.LapisOre
 				|| type == BlockType.EmeraldOre || type == BlockType.DiamondOre
-				|| type == BlockType.GlowingRedstoneOre) {
+				|| type == BlockType.GlowingRedstoneOre || type == BlockType.IronBars) {
 			valueVariant = VARIANT_ORE;
 		} else if (type == BlockType.WoodenButton || type == BlockType.AcaciaDoor
 				|| type == BlockType.BirchDoor || type == BlockType.DarkOakDoor
