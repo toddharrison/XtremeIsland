@@ -13,6 +13,7 @@ import net.canarymod.api.world.position.Location;
 import net.canarymod.database.exceptions.DatabaseReadException;
 import net.canarymod.database.exceptions.DatabaseWriteException;
 import net.canarymod.hook.HookHandler;
+import net.canarymod.hook.player.HealthChangeHook;
 import net.canarymod.hook.player.PlayerDeathHook;
 import net.canarymod.plugin.PluginListener;
 
@@ -157,6 +158,23 @@ public class XPlayerManager implements PluginListener {
 			// Canary.getServer().consoleCommand("gamerule naturalRegeneration true", player);
 			
 			XPlugin.LOG.info(player.getDisplayName() + " left XIS");
+		}
+	}
+	
+	@HookHandler
+	public void onHealthChange(final HealthChangeHook hook) {
+		final Player player = hook.getPlayer();
+		if (player.getWorld() == worldManager.getWorld()) {
+			final float oldHealth = hook.getOldValue();
+			final float newHealth = hook.getNewValue();
+			// XPlugin.LOG.info("OLD HEALTH: " + oldHealth);
+			// XPlugin.LOG.info("NEW HEALTH: " + newHealth);
+			// if (oldHealth == -1) {
+			// // Spawn-in
+			// } else
+			if (oldHealth > 0 && oldHealth < newHealth) {
+				hook.setCanceled();
+			}
 		}
 	}
 }
