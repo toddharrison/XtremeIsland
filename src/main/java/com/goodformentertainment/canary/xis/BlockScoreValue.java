@@ -17,11 +17,21 @@ public class BlockScoreValue {
 	}
 	
 	public int getPlaceValue(final BlockType type) {
-		return placeValues.get(type);
+		int v = 0;
+		final Integer value = placeValues.get(type);
+		if (value != null) {
+			v = value;
+		}
+		return v;
 	}
 	
 	public int getRemoveValue(final BlockType type) {
-		return removeValues.get(type);
+		int v = 0;
+		final Integer value = removeValues.get(type);
+		if (value != null) {
+			v = value;
+		}
+		return v;
 	}
 	
 	protected Map<BlockType, Integer> getPlaceValues() {
