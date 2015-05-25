@@ -36,7 +36,7 @@ public class BlockScoreValue {
 		final Map<BlockType, Integer> values = new HashMap<BlockType, Integer>();
 		
 		XPlugin.LOG.debug("XIS block place values:");
-		final StringBuffer sb = new StringBuffer();
+		final StringBuffer sb = new StringBuffer("\n");
 		for (final BlockType type : BlockType.values()) {
 			final String valueType = getValueType(type);
 			if (valueType != null) {
@@ -60,22 +60,24 @@ public class BlockScoreValue {
 	private Map<BlockType, Integer> configRemoveValues(final XConfig config) {
 		final Map<BlockType, Integer> values = new HashMap<BlockType, Integer>();
 		
-		XPlugin.LOG.debug("XIS block remove values:");
-		final StringBuffer sb = new StringBuffer();
+		XPlugin.LOG.debug("XIS block remove ignores:");
+		final StringBuffer sb = new StringBuffer("\n");
 		final Collection<String> ignoredRemoves = config.getIgnoredBlockRemoves();
 		for (final BlockType type : BlockType.values()) {
 			final String valueType = getValueType(type);
-			if (valueType != null && !ignoredRemoves.contains(valueType)) {
-				final String valueVariant = getValueVariant(type);
-				final String valueColor = getValueColor(type);
-				
-				int value = config.getBlockTypeValue(valueType);
-				value *= config.getBlockVariantValueMultiplier(valueVariant);
-				value *= config.getBlockColorValueMultiplier(valueColor);
-				
-				values.put(type, value);
-				
-				sb.append(type.getMachineName() + " = " + value + "\n");
+			if (valueType != null) {
+				if (ignoredRemoves.contains(valueType)) {
+					sb.append(type.getMachineName() + "\n");
+				} else {
+					final String valueVariant = getValueVariant(type);
+					final String valueColor = getValueColor(type);
+					
+					int value = config.getBlockTypeValue(valueType);
+					value *= config.getBlockVariantValueMultiplier(valueVariant);
+					value *= config.getBlockColorValueMultiplier(valueColor);
+					
+					values.put(type, value);
+				}
 			}
 		}
 		XPlugin.LOG.debug(sb.toString());
@@ -300,6 +302,7 @@ public class BlockScoreValue {
 	public static final String VARIANT_CARPET = "carpet";
 	public static final String VARIANT_PANE = "pane";
 	public static final String VARIANT_MACHINE = "machine";
+	public static final String VARIANT_SIMPLE = "simple";
 	public static final String VARIANT_BASIC = "basic";
 	public static final String VARIANT_MODERATE = "moderate";
 	public static final String VARIANT_ADVANCED = "advanced";
@@ -355,17 +358,20 @@ public class BlockScoreValue {
 				|| type == BlockType.EmeraldOre || type == BlockType.DiamondOre
 				|| type == BlockType.GlowingRedstoneOre || type == BlockType.IronBars) {
 			valueVariant = VARIANT_ORE;
-		} else if (type == BlockType.WoodenButton || type == BlockType.AcaciaDoor
-				|| type == BlockType.BirchDoor || type == BlockType.DarkOakDoor
-				|| type == BlockType.JungleDoor || type == BlockType.OakDoor
-				|| type == BlockType.SpruceDoor || type == BlockType.WoodenPressurePlate
-				|| type == BlockType.Lever || type == BlockType.StoneButton
-				|| type == BlockType.StonePressurePlate || type == BlockType.IronDoor
-				|| type == BlockType.IronTrapDoor || type == BlockType.Workbench
+		} else if (type == BlockType.AcaciaDoor || type == BlockType.BirchDoor
+				|| type == BlockType.DarkOakDoor || type == BlockType.JungleDoor
+				|| type == BlockType.OakDoor || type == BlockType.SpruceDoor || type == BlockType.IronDoor
 				|| type == BlockType.Furnace || type == BlockType.BurningFurnace || type == BlockType.Chest
-				|| type == BlockType.TrappedChest || type == BlockType.Ladder
-				|| type == BlockType.StandingSign || type == BlockType.WallSign) {
+				|| type == BlockType.TrappedChest || type == BlockType.StandingSign
+				|| type == BlockType.WallSign) {
 			valueVariant = VARIANT_MACHINE;
+		} else if (type == BlockType.WoodenButton || type == BlockType.Ladder
+				|| type == BlockType.WoodenPressurePlate || type == BlockType.Lever
+				|| type == BlockType.StoneButton || type == BlockType.StonePressurePlate
+				|| type == BlockType.IronTrapDoor || type == BlockType.Workbench
+				|| type == BlockType.HeavyWeightedPressurePlate
+				|| type == BlockType.LightWeightedPressurePlate) {
+			valueVariant = VARIANT_SIMPLE;
 		} else if (type == BlockType.RedstoneTorchOff || type == BlockType.RedstoneTorchOn
 				|| type == BlockType.Bed || type == BlockType.JackOLantern || type == BlockType.Lilypad
 				|| type == BlockType.NoteBlock || type == BlockType.StandingBanner
