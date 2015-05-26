@@ -77,6 +77,9 @@ public class XChallengeManager implements PluginListener {
 				}
 			}
 		};
+		
+		XPlugin.LOG.info("Loaded " + menuItems.size() + " challenge items.");
+		
 		menuFactory = new MenuFactory(plugin, "XtremeIsland Challenges", 6, menuConfig,
 				menuItems.toArray(new MenuItem[menuItems.size()]));
 	}

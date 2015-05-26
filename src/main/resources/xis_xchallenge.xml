@@ -33,7 +33,7 @@
     <repeat_reward_description>1 grass block</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>1 cactus and 5 grass blocks</reward_description>
-    <score_reward>50</score_reward>
+    <score_reward>40</score_reward>
     <score_repeat_reward>10</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
@@ -54,7 +54,7 @@
     <repeat_reward_description>null</repeat_reward_description>
     <repeatable>false</repeatable>
     <reward_description>1 reed and 1 lava bucket</reward_description>
-    <score_reward>50</score_reward>
+    <score_reward>40</score_reward>
     <score_repeat_reward>0</score_repeat_reward>
     <type>onIsland</type>
   </entry>
@@ -80,7 +80,7 @@
     <repeat_reward_description>1 each of spruce, birch, oak sapling</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>2 each of spruce, birch, oak saplings</reward_description>
-    <score_reward>50</score_reward>
+    <score_reward>40</score_reward>
     <score_repeat_reward>10</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
@@ -103,7 +103,7 @@
     <repeat_reward_description>1 dirt block</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>1 pumpkin seed and 5 dirtblocks</reward_description>
-    <score_reward>50</score_reward>
+    <score_reward>40</score_reward>
     <score_repeat_reward>10</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
@@ -128,7 +128,7 @@
     <repeat_reward_description>null</repeat_reward_description>
     <repeatable>false</repeatable>
     <reward_description>1 brown and 1 red mushroom</reward_description>
-    <score_reward>50</score_reward>
+    <score_reward>40</score_reward>
     <score_repeat_reward>0</score_repeat_reward>
     <type>onIsland</type>
   </entry>
@@ -151,8 +151,8 @@
     <repeat_reward_description>1 iron ore</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>5 dirt and 1 iron ore</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>80</score_reward>
+    <score_repeat_reward>20</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
@@ -174,8 +174,8 @@
     <repeat_reward_description>1 iron ore</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>5 sand and 1 iron ore</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>80</score_reward>
+    <score_repeat_reward>20</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
@@ -197,8 +197,8 @@
     <repeat_reward_description>1 iron ore</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>5 sand and 1 iron ore</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>80</score_reward>
+    <score_repeat_reward>20</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
@@ -221,8 +221,8 @@
     <repeat_reward_description>2 flint</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>5 mycelium blocks and 8 flint</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>80</score_reward>
+    <score_repeat_reward>20</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
@@ -249,8 +249,8 @@
     <repeat_reward_description>1 each of jungle, dark oak, acacia saplings</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>1 each of jungle, dark oak, acacia saplings</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>80</score_reward>
+    <score_repeat_reward>20</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
@@ -272,8 +272,8 @@
     <repeat_reward_description>1 iron ore</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>2 cocoa beans and 1 iron ore</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>80</score_reward>
+    <score_repeat_reward>20</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
@@ -294,8 +294,8 @@
     <repeat_reward_description>4 redstone dust</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>16 redstone dust</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>160</score_reward>
+    <score_repeat_reward>30</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
@@ -316,8 +316,8 @@
     <repeat_reward_description>1 iron ore</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>5 iron ore</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>160</score_reward>
+    <score_repeat_reward>30</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
@@ -338,8 +338,8 @@
     <repeat_reward_description>4 redstone dust</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>16 redstone dust</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>160</score_reward>
+    <score_repeat_reward>30</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
@@ -360,8 +360,8 @@
     <repeat_reward_description>1 iron ore</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>5 iron ore</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>160</score_reward>
+    <score_repeat_reward>30</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
@@ -369,23 +369,22 @@
     <description>Make a fishing pond, catch and cook 2 salmon and 4 fish.</description>
     <id>16</id>
     <items_repeat_reward>
-      <list-element>minecraft:gold_ore:1</list-element>
+      <list-element>minecraft:quartz_ore:1</list-element>
     </items_repeat_reward>
     <items_required>
       <list-element>minecraft:cooked_fished:4:1</list-element>
       <list-element>minecraft:cooked_fished:4:0</list-element>
     </items_required>
     <items_reward>
-      <list-element>minecraft:redstone:16</list-element>
-      <list-element>minecraft:gold_ore:1</list-element>
+      <list-element>minecraft:quartz_ore:5</list-element>
     </items_reward>
     <level>Hunter</level>
     <name>fisherman</name>
-    <repeat_reward_description>1 gold ore</repeat_reward_description>
+    <repeat_reward_description>1 quartz ore</repeat_reward_description>
     <repeatable>true</repeatable>
-    <reward_description>16 redstone dust and 1 gold ore</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <reward_description>5 quartz ore</reward_description>
+    <score_reward>160</score_reward>
+    <score_repeat_reward>30</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
@@ -407,8 +406,8 @@
     <repeat_reward_description>1 gold ore</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>1 diamond and 5 gold ore</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>320</score_reward>
+    <score_repeat_reward>40</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
@@ -435,8 +434,8 @@
     <repeat_reward_description>1 diamond</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>1 diamond and 5 iron ore</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>320</score_reward>
+    <score_repeat_reward>40</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
@@ -462,8 +461,8 @@
     <repeat_reward_description>2 redstone ore and 2 snowballs</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>8 redstone ore and 8 snowballs</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>320</score_reward>
+    <score_repeat_reward>40</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
@@ -487,7 +486,7 @@
     <repeat_reward_description>null</repeat_reward_description>
     <repeatable>false</repeatable>
     <reward_description>1 music disk(wait) and 1 diamond ore</reward_description>
-    <score_reward>50</score_reward>
+    <score_reward>320</score_reward>
     <score_repeat_reward>0</score_repeat_reward>
     <type>onIsland</type>
   </entry>
@@ -512,8 +511,8 @@
     <repeat_reward_description>1 diamond</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>1 diamond and 5 iron ore</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>320</score_reward>
+    <score_repeat_reward>40</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
@@ -538,8 +537,8 @@
     <repeat_reward_description>4 iron ore</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>6 creeper heads and 10 iron ore</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>640</score_reward>
+    <score_repeat_reward>50</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
@@ -561,8 +560,8 @@
     <repeat_reward_description>1 diamond</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>5 gold ore and 1 diamond ore</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>640</score_reward>
+    <score_repeat_reward>50</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
@@ -585,14 +584,37 @@
     <repeat_reward_description>1 diamond</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>12 ink sacs and 1 diamond ore</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>640</score_reward>
+    <score_repeat_reward>50</score_repeat_reward>
+    <type>onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items>true</consume_items>
+    <description>Collect 40 slime balls from slimes.</description>
+    <id>25</id>
+    <items_repeat_reward>
+      <list-element>minecraft:diamond:1</list-element>
+    </items_repeat_reward>
+    <items_required>
+      <list-element>minecraft:slimeball:40</list-element>
+    </items_required>
+    <items_reward>
+      <list-element>minecraft:gold_ore:5</list-element>
+      <list-element>minecraft:diamond_ore:1</list-element>
+    </items_reward>
+    <level>Conqueror</level>
+    <name>slimer</name>
+    <repeat_reward_description>1 diamond</repeat_reward_description>
+    <repeatable>true</repeatable>
+    <reward_description>5 gold ore and 1 diamond ore</reward_description>
+    <score_reward>640</score_reward>
+    <score_repeat_reward>50</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
     <consume_items>true</consume_items>
     <description>Collect and turn in 32 dandelions, 12 poppies, 12 daisies.</description>
-    <id>25</id>
+    <id>26</id>
     <items_repeat_reward>
       <list-element>minecraft:emerald_ore:1</list-element>
     </items_repeat_reward>
@@ -609,14 +631,14 @@
     <repeat_reward_description>1 emerald ore</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>2 lapis blocks</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>1280</score_reward>
+    <score_repeat_reward>60</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
     <consume_items>true</consume_items>
     <description>Breed and collect 64 raw porkchop, 64 wool block(white), 64 feathers, 16 leather (and 4 rabbit's feet).</description>
-    <id>26</id>
+    <id>27</id>
     <items_repeat_reward>
       <list-element>minecraft:diamond_ore:1</list-element>
     </items_repeat_reward>
@@ -635,14 +657,14 @@
     <repeat_reward_description>1 diamond ore</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>2 mooshroom spawn eggs</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>1280</score_reward>
+    <score_repeat_reward>60</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
     <consume_items>false</consume_items>
     <description>Place an enchanting table and 15 bookshelf on your island.</description>
-    <id>27</id>
+    <id>28</id>
     <items_repeat_reward />
     <items_required>
       <list-element>minecraft:enchanting_table:1</list-element>
@@ -656,14 +678,14 @@
     <repeat_reward_description>null</repeat_reward_description>
     <repeatable>false</repeatable>
     <reward_description>1 Beacon</reward_description>
-    <score_reward>50</score_reward>
+    <score_reward>1280</score_reward>
     <score_repeat_reward>0</score_repeat_reward>
     <type>onIsland</type>
   </entry>
   <entry>
     <consume_items>true</consume_items>
     <description>Collect 1 of every kind of cooked or crafted edible food (nothing raw, zombie flesh, or golden).</description>
-    <id>28</id>
+    <id>29</id>
     <items_repeat_reward>
       <list-element>minecraft:emerald_ore:1</list-element>
     </items_repeat_reward>
@@ -693,14 +715,14 @@
     <repeat_reward_description>1 emerald ore</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>2 villager spawn eggs</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>1280</score_reward>
+    <score_repeat_reward>60</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
     <consume_items>true</consume_items>
     <description>Dye or shear 5 of every color of wool.</description>
-    <id>29</id>
+    <id>30</id>
     <items_repeat_reward>
       <list-element>minecraft:diamond_ore:1</list-element>
     </items_repeat_reward>
@@ -730,14 +752,14 @@
     <repeat_reward_description>1 diamond ore</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>2 wolf spawn eggs</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>1280</score_reward>
+    <score_repeat_reward>60</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
   <entry>
     <consume_items>true</consume_items>
     <description>Collect 32 saplings from each of the 6 tree types.</description>
-    <id>29</id>
+    <id>31</id>
     <items_repeat_reward>
       <list-element>minecraft:emerald_ore:1</list-element>
     </items_repeat_reward>
@@ -757,8 +779,8 @@
     <repeat_reward_description>1 emerald ore</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>2 ocelot spawn eggs</reward_description>
-    <score_reward>50</score_reward>
-    <score_repeat_reward>10</score_repeat_reward>
+    <score_reward>1280</score_reward>
+    <score_repeat_reward>60</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
 </xis_xchallenge>
