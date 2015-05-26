@@ -13,6 +13,7 @@ import net.canarymod.hook.player.BlockDestroyHook;
 import net.canarymod.hook.player.BlockPlaceHook;
 import net.canarymod.hook.player.PlayerDeathHook;
 import net.canarymod.plugin.PluginListener;
+import net.canarymod.plugin.Priority;
 
 import com.goodformentertainment.canary.playerstate.hook.WorldEnterHook;
 import com.goodformentertainment.canary.playerstate.hook.WorldExitHook;
@@ -50,25 +51,29 @@ public class XScoreboard implements PluginListener {
 		score.update();
 	}
 	
-	@HookHandler
+	@HookHandler(priority = Priority.PASSIVE)
 	public void onWorldEnter(final WorldEnterHook hook) {
 		if (hook.getWorld() == worldManager.getWorld()) {
 			final Player player = hook.getPlayer();
 			scoreboard.setScoreboardPosition(ScorePosition.PLAYER_LIST, scoreObjective, player);
 			scoreboard.setScoreboardPosition(ScorePosition.SIDEBAR, highScoreObjective, player);
+			
+			scoreboard.getScore(player, scoreObjective).update();
+			scoreboard.getScore(player, highScoreObjective).update();
 		}
 	}
 	
-	@HookHandler
+	@HookHandler(priority = Priority.PASSIVE)
 	public void onLeave(final WorldExitHook hook) {
 		if (hook.getWorld() == worldManager.getWorld()) {
 			final Player player = hook.getPlayer();
 			scoreboard.clearScoreboardPosition(ScorePosition.PLAYER_LIST, player);
 			scoreboard.clearScoreboardPosition(ScorePosition.SIDEBAR, player);
+			// TODO need to update scoreboards?
 		}
 	}
 	
-	@HookHandler
+	@HookHandler(priority = Priority.PASSIVE)
 	public void onPlaceBlock(final BlockPlaceHook hook) {
 		final Block block = hook.getBlockPlaced();
 		if (block.getWorld() == worldManager.getWorld()) {
@@ -83,7 +88,7 @@ public class XScoreboard implements PluginListener {
 		}
 	}
 	
-	@HookHandler
+	@HookHandler(priority = Priority.PASSIVE)
 	public void onRemoveBlock(final BlockDestroyHook hook) {
 		final Block block = hook.getBlock();
 		if (block.getWorld() == worldManager.getWorld()) {
@@ -98,7 +103,7 @@ public class XScoreboard implements PluginListener {
 		}
 	}
 	
-	@HookHandler
+	@HookHandler(priority = Priority.PASSIVE)
 	public void onDeath(final PlayerDeathHook hook) {
 		final Player player = hook.getPlayer();
 		if (player.getWorld() == worldManager.getWorld()) {
