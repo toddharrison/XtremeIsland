@@ -135,7 +135,7 @@ public class XPlayerManager implements PluginListener {
 			// TODO fix
 			// Canary.getServer().consoleCommand("gamerule naturalRegeneration false", player);
 			
-			XPlugin.LOG.info(player.getDisplayName() + " entered XIS");
+			XPlugin.LOG.info(player.getName() + " entered XIS");
 		}
 	}
 	
@@ -157,7 +157,7 @@ public class XPlayerManager implements PluginListener {
 			// TODO fix
 			// Canary.getServer().consoleCommand("gamerule naturalRegeneration true", player);
 			
-			XPlugin.LOG.info(player.getDisplayName() + " left XIS");
+			XPlugin.LOG.info(player.getName() + " left XIS");
 		}
 	}
 	

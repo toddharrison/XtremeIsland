@@ -6,6 +6,7 @@
     <items_repeat_reward auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true" not-null="false" />
     <items_required auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="true" not-null="false" />
     <level auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false" not-null="false" />
+    <min_player_score auto-increment="false" data-type="INTEGER" column-type="NORMAL" is-list="false" not-null="false" />
     <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false" not-null="false" />
     <repeat_reward_description auto-increment="false" data-type="STRING" column-type="NORMAL" is-list="false" not-null="false" />
     <repeatable auto-increment="false" data-type="BOOLEAN" column-type="NORMAL" is-list="false" not-null="false" />
@@ -29,6 +30,7 @@
       <list-element>minecraft:grass:5</list-element>
     </items_reward>
     <level>Survivalist</level>
+    <min_player_score>-1</min_player_score>
     <name>cobblegenerator</name>
     <repeat_reward_description>1 grass block</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -50,6 +52,7 @@
       <list-element>minecraft:lava_bucket:1</list-element>
     </items_reward>
     <level>Survivalist</level>
+    <min_player_score>-1</min_player_score>
     <name>watersource</name>
     <repeat_reward_description>null</repeat_reward_description>
     <repeatable>false</repeatable>
@@ -76,6 +79,7 @@
       <list-element>minecraft:sapling:2:2</list-element>
     </items_reward>
     <level>Survivalist</level>
+    <min_player_score>-1</min_player_score>
     <name>applecollector</name>
     <repeat_reward_description>1 each of spruce, birch, oak sapling</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -99,6 +103,7 @@
       <list-element>minecraft:dirt:5:0</list-element>
     </items_reward>
     <level>Survivalist</level>
+    <min_player_score>-1</min_player_score>
     <name>provisioning</name>
     <repeat_reward_description>1 dirt block</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -113,7 +118,9 @@
     <id>5</id>
     <items_repeat_reward />
     <items_required>
+      <!--
       <list-element>minecraft:wooden_door:1</list-element>
+      -->
       <list-element>minecraft:crafting_table:1</list-element>
       <list-element>minecraft:furnace:1</list-element>
       <list-element>minecraft:chest:1</list-element>
@@ -124,6 +131,7 @@
       <list-element>minecraft:red_mushroom:1</list-element>
     </items_reward>
     <level>Survivalist</level>
+    <min_player_score>-1</min_player_score>
     <name>shelter</name>
     <repeat_reward_description>null</repeat_reward_description>
     <repeatable>false</repeatable>
@@ -147,6 +155,7 @@
       <list-element>minecraft:iron_ore:1</list-element>
     </items_reward>
     <level>Gatherer</level>
+    <min_player_score>-1</min_player_score>
     <name>pumpkinfarmer</name>
     <repeat_reward_description>1 iron ore</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -170,6 +179,7 @@
       <list-element>minecraft:iron_ore:1</list-element>
     </items_reward>
     <level>Gatherer</level>
+    <min_player_score>-1</min_player_score>
     <name>cactusfarmer</name>
     <repeat_reward_description>1 iron ore</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -193,6 +203,7 @@
       <list-element>minecraft:iron_ore:1</list-element>
     </items_reward>
     <level>Gatherer</level>
+    <min_player_score>-1</min_player_score>
     <name>sugarfarmer</name>
     <repeat_reward_description>1 iron ore</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -217,6 +228,7 @@
       <list-element>minecraft:flint:8</list-element>
     </items_reward>
     <level>Gatherer</level>
+    <min_player_score>-1</min_player_score>
     <name>shroompicker</name>
     <repeat_reward_description>2 flint</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -245,6 +257,7 @@
       <list-element>minecraft:sapling:4:4</list-element>
     </items_reward>
     <level>Gatherer</level>
+    <min_player_score>-1</min_player_score>
     <name>lumberjack</name>
     <repeat_reward_description>1 each of jungle, dark oak, acacia saplings</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -268,6 +281,7 @@
       <list-element>minecraft:iron_ore:1</list-element>
     </items_reward>
     <level>Gatherer</level>
+    <min_player_score>-1</min_player_score>
     <name>scrambledeggs</name>
     <repeat_reward_description>1 iron ore</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -290,6 +304,7 @@
       <list-element>minecraft:redstone:16</list-element>
     </items_reward>
     <level>Hunter</level>
+    <min_player_score>-1</min_player_score>
     <name>dembones</name>
     <repeat_reward_description>4 redstone dust</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -312,6 +327,7 @@
       <list-element>minecraft:iron_ore:5</list-element>
     </items_reward>
     <level>Hunter</level>
+    <min_player_score>-1</min_player_score>
     <name>arachnophobia</name>
     <repeat_reward_description>1 iron ore</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -334,6 +350,7 @@
       <list-element>minecraft:redstone:16</list-element>
     </items_reward>
     <level>Hunter</level>
+    <min_player_score>-1</min_player_score>
     <name>morebrains</name>
     <repeat_reward_description>4 redstone dust</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -356,6 +373,7 @@
       <list-element>minecraft:iron_ore:5</list-element>
     </items_reward>
     <level>Hunter</level>
+    <min_player_score>-1</min_player_score>
     <name>ssss</name>
     <repeat_reward_description>1 iron ore</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -379,6 +397,7 @@
       <list-element>minecraft:quartz_ore:5</list-element>
     </items_reward>
     <level>Hunter</level>
+    <min_player_score>-1</min_player_score>
     <name>fisherman</name>
     <repeat_reward_description>1 quartz ore</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -402,6 +421,7 @@
       <list-element>minecraft:gold_ore:5</list-element>
     </items_reward>
     <level>Builder</level>
+    <min_player_score>-1</min_player_score>
     <name>hayfever</name>
     <repeat_reward_description>1 gold ore</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -430,6 +450,7 @@
       <list-element>minecraft:iron_ore:5</list-element>
     </items_reward>
     <level>Builder</level>
+    <min_player_score>-1</min_player_score>
     <name>forestry</name>
     <repeat_reward_description>1 diamond</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -457,6 +478,7 @@
       <list-element>minecraft:snowball:8</list-element>
     </items_reward>
     <level>Builder</level>
+    <min_player_score>-1</min_player_score>
     <name>jrengineer</name>
     <repeat_reward_description>2 redstone ore and 2 snowballs</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -482,6 +504,7 @@
       <list-element>minecraft:diamond_ore:1</list-element>
     </items_reward>
     <level>Builder</level>
+    <min_player_score>-1</min_player_score>
     <name>homeowner</name>
     <repeat_reward_description>null</repeat_reward_description>
     <repeatable>false</repeatable>
@@ -507,6 +530,7 @@
       <list-element>minecraft:iron_ore:5</list-element>
     </items_reward>
     <level>Builder</level>
+    <min_player_score>-1</min_player_score>
     <name>baker</name>
     <repeat_reward_description>1 diamond</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -533,6 +557,7 @@
       <list-element>minecraft:iron_ore:10</list-element>
     </items_reward>
     <level>Conqueror</level>
+    <min_player_score>-1</min_player_score>
     <name>pyromaniac</name>
     <repeat_reward_description>4 iron ore</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -556,6 +581,7 @@
       <list-element>minecraft:diamond_ore:1</list-element>
     </items_reward>
     <level>Conqueror</level>
+    <min_player_score>-1</min_player_score>
     <name>pearlcollector</name>
     <repeat_reward_description>1 diamond</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -580,6 +606,7 @@
       <list-element>minecraft:diamond_ore:1</list-element>
     </items_reward>
     <level>Conqueror</level>
+    <min_player_score>-1</min_player_score>
     <name>bassmaster</name>
     <repeat_reward_description>1 diamond</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -603,6 +630,7 @@
       <list-element>minecraft:diamond_ore:1</list-element>
     </items_reward>
     <level>Conqueror</level>
+    <min_player_score>-1</min_player_score>
     <name>slimer</name>
     <repeat_reward_description>1 diamond</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -627,6 +655,7 @@
       <list-element>minecraft:lapis_block:2</list-element>
     </items_reward>
     <level>Xtreme</level>
+    <min_player_score>-1</min_player_score>
     <name>gardener</name>
     <repeat_reward_description>1 emerald ore</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -653,6 +682,7 @@
       <list-element>minecraft:spawn_egg:2:96</list-element>
     </items_reward>
     <level>Xtreme</level>
+    <min_player_score>-1</min_player_score>
     <name>rancher</name>
     <repeat_reward_description>1 diamond ore</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -674,6 +704,7 @@
       <list-element>minecraft:beacon:1</list-element>
     </items_reward>
     <level>Xtreme</level>
+    <min_player_score>-1</min_player_score>
     <name>librarian</name>
     <repeat_reward_description>null</repeat_reward_description>
     <repeatable>false</repeatable>
@@ -711,6 +742,7 @@
       <list-element>minecraft:spawn_egg:2:120</list-element>
     </items_reward>
     <level>Xtreme</level>
+    <min_player_score>-1</min_player_score>
     <name>ironchef</name>
     <repeat_reward_description>1 emerald ore</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -748,6 +780,7 @@
       <list-element>minecraft:spawn_egg:2:95</list-element>
     </items_reward>
     <level>Xtreme</level>
+    <min_player_score>-1</min_player_score>
     <name>woolly</name>
     <repeat_reward_description>1 diamond ore</repeat_reward_description>
     <repeatable>true</repeatable>
@@ -775,12 +808,142 @@
       <list-element>minecraft:spawn_egg:2:98</list-element>
     </items_reward>
     <level>Xtreme</level>
+    <min_player_score>-1</min_player_score>
     <name>johnnyappleseed</name>
     <repeat_reward_description>1 emerald ore</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>2 ocelot spawn eggs</reward_description>
     <score_reward>1280</score_reward>
     <score_repeat_reward>60</score_repeat_reward>
+    <type>onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items>false</consume_items>
+    <description>Reach a score of 5000.</description>
+    <id>32</id>
+    <items_repeat_reward />
+    <items_required />
+    <items_reward>
+      <list-element>minecraft:spawn_egg:2:93</list-element>
+      <list-element>minecraft:iron_pickaxe:1</list-element>
+      <list-element>minecraft:iron_sword:1</list-element>
+      <list-element>minecraft:bow:1</list-element>
+    </items_reward>
+    <level>Survivalist</level>
+    <min_player_score>5000</min_player_score>
+    <name>Survivor</name>
+    <repeat_reward_description />
+    <repeatable>false</repeatable>
+    <reward_description>2 chicken spawn eggs, 1 iron pick-axe, 1 iron sword and 1 bow</reward_description>
+    <score_reward>0</score_reward>
+    <score_repeat_reward>0</score_repeat_reward>
+    <type>onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items>false</consume_items>
+    <description>Reach a score of 10000.</description>
+    <id>33</id>
+    <items_repeat_reward />
+    <items_required />
+    <items_reward>
+      <list-element>minecraft:spawn_egg:2:92</list-element>
+      <list-element>minecraft:iron_helmet:1</list-element>
+      <list-element>minecraft:iron_chestplate:1</list-element>
+      <list-element>minecraft:iron_leggings:1</list-element>
+      <list-element>minecraft:iron_boots:1</list-element>
+    </items_reward>
+    <level>Gatherer</level>
+    <min_player_score>10000</min_player_score>
+    <name>Gatherer</name>
+    <repeat_reward_description />
+    <repeatable>false</repeatable>
+    <reward_description>2 cow spawn eggs and full iron armor</reward_description>
+    <score_reward>0</score_reward>
+    <score_repeat_reward>0</score_repeat_reward>
+    <type>onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items>false</consume_items>
+    <description>Reach a score of 15000.</description>
+    <id>34</id>
+    <items_repeat_reward />
+    <items_required />
+    <items_reward>
+      <list-element>minecraft:spawn_egg:2:91</list-element>
+      <list-element>minecraft:diamond_sword:1</list-element>
+    </items_reward>
+    <level>Hunter</level>
+    <min_player_score>15000</min_player_score>
+    <name>Hunter</name>
+    <repeat_reward_description />
+    <repeatable>false</repeatable>
+    <reward_description>2 sheep spawn eggs and 1 diamond sword</reward_description>
+    <score_reward>0</score_reward>
+    <score_repeat_reward>0</score_repeat_reward>
+    <type>onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items>false</consume_items>
+    <description>Reach a score of 20000.</description>
+    <id>35</id>
+    <items_repeat_reward />
+    <items_required />
+    <items_reward>
+      <list-element>minecraft:spawn_egg:2:90</list-element>
+      <list-element>minecraft:obsidian:8</list-element>
+      <list-element>minecraft:diamond_pickaxe:1</list-element>
+    </items_reward>
+    <level>Builder</level>
+    <min_player_score>20000</min_player_score>
+    <name>Architect</name>
+    <repeat_reward_description />
+    <repeatable>false</repeatable>
+    <reward_description>2 pig spawn eggs, 8 obsidian and 1 diamond pick-axe</reward_description>
+    <score_reward>0</score_reward>
+    <score_repeat_reward>0</score_repeat_reward>
+    <type>onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items>false</consume_items>
+    <description>Reach a score of 25000.</description>
+    <id>36</id>
+    <items_repeat_reward />
+    <items_required />
+    <items_reward>
+      <list-element>minecraft:nether_wart:2</list-element>
+      <list-element>minecraft:blaze_rod:1</list-element>
+      <list-element>minecraft:soul_sand:5</list-element>
+    </items_reward>
+    <level>Conqueror</level>
+    <min_player_score>25000</min_player_score>
+    <name>Conqueror</name>
+    <repeat_reward_description />
+    <repeatable>false</repeatable>
+    <reward_description>2 netherwart, 1 blaze rod and 5 soul sand</reward_description>
+    <score_reward>0</score_reward>
+    <score_repeat_reward>0</score_repeat_reward>
+    <type>onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items>false</consume_items>
+    <description>Reach a score of 30000.</description>
+    <id>37</id>
+    <items_repeat_reward />
+    <items_required />
+    <items_reward>
+      <list-element>minecraft:spawn_egg:2:100</list-element>
+      <list-element>minecraft:saddle:2</list-element>
+      <list-element>minecraft:diamond_horse_armor:2</list-element>
+      <list-element>minecraft:name_tag:2</list-element>
+    </items_reward>
+    <level>Xtreme</level>
+    <min_player_score>30000</min_player_score>
+    <name>Xtreme Overlord</name>
+    <repeat_reward_description />
+    <repeatable>false</repeatable>
+    <reward_description>2 horse spawn eggs, 2 saddles, 2 diamond horse armor and 2 name tags</reward_description>
+    <score_reward>0</score_reward>
+    <score_repeat_reward>0</score_repeat_reward>
     <type>onPlayer</type>
   </entry>
 </xis_xchallenge>

@@ -51,15 +51,21 @@ public class XScoreboard implements PluginListener {
 		score.update();
 	}
 	
+	public int getScore(final Player player) {
+		final Score score = scoreboard.getScore(player, scoreObjective);
+		return score.getScore();
+	}
+	
 	@HookHandler(priority = Priority.PASSIVE)
 	public void onWorldEnter(final WorldEnterHook hook) {
 		if (hook.getWorld() == worldManager.getWorld()) {
 			final Player player = hook.getPlayer();
-			scoreboard.setScoreboardPosition(ScorePosition.PLAYER_LIST, scoreObjective, player);
-			scoreboard.setScoreboardPosition(ScorePosition.SIDEBAR, highScoreObjective, player);
+			scoreboard.setScoreboardPosition(ScorePosition.PLAYER_LIST, highScoreObjective, player);
+			scoreboard.setScoreboardPosition(ScorePosition.SIDEBAR, scoreObjective, player);
 			
-			scoreboard.getScore(player, scoreObjective).update();
-			scoreboard.getScore(player, highScoreObjective).update();
+			// TODO
+			// scoreboard.getScore(player, scoreObjective).update();
+			// scoreboard.getScore(player, highScoreObjective).update();
 		}
 	}
 	

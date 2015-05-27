@@ -31,6 +31,7 @@ public class XChallenge extends DataAccess {
 	public static final String ITEMS_REPEAT_REWARD = "items_repeat_reward";
 	public static final String SCORE_REPEAT_REWARD = "score_repeat_reward";
 	public static final String REPEAT_REWARD_DESCRIPTION = "repeat_reward_description";
+	public static final String MIN_PLAYER_SCORE = "min_player_score";
 	
 	public static XChallenge getXChallenge(final String name) throws DatabaseReadException {
 		final XChallenge xChallenge = new XChallenge();
@@ -132,6 +133,9 @@ public class XChallenge extends DataAccess {
 	
 	@Column(columnName = REPEAT_REWARD_DESCRIPTION, dataType = DataType.STRING)
 	public String repeatRewardDescription;
+	
+	@Column(columnName = MIN_PLAYER_SCORE, dataType = DataType.INTEGER)
+	public int minPlayerScore;
 	
 	public Map<ItemType, Integer> getItemsRequired() {
 		if (itemsRequiredMap == null && itemsRequired != null) {
