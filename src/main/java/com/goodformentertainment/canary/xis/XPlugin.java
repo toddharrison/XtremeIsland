@@ -67,7 +67,8 @@ public class XPlugin extends Plugin {
 			challengeManager = new XChallengeManager(this, scoreboard);
 			playerManager = new XPlayerManager(config, worldManager, islandManager, challengeManager,
 					zownManager);
-			command = new XCommand(worldManager, playerManager, challengeManager, islandManager);
+			command = new XCommand(worldManager, playerManager, challengeManager, islandManager,
+					scoreboard);
 			
 			if (worldManager.createWorld()) {
 				XPlugin.LOG.info("Created XtremeIsland world");

@@ -1,6 +1,7 @@
 package com.goodformentertainment.canary.xis;
 
 import java.util.Set;
+import java.util.SortedSet;
 
 import net.canarymod.Canary;
 import net.canarymod.api.entity.living.humanoid.Player;
@@ -11,6 +12,7 @@ import net.canarymod.commandsys.CommandListener;
 import net.canarymod.database.exceptions.DatabaseReadException;
 import net.canarymod.database.exceptions.DatabaseWriteException;
 
+import com.goodformentertainment.canary.xis.dao.XHighScore;
 import com.goodformentertainment.canary.xis.dao.XPlayer;
 
 public class XCommand implements CommandListener {
@@ -18,13 +20,16 @@ public class XCommand implements CommandListener {
 	private final XPlayerManager playerManager;
 	private final XChallengeManager challengeManager;
 	private final XIslandManager islandManager;
+	private final XScoreboard scoreboard;
 	
 	public XCommand(final XWorldManager worldManager, final XPlayerManager playerManager,
-			final XChallengeManager challengeManager, final XIslandManager islandManager) {
+			final XChallengeManager challengeManager, final XIslandManager islandManager,
+			final XScoreboard scoreboard) {
 		this.worldManager = worldManager;
 		this.playerManager = playerManager;
 		this.challengeManager = challengeManager;
 		this.islandManager = islandManager;
+		this.scoreboard = scoreboard;
 	}
 	
 	@Command(aliases = {
@@ -36,9 +41,9 @@ public class XCommand implements CommandListener {
 		if (caller instanceof Player) {
 			final Player player = caller.asPlayer();
 			player.message("XtremeIsland Challenge!");
-			player.message("Usage: /xis <(g)o | (c)hallenge | (e)xit | (l)istplayers>");
+			player.message("Usage: /xis <(g)o | (c)hallenge | (e)xit | (l)istplayers | (t)opscores>");
 		} else {
-			XPlugin.LOG.info("Usage: /xis <(g)o | (c)hallenge | (e)xit | (l)istplayers>");
+			XPlugin.LOG.info("Usage: /xis <(g)o | (c)hallenge | (e)xit | (l)istplayers | (t)opscores>");
 		}
 	}
 	
@@ -122,6 +127,35 @@ public class XCommand implements CommandListener {
 				final Player player = Canary.getServer().getPlayerFromUUID(uuid);
 				sb.append(player.getName());
 				added = true;
+			}
+		}
+		
+		if (caller instanceof Player) {
+			final Player player = caller.asPlayer();
+			player.message(sb.toString());
+		} else {
+			XPlugin.LOG.info(sb.toString());
+		}
+	}
+	
+	@Command(aliases = {
+			"topscores", "t"
+	}, parent = "xis", description = "List the top scores in XtremeIsland", permissions = {
+		"xis.command.top"
+	}, toolTip = "/xis (t)opscores")
+	public void topScores(final MessageReceiver caller, final String[] parameters) {
+		final StringBuilder sb = new StringBuilder();
+		sb.append("XtremeIsland Top Scores:");
+		
+		final SortedSet<XHighScore> highScores = scoreboard.getHighScores();
+		if (highScores == null || highScores.isEmpty()) {
+			sb.append("\n  none");
+		} else {
+			for (final XHighScore highScore : highScores) {
+				sb.append("\n  ");
+				sb.append(highScore.highScore);
+				sb.append(" : ");
+				sb.append(highScore.playerName);
 			}
 		}
 		
