@@ -12,7 +12,7 @@ XtremeIsland is built against the latest 1.2.1-SNAPSHOT of [canarymod](http://ww
 and supports Minecraft 1.8.
 
 ## Installation
-XtremeIsland requires **PlayerState v.0.2.3** and **Zown v.0.0.6** to be deployed.
+XtremeIsland requires **PlayerState v.0.2.3** and **Zown v.0.0.7** to be deployed.
 
 Deploy the XtremeIsland plugin in the canary plugins directory. The first time it starts it will
 automatically create the default data files required. These files can be modified to change the

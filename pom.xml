@@ -3,7 +3,7 @@
 
   <groupId>com.goodformentertainment.canary</groupId>
   <artifactId>xis</artifactId>
-  <version>0.2.0</version>
+  <version>0.2.1</version>
 
   <name>XtremeIsland</name>
 
@@ -29,7 +29,7 @@
     <dependency>
 		  <groupId>com.goodformentertainment.canary</groupId>
 		  <artifactId>zown</artifactId>
-		  <version>0.0.6</version>
+		  <version>0.0.7</version>
       <scope>provided</scope>
     </dependency>
 
