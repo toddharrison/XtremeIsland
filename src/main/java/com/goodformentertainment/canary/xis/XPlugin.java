@@ -15,6 +15,8 @@ import org.apache.logging.log4j.core.config.Configuration;
 import org.apache.logging.log4j.core.config.LoggerConfig;
 
 import com.goodformentertainment.canary.util.JarUtil;
+import com.goodformentertainment.canary.zown.ZownPlugin;
+import com.goodformentertainment.canary.zown.api.IZownManager;
 
 public class XPlugin extends Plugin {
 	public static Logman LOG;
@@ -26,6 +28,8 @@ public class XPlugin extends Plugin {
 	private XPlayerManager playerManager;
 	private XCommand command;
 	private XScoreboard scoreboard;
+	
+	private IZownManager zownManager;
 	
 	public XPlugin() {
 		XPlugin.LOG = getLogman();
@@ -54,12 +58,15 @@ public class XPlugin extends Plugin {
 		LOG.info("Enabling " + getName() + " Version " + getVersion());
 		LOG.info("Authored by " + getAuthor());
 		
+		zownManager = ZownPlugin.getZownManager();
+		
 		try {
-			worldManager = new XWorldManager(config);
+			worldManager = new XWorldManager(config, zownManager);
 			scoreboard = new XScoreboard(worldManager, new BlockScoreValue(config));
 			islandManager = new XIslandManager(config);
 			challengeManager = new XChallengeManager(this, scoreboard);
-			playerManager = new XPlayerManager(config, worldManager, islandManager, challengeManager);
+			playerManager = new XPlayerManager(config, worldManager, islandManager, challengeManager,
+					zownManager);
 			command = new XCommand(worldManager, playerManager, challengeManager, islandManager);
 			
 			if (worldManager.createWorld()) {
@@ -100,6 +107,8 @@ public class XPlugin extends Plugin {
 		scoreboard = null;
 		worldManager = null;
 		config = null;
+		
+		zownManager = null;
 	}
 	
 	private void setLoggingLevel(final String level) {

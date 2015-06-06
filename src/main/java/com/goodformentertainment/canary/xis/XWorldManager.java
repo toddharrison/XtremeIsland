@@ -13,6 +13,10 @@ import net.visualillusionsent.utils.PropertiesFile;
 import com.goodformentertainment.canary.playerstate.PlayerStatePlugin;
 import com.goodformentertainment.canary.playerstate.api.IWorldStateManager;
 import com.goodformentertainment.canary.playerstate.api.SaveState;
+import com.goodformentertainment.canary.zown.Flag;
+import com.goodformentertainment.canary.zown.api.IConfiguration;
+import com.goodformentertainment.canary.zown.api.IZown;
+import com.goodformentertainment.canary.zown.api.IZownManager;
 
 public class XWorldManager {
 	private static final DimensionType X_DIMENSION = DimensionType.NORMAL;
@@ -22,8 +26,11 @@ public class XWorldManager {
 	private final WorldManager worldManager;
 	private World world;
 	
-	public XWorldManager(final XConfig config) {
+	private final IZownManager zownManager;
+	
+	public XWorldManager(final XConfig config, final IZownManager zownManager) {
 		this.config = config;
+		this.zownManager = zownManager;
 		worldManager = Canary.getServer().getWorldManager();
 	}
 	
@@ -66,6 +73,22 @@ public class XWorldManager {
 		worldStateManager.registerWorld(world, new SaveState[] {
 				SaveState.CONDITIONS, SaveState.INVENTORY, SaveState.LOCATIONS
 		});
+		
+		// Configure xis world zown
+		final IZown zown = zownManager.getZown(world).getData();
+		final IConfiguration zownConfig = zown.getConfiguration();
+		if (!zownConfig.hasCommandRestriction("/spawn")
+				|| !zownConfig.hasCommandRestriction("/sethome")
+				|| !zownConfig.hasCommandRestriction("/home")) {
+			zownConfig.addCommandRestriction("/spawn");
+			zownConfig.addCommandRestriction("/sethome");
+			zownConfig.addCommandRestriction("/home");
+			zownConfig.setFlag(Flag.build.name(), false);
+			if (!zownManager.saveZownConfiguration(world, zown.getName())) {
+				XPlugin.LOG.error("Error saving XIS world zown");
+			}
+		}
+		
 		return world != null;
 	}
 	

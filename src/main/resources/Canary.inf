@@ -3,4 +3,4 @@ author=Rusli
 version=0.1.4
 name=XtremeIsland
 
-dependencies=PlayerState
+dependencies=PlayerState,Zown

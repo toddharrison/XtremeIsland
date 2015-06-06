@@ -26,6 +26,12 @@
 		  <version>0.2.3-SNAPSHOT</version>
 		  <scope>provided</scope>
     </dependency>
+    <dependency>
+		  <groupId>com.goodformentertainment.canary</groupId>
+		  <artifactId>zown</artifactId>
+		  <version>0.0.6-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
 
     <dependency>
       <groupId>junit</groupId>

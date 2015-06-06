@@ -21,6 +21,12 @@ import com.goodformentertainment.canary.playerstate.hook.WorldDeathHook;
 import com.goodformentertainment.canary.playerstate.hook.WorldEnterHook;
 import com.goodformentertainment.canary.playerstate.hook.WorldExitHook;
 import com.goodformentertainment.canary.xis.dao.XPlayer;
+import com.goodformentertainment.canary.zown.Flag;
+import com.goodformentertainment.canary.zown.api.IConfiguration;
+import com.goodformentertainment.canary.zown.api.IZown;
+import com.goodformentertainment.canary.zown.api.IZownManager;
+import com.goodformentertainment.canary.zown.api.Point;
+import com.goodformentertainment.canary.zown.api.impl.Tree;
 
 public class XPlayerManager implements PluginListener {
 	private final XConfig config;
@@ -30,13 +36,17 @@ public class XPlayerManager implements PluginListener {
 	private final Map<String, XPlayer> players;
 	private final Collection<String> deadPlayers;
 	
+	private final IZownManager zownManager;
+	
 	public XPlayerManager(final XConfig config, final XWorldManager worldManager,
-			final XIslandManager islandManager, final XChallengeManager challengeManager) {
+			final XIslandManager islandManager, final XChallengeManager challengeManager,
+			final IZownManager zownManager) {
 		this.config = config;
 		this.worldManager = worldManager;
 		this.islandManager = islandManager;
 		this.challengeManager = challengeManager;
 		this.challengeManager.setPlayerManager(this);
+		this.zownManager = zownManager;
 		deadPlayers = Collections.synchronizedCollection(new HashSet<String>());
 		players = new HashMap<String, XPlayer>();
 	}
@@ -69,6 +79,26 @@ public class XPlayerManager implements PluginListener {
 			final int z = 0;
 			islandManager.generateIsland(world, x, y, z);
 			location = new Location(world, x, y + 5, z - 1, 0, 0);
+			
+			// Create island zown if it doesn't already exist
+			Tree<? extends IZown> playerZown = zownManager.getZown(location);
+			if (playerZown == zownManager.getZown(world)) {
+				// Location is in the world zown, create player zown
+				final Point minPoint = new Point(x - 45, -100, z - 45);
+				final Point maxPoint = new Point(x + 45, 255, z + 45);
+				
+				final String name = "XIS_Player_" + player.getUUIDString();
+				playerZown = zownManager.createZown(world, name, null, minPoint, maxPoint);
+				final IConfiguration playerZownConfig = playerZown.getData().getConfiguration();
+				playerZownConfig.addCommandRestriction("/spawn");
+				playerZownConfig.addCommandRestriction("/sethome");
+				playerZownConfig.addCommandRestriction("/home");
+				playerZownConfig.setFlag(Flag.playerexit.name(), false);
+				XPlugin.LOG.info("Created XIS player zown");
+				if (!zownManager.saveZownConfiguration(world, name)) {
+					XPlugin.LOG.error("Error saving XIS player zown");
+				}
+			}
 		}
 		return location;
 	}
