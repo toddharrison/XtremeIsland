@@ -1,6 +1,5 @@
 XtremeIsland
 ============
-v.0.1.3
 
 XtremeIsland is a single player game where you are transported to an empty world where all you have
 is a tiny island and a meager set of supplies to survive. Challenges may be completed for additional
@@ -12,12 +11,8 @@ over. Your island is removed and your score reset.
 XtremeIsland is built against the latest 1.2.1-SNAPSHOT of [canarymod](http://www.canarymod.net/)
 and supports Minecraft 1.8.
 
-**WARNING:
-This is still a beta plugin and there have been observed bugs. Please backup your server regularly
-and report any bugs that you find.**
-
 ## Installation
-XtremeIsland requires PlayerState v.0.2.2 to be deployed.
+XtremeIsland requires **PlayerState v.0.2.3** and **Zown v.0.0.6** to be deployed.
 
 Deploy the XtremeIsland plugin in the canary plugins directory. The first time it starts it will
 automatically create the default data files required. These files can be modified to change the
@@ -27,14 +22,20 @@ challenges available and documentation for configuration will be provided later.
 The XtremeIsland commands are controlled by the `xis.command` permission.
 
 ## Commands
-To enter XtremeIsland, use the command `/xis` or `/xisland`. This will transport you to your island.
-When you are ready to take a break, use `/xis exit` and it will return you to exactly where you were
-before.
+To see help on the commands for XtremeIsland, enter the command `/xis` or `/xisland`.
 
-While in XtremeIsland you can execute `/xis` again and this will pull up a graphical menu of
-challenges for you to complete. Some of these challenges are based on things on your island (within
-10 blocks of you) and some will consume items in your inventory. When you mouse over each it will
-display what it requires and what the rewards are.
+### XIS Go
+Entering `/xis go` or `/xis g` will take you to your island.
+
+### XIS Exit
+When you are ready to take a break, use `/xis exit` or `/xis e` and it will return you to exactly
+where you were before.
+
+### XIS Challenges
+While in XtremeIsland you can execute `/xis challenges` or `/xis c` and this will pull up a
+graphical menu of challenges for you to complete. Some of these challenges are based on things on
+your island (within 10 blocks of you) and some will consume items in your inventory. When you mouse
+over each it will display what it requires and what the rewards are.
 
 The challenges are color coded:
 
@@ -44,21 +45,23 @@ The challenges are color coded:
 
 The challenges are organized into levels, which will be relevant in the future.
 
+### XIS List
+You can use the command `/xis listplayers` or `/xis l` to show who's playing right now.
+
+### XIS Top Scores
+You can use the command `/xis topscores` or `/xis t` to show the all-time top scores for all players.
+
 ## Features
 * Graphical challenge menu (a generalized component which will be eventually turned into an external utility and API for other plugins)
 * Inventory management between worlds using PlayerState
 * Destroys islands on a separate thread to lessen impact on server
 * Scoreboard for players based upon the work they do on their island
 * Forces the player to wait until the island is deleted before allowing them to return
-
-## Known Issues / TODO
-* Implement level restrictions and requirements for challenges
-* Allow more configuration options for XtremeIsland settings
-* Abstract score to a set of levels
+* Level restrictions and requirements for challenges
 * Vary scores based upon block types
 * Add to score by completing challenges
 * Remember player top scores
-* Disable "dangerous" commands in XIS like `/spawn` and `/home`
 
-## Changes
-* Removed dependency on specifying the default world spawn in the configuration
+## Known Issues / TODO
+* Allow more configuration options for XtremeIsland settings
+* Abstract score to a set of levels
