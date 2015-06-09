@@ -7,15 +7,22 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import net.canarymod.Canary;
 import net.canarymod.api.entity.living.humanoid.Player;
+import net.canarymod.api.inventory.Item;
+import net.canarymod.api.inventory.ItemType;
 import net.canarymod.api.world.World;
+import net.canarymod.api.world.blocks.Block;
+import net.canarymod.api.world.blocks.BlockType;
 import net.canarymod.api.world.position.Location;
 import net.canarymod.database.exceptions.DatabaseReadException;
 import net.canarymod.database.exceptions.DatabaseWriteException;
 import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.player.HealthChangeHook;
+import net.canarymod.hook.player.ItemUseHook;
 import net.canarymod.hook.player.PlayerDeathHook;
 import net.canarymod.plugin.PluginListener;
+import net.canarymod.plugin.Priority;
 
 import com.goodformentertainment.canary.playerstate.hook.WorldDeathHook;
 import com.goodformentertainment.canary.playerstate.hook.WorldEnterHook;
@@ -118,7 +125,7 @@ public class XPlayerManager implements PluginListener {
 		xPlayer.update();
 	}
 	
-	@HookHandler
+	@HookHandler(priority = Priority.PASSIVE)
 	public void onDeath(final PlayerDeathHook hook) throws DatabaseReadException,
 			DatabaseWriteException {
 		final Player player = hook.getPlayer();
@@ -137,7 +144,7 @@ public class XPlayerManager implements PluginListener {
 		}
 	}
 	
-	@HookHandler
+	@HookHandler(priority = Priority.PASSIVE)
 	public void onXisDeath(final WorldDeathHook hook) throws DatabaseReadException,
 			DatabaseWriteException {
 		if (hook.getDeathLocation().getWorld() == worldManager.getWorld()) {
@@ -149,7 +156,7 @@ public class XPlayerManager implements PluginListener {
 		}
 	}
 	
-	@HookHandler
+	@HookHandler(priority = Priority.PASSIVE)
 	public void onWorldEnter(final WorldEnterHook hook) throws DatabaseReadException,
 			DatabaseWriteException {
 		if (hook.getWorld() == worldManager.getWorld()) {
@@ -162,14 +169,11 @@ public class XPlayerManager implements PluginListener {
 				persist(xPlayer);
 			}
 			
-			// TODO fix
-			// Canary.getServer().consoleCommand("gamerule naturalRegeneration false", player);
-			
 			XPlugin.LOG.debug(player.getName() + " entered XIS");
 		}
 	}
 	
-	@HookHandler
+	@HookHandler(priority = Priority.PASSIVE)
 	public void onWorldExit(final WorldExitHook hook) throws DatabaseReadException,
 			DatabaseWriteException {
 		if (hook.getWorld() == worldManager.getWorld()) {
@@ -184,26 +188,39 @@ public class XPlayerManager implements PluginListener {
 				}
 			}
 			
-			// TODO fix
-			// Canary.getServer().consoleCommand("gamerule naturalRegeneration true", player);
-			
 			XPlugin.LOG.debug(player.getName() + " left XIS");
 		}
 	}
 	
-	@HookHandler
+	@HookHandler(priority = Priority.NORMAL)
 	public void onHealthChange(final HealthChangeHook hook) {
 		final Player player = hook.getPlayer();
 		if (player.getWorld() == worldManager.getWorld()) {
 			final float oldHealth = hook.getOldValue();
 			final float newHealth = hook.getNewValue();
-			// XPlugin.LOG.info("OLD HEALTH: " + oldHealth);
-			// XPlugin.LOG.info("NEW HEALTH: " + newHealth);
-			// if (oldHealth == -1) {
-			// // Spawn-in
-			// } else
 			if (oldHealth > 0 && oldHealth < newHealth) {
 				hook.setCanceled();
+			}
+		}
+	}
+	
+	/**
+	 * Convert obsidian into a lava bucket when clicked on by an empty bucket.
+	 */
+	@HookHandler(priority = Priority.NORMAL)
+	public void onItemUse(final ItemUseHook hook) {
+		final Player player = hook.getPlayer();
+		if (player.getWorld() == worldManager.getWorld()) {
+			final Block block = hook.getBlockClicked();
+			if (block != null && block.getType() == BlockType.Obsidian) {
+				final Item item = hook.getItem();
+				if (item.getType() == ItemType.Bucket) {
+					block.setType(BlockType.Air);
+					block.update();
+					player.getInventory().removeItem(item);
+					player.giveItem(Canary.factory().getItemFactory().newItem(ItemType.LavaBucket));
+					hook.setCanceled();
+				}
 			}
 		}
 	}
