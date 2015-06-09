@@ -1,6 +1,6 @@
 main-class=com.goodformentertainment.canary.xis.XPlugin
 author=Rusli
-version=1.0.1
+version=1.1.0
 name=XtremeIsland
 
 dependencies=PlayerState,Zown
