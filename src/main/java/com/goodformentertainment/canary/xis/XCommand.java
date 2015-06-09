@@ -186,15 +186,24 @@ public class XCommand implements CommandListener {
 				final Location playerLocation = player.getLocation();
 				
 				final XPlayer xPlayer = playerManager.getXPlayer(player);
-				xPlayer.practice = true;
-				xPlayer.setLocation(playerLocation);
-				playerManager.persist(xPlayer);
-				
-				player.setHome(playerLocation);
-				final IZown zown = zownManager.getZown(playerLocation).getData();
-				zown.getConfiguration().removeCommandRestriction("/home");
-				zown.getConfiguration().removeCommandRestriction("/sethome");
-				zownManager.saveZownConfiguration(playerLocation.getWorld(), zown.getName());
+				if (!xPlayer.practice) {
+					xPlayer.practice = true;
+					xPlayer.setLocation(playerLocation);
+					playerManager.persist(xPlayer);
+					
+					player.setHome(playerLocation);
+					final IZown zown = zownManager.getZown(playerLocation).getData();
+					zown.getConfiguration().removeCommandRestriction("/home");
+					zown.getConfiguration().removeCommandRestriction("/sethome");
+					zownManager.saveZownConfiguration(playerLocation.getWorld(), zown.getName());
+					
+					player.message("Set XtremeIsland to practice mode.");
+					player.message("/home is available. Score is frozen. Use /xis restart to clear.");
+				} else {
+					player.message("You are already in practice mode.");
+				}
+			} else {
+				player.message("You are not on your XtremeIsland!");
 			}
 		}
 	}
@@ -223,6 +232,8 @@ public class XCommand implements CommandListener {
 				playerManager.persist(xPlayer);
 				
 				player.kill();
+			} else {
+				player.message("You are not on your XtremeIsland!");
 			}
 		}
 	}

@@ -104,8 +104,10 @@ public class XChallengeManager implements PluginListener {
 			final int minPlayerScore = xChallenge.minPlayerScore;
 			
 			if ("onPlayer".equals(xChallenge.type)) {
+				final XPlayer xPlayer = playerManager.getXPlayer(player);
+				
 				// Verify the player has a high enough score
-				if (minPlayerScore < 0 || scoreboard.getScore(player) >= minPlayerScore) {
+				if (xPlayer.practice || minPlayerScore < 0 || scoreboard.getScore(player) >= minPlayerScore) {
 					// Verify the player has the needed items
 					final boolean allItemsPresent = requiredItems.size() == 0
 							|| InventoryUtil.hasItems(inv, requiredItems);
@@ -116,7 +118,6 @@ public class XChallengeManager implements PluginListener {
 						}
 						
 						// Give player reward
-						final XPlayer xPlayer = playerManager.getXPlayer(player);
 						if (xPlayer.challengesCompleted.contains(name)) {
 							// Repeat
 							for (final ItemType itemType : xChallenge.getItemsRepeatReward().keySet()) {
