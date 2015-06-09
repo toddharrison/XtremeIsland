@@ -37,7 +37,7 @@ public class XCommand implements CommandListener {
 	}
 	
 	@Command(aliases = {
-			"xis", "xisland"
+		"xis"
 	}, description = "Get help for XtremeIsland", permissions = {
 		"xis.command"
 	}, toolTip = "/xis")
@@ -46,10 +46,10 @@ public class XCommand implements CommandListener {
 			final Player player = caller.asPlayer();
 			player.message("XtremeIsland Challenge!");
 			player
-					.message("Usage: /xis <(g)o | (c)hallenge | (e)xit | (l)istplayers | (t)opscores | (p)ractice | (r)estart>");
+					.message("Usage: /xis <(g)o | (c)hallenge | (e)xit | (l)istplayers | (t)opscores | practice | restart>");
 		} else {
 			XPlugin.LOG
-					.info("Usage: /xis <(g)o | (c)hallenge | (e)xit | (l)istplayers | (t)opscores | (p)ractice | (r)estart>");
+					.info("Usage: /xis <(g)o | (c)hallenge | (e)xit | (l)istplayers | (t)opscores | practice | restart>");
 		}
 	}
 	
@@ -174,10 +174,10 @@ public class XCommand implements CommandListener {
 	}
 	
 	@Command(aliases = {
-			"practice", "p"
+		"practice"
 	}, parent = "xis", description = "Change an island to practice", permissions = {
 		"xis.command.practice"
-	}, toolTip = "/xis (p)ractice")
+	}, toolTip = "/xis practice")
 	public void practice(final MessageReceiver caller, final String[] parameters)
 			throws DatabaseWriteException {
 		if (caller instanceof Player) {
@@ -209,10 +209,10 @@ public class XCommand implements CommandListener {
 	}
 	
 	@Command(aliases = {
-			"restart", "r"
+		"restart"
 	}, parent = "xis", description = "Restart your island", permissions = {
 		"xis.command.restart"
-	}, toolTip = "/xis (r)estart")
+	}, toolTip = "/xis restart")
 	public void restart(final MessageReceiver caller, final String[] parameters)
 			throws DatabaseWriteException {
 		if (caller instanceof Player) {
