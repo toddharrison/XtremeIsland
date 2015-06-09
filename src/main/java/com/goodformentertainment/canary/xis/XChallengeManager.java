@@ -230,7 +230,7 @@ public class XChallengeManager implements PluginListener {
 			if (completeChallenge(player, menuItem.getName())) {
 				player.getWorld().broadcastMessage(
 						player.getName() + " has completed " + menuItem.getName());
-				XPlugin.LOG.info(player.getName() + " completed " + menuItem.getName());
+				XPlugin.LOG.debug(player.getName() + " completed " + menuItem.getName());
 				menuItem.update();
 			}
 		}

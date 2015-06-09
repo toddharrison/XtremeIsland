@@ -65,13 +65,13 @@ public class XPlayerManager implements PluginListener {
 	
 	public Location getIslandLocation(final Player player) throws DatabaseReadException,
 			DatabaseWriteException {
-		XPlugin.LOG.info("GETTING ISLAND LOCATION");
+		XPlugin.LOG.debug("GETTING ISLAND LOCATION");
 		
 		final World world = worldManager.getWorld();
 		final XPlayer xPlayer = addPlayer(player);
 		Location location = xPlayer.getLocation();
 		if (location == null) {
-			XPlugin.LOG.info("CREATING ISLAND");
+			XPlugin.LOG.debug("CREATING ISLAND");
 			
 			// TODO: Make tile algorithm instead of row
 			final int x = xPlayer.islandId * config.getMaxSize();
@@ -94,7 +94,7 @@ public class XPlayerManager implements PluginListener {
 				playerZownConfig.addCommandRestriction("/sethome");
 				playerZownConfig.addCommandRestriction("/home");
 				playerZownConfig.setFlag(Flag.playerexit.name(), false);
-				XPlugin.LOG.info("Created XIS player zown");
+				XPlugin.LOG.debug("Created XIS player zown");
 				if (!zownManager.saveZownConfiguration(world, name)) {
 					XPlugin.LOG.error("Error saving XIS player zown");
 				}
@@ -133,7 +133,7 @@ public class XPlayerManager implements PluginListener {
 			persist(xPlayer);
 			islandManager.clearIsland(world, player, xPlayer.islandId);
 			
-			XPlugin.LOG.info("DIED, CLEAR ISLAND");
+			XPlugin.LOG.debug("DIED, CLEAR ISLAND");
 		}
 	}
 	
@@ -145,7 +145,7 @@ public class XPlayerManager implements PluginListener {
 			final XPlayer xPlayer = XPlayer.getXPlayer(player);
 			hook.setSpawnLocation(xPlayer.getReturnLocation());
 			
-			XPlugin.LOG.info("RESET DEATH RESPAWN LOCATION " + xPlayer.getReturnLocation());
+			XPlugin.LOG.debug("RESET DEATH RESPAWN LOCATION " + xPlayer.getReturnLocation());
 		}
 	}
 	
@@ -165,7 +165,7 @@ public class XPlayerManager implements PluginListener {
 			// TODO fix
 			// Canary.getServer().consoleCommand("gamerule naturalRegeneration false", player);
 			
-			XPlugin.LOG.info(player.getName() + " entered XIS");
+			XPlugin.LOG.debug(player.getName() + " entered XIS");
 		}
 	}
 	
@@ -187,7 +187,7 @@ public class XPlayerManager implements PluginListener {
 			// TODO fix
 			// Canary.getServer().consoleCommand("gamerule naturalRegeneration true", player);
 			
-			XPlugin.LOG.info(player.getName() + " left XIS");
+			XPlugin.LOG.debug(player.getName() + " left XIS");
 		}
 	}
 	

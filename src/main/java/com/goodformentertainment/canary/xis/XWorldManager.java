@@ -41,7 +41,7 @@ public class XWorldManager {
 	public boolean createWorld() {
 		boolean success = false;
 		if (!worldManager.worldExists(config.getWorldName())) {
-			XPlugin.LOG.info("Creating XtremeIsland world " + config.getWorldName());
+			XPlugin.LOG.debug("Creating XtremeIsland world " + config.getWorldName());
 			
 			final WorldConfiguration worldConfig = Configuration.getWorldConfig(config.getWorldName()
 					+ "_" + X_DIMENSION.getName());

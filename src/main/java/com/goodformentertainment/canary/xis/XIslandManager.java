@@ -25,7 +25,7 @@ public class XIslandManager {
 	}
 	
 	public void generateIsland(final World world, final int x, int y, final int z) {
-		XPlugin.LOG.info("Generating island at " + x + ":" + y + ":" + z);
+		XPlugin.LOG.debug("Generating island at " + x + ":" + y + ":" + z);
 		
 		// Layer 1
 		world.setBlockAt(x, y, z, BlockType.Stone);
@@ -143,7 +143,7 @@ public class XIslandManager {
 	}
 	
 	public void clearIsland(final World world, final Player player, final int islandId) {
-		XPlugin.LOG.info("Deleting island " + islandId);
+		XPlugin.LOG.debug("Deleting island " + islandId);
 		islandsDeleting.add(player.getUUID());
 		
 		TaskManager.submitTask(new Runnable() {
@@ -167,7 +167,7 @@ public class XIslandManager {
 				}
 				
 				// Deletion completion
-				XPlugin.LOG.info("Island " + islandId + " deleted");
+				XPlugin.LOG.debug("Island " + islandId + " deleted");
 				islandsDeleting.remove(player.getUUID());
 			}
 		});

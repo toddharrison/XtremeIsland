@@ -71,7 +71,7 @@ public class XPlugin extends Plugin {
 					scoreboard);
 			
 			if (worldManager.createWorld()) {
-				XPlugin.LOG.info("Created XtremeIsland world");
+				XPlugin.LOG.debug("Created XtremeIsland world");
 			}
 			
 			if (worldManager.load()) {

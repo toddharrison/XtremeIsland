@@ -80,7 +80,7 @@ public class XScoreboard implements PluginListener {
 				new Comparator<XHighScore>() {
 					@Override
 					public int compare(final XHighScore hs1, final XHighScore hs2) {
-						int scoreDiff = hs1.highScore - hs2.highScore;
+						int scoreDiff = hs2.highScore - hs1.highScore;
 						if (scoreDiff == 0) {
 							scoreDiff = hs1.playerName.compareTo(hs2.playerName);
 						}
