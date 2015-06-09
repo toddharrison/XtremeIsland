@@ -26,6 +26,7 @@ import net.canarymod.plugin.Priority;
 import com.goodformentertainment.canary.playerstate.hook.WorldEnterHook;
 import com.goodformentertainment.canary.playerstate.hook.WorldExitHook;
 import com.goodformentertainment.canary.xis.dao.XHighScore;
+import com.goodformentertainment.canary.xis.dao.XPlayer;
 
 public class XScoreboard implements PluginListener {
 	private static final String NAME = "xis_scoreboard";
@@ -35,6 +36,7 @@ public class XScoreboard implements PluginListener {
 	private final Scoreboard scoreboard;
 	private ScoreObjective scoreObjective;
 	// private ScoreObjective highScoreObjective;
+	private XPlayerManager playerManager;
 	
 	private final Map<String, XHighScore> highScores;
 	
@@ -62,6 +64,10 @@ public class XScoreboard implements PluginListener {
 		} catch (final DatabaseReadException e) {
 			XPlugin.LOG.error("Error reading highscores from the database", e);
 		}
+	}
+	
+	protected void setPlayerManager(final XPlayerManager playerManager) {
+		this.playerManager = playerManager;
 	}
 	
 	public void addToScore(final Player player, final int value) {
@@ -99,10 +105,10 @@ public class XScoreboard implements PluginListener {
 			scoreboard.setScoreboardPosition(ScorePosition.SIDEBAR, scoreObjective, player);
 			
 			final Score score = scoreboard.getScore(player, scoreObjective);
-			score.addToScore(1);
+			// score.addToScore(1);
 			score.update();
-			score.removeFromScore(1);
-			score.update();
+			// score.removeFromScore(1);
+			// score.update();
 			
 			// TODO
 			// scoreboard.getScore(player, scoreObjective).update();
@@ -124,13 +130,16 @@ public class XScoreboard implements PluginListener {
 	public void onPlaceBlock(final BlockPlaceHook hook) {
 		final Block block = hook.getBlockPlaced();
 		if (block.getWorld() == worldManager.getWorld()) {
-			final BlockType type = block.getType();
-			final int value = blockScoreValues.getPlaceValue(type);
-			if (value > 0) {
-				final Player player = hook.getPlayer();
-				final Score score = scoreboard.getScore(player, scoreObjective);
-				score.addToScore(value);
-				score.update();
+			final Player player = hook.getPlayer();
+			final XPlayer xPlayer = playerManager.getXPlayer(player);
+			if (!xPlayer.practice) {
+				final BlockType type = block.getType();
+				final int value = blockScoreValues.getPlaceValue(type);
+				if (value > 0) {
+					final Score score = scoreboard.getScore(player, scoreObjective);
+					score.addToScore(value);
+					score.update();
+				}
 			}
 		}
 	}
@@ -139,13 +148,16 @@ public class XScoreboard implements PluginListener {
 	public void onRemoveBlock(final BlockDestroyHook hook) {
 		final Block block = hook.getBlock();
 		if (block.getWorld() == worldManager.getWorld()) {
-			final BlockType type = block.getType();
-			final int value = blockScoreValues.getRemoveValue(type);
-			if (value > 0) {
-				final Player player = hook.getPlayer();
-				final Score score = scoreboard.getScore(player, scoreObjective);
-				score.removeFromScore(value);
-				score.update();
+			final Player player = hook.getPlayer();
+			final XPlayer xPlayer = playerManager.getXPlayer(player);
+			if (!xPlayer.practice) {
+				final BlockType type = block.getType();
+				final int value = blockScoreValues.getRemoveValue(type);
+				if (value > 0) {
+					final Score score = scoreboard.getScore(player, scoreObjective);
+					score.removeFromScore(value);
+					score.update();
+				}
 			}
 		}
 	}
@@ -154,33 +166,36 @@ public class XScoreboard implements PluginListener {
 	public void onDeath(final PlayerDeathHook hook) {
 		final Player player = hook.getPlayer();
 		if (player.getWorld() == worldManager.getWorld()) {
-			final Score score = scoreboard.getScore(player, scoreObjective);
-			// final Score highScore = scoreboard.getScore(player, highScoreObjective);
-			// if (score.getScore() > highScore.getScore()) {
-			// highScore.setScore(score.getScore());
-			// highScore.update();
-			// }
-			
-			try {
-				final String uuid = player.getUUIDString();
-				XHighScore xHighScore = highScores.get(uuid);
-				if (xHighScore == null) {
-					xHighScore = new XHighScore();
-					xHighScore.playerUuid = uuid;
-					xHighScore.playerName = player.getName();
-					xHighScore.highScore = score.getScore();
-					highScores.put(uuid, xHighScore);
-					xHighScore.update();
-				} else if (score.getScore() > xHighScore.highScore) {
-					xHighScore.highScore = score.getScore();
-					xHighScore.update();
+			final XPlayer xPlayer = playerManager.getXPlayer(player);
+			if (!xPlayer.practice) {
+				final Score score = scoreboard.getScore(player, scoreObjective);
+				// final Score highScore = scoreboard.getScore(player, highScoreObjective);
+				// if (score.getScore() > highScore.getScore()) {
+				// highScore.setScore(score.getScore());
+				// highScore.update();
+				// }
+				
+				try {
+					final String uuid = player.getUUIDString();
+					XHighScore xHighScore = highScores.get(uuid);
+					if (xHighScore == null) {
+						xHighScore = new XHighScore();
+						xHighScore.playerUuid = uuid;
+						xHighScore.playerName = player.getName();
+						xHighScore.highScore = score.getScore();
+						highScores.put(uuid, xHighScore);
+						xHighScore.update();
+					} else if (score.getScore() > xHighScore.highScore) {
+						xHighScore.highScore = score.getScore();
+						xHighScore.update();
+					}
+				} catch (final DatabaseWriteException e) {
+					XPlugin.LOG.error("Error writing highscore to the database", e);
 				}
-			} catch (final DatabaseWriteException e) {
-				XPlugin.LOG.error("Error writing highscore to the database", e);
+				
+				score.setScore(0);
+				score.update();
 			}
-			
-			score.setScore(0);
-			score.update();
 		}
 	}
 }

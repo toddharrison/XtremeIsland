@@ -14,6 +14,8 @@ import net.canarymod.database.exceptions.DatabaseWriteException;
 
 import com.goodformentertainment.canary.xis.dao.XHighScore;
 import com.goodformentertainment.canary.xis.dao.XPlayer;
+import com.goodformentertainment.canary.zown.api.IZown;
+import com.goodformentertainment.canary.zown.api.IZownManager;
 
 public class XCommand implements CommandListener {
 	private final XWorldManager worldManager;
@@ -21,15 +23,17 @@ public class XCommand implements CommandListener {
 	private final XChallengeManager challengeManager;
 	private final XIslandManager islandManager;
 	private final XScoreboard scoreboard;
+	private final IZownManager zownManager;
 	
 	public XCommand(final XWorldManager worldManager, final XPlayerManager playerManager,
 			final XChallengeManager challengeManager, final XIslandManager islandManager,
-			final XScoreboard scoreboard) {
+			final XScoreboard scoreboard, final IZownManager zownManager) {
 		this.worldManager = worldManager;
 		this.playerManager = playerManager;
 		this.challengeManager = challengeManager;
 		this.islandManager = islandManager;
 		this.scoreboard = scoreboard;
+		this.zownManager = zownManager;
 	}
 	
 	@Command(aliases = {
@@ -41,9 +45,11 @@ public class XCommand implements CommandListener {
 		if (caller instanceof Player) {
 			final Player player = caller.asPlayer();
 			player.message("XtremeIsland Challenge!");
-			player.message("Usage: /xis <(g)o | (c)hallenge | (e)xit | (l)istplayers | (t)opscores>");
+			player
+					.message("Usage: /xis <(g)o | (c)hallenge | (e)xit | (l)istplayers | (t)opscores | (p)ractice | (r)estart>");
 		} else {
-			XPlugin.LOG.info("Usage: /xis <(g)o | (c)hallenge | (e)xit | (l)istplayers | (t)opscores>");
+			XPlugin.LOG
+					.info("Usage: /xis <(g)o | (c)hallenge | (e)xit | (l)istplayers | (t)opscores | (p)ractice | (r)estart>");
 		}
 	}
 	
@@ -164,6 +170,60 @@ public class XCommand implements CommandListener {
 			player.message(sb.toString());
 		} else {
 			XPlugin.LOG.info(sb.toString());
+		}
+	}
+	
+	@Command(aliases = {
+			"practice", "p"
+	}, parent = "xis", description = "Change an island to practice", permissions = {
+		"xis.command.practice"
+	}, toolTip = "/xis (p)ractice")
+	public void practice(final MessageReceiver caller, final String[] parameters)
+			throws DatabaseWriteException {
+		if (caller instanceof Player) {
+			final Player player = caller.asPlayer();
+			if (player.getWorld() == worldManager.getWorld()) {
+				final Location playerLocation = player.getLocation();
+				
+				final XPlayer xPlayer = playerManager.getXPlayer(player);
+				xPlayer.practice = true;
+				xPlayer.setLocation(playerLocation);
+				playerManager.persist(xPlayer);
+				
+				player.setHome(playerLocation);
+				final IZown zown = zownManager.getZown(playerLocation).getData();
+				zown.getConfiguration().removeCommandRestriction("/home");
+				zown.getConfiguration().removeCommandRestriction("/sethome");
+				zownManager.saveZownConfiguration(playerLocation.getWorld(), zown.getName());
+			}
+		}
+	}
+	
+	@Command(aliases = {
+			"restart", "r"
+	}, parent = "xis", description = "Restart your island", permissions = {
+		"xis.command.restart"
+	}, toolTip = "/xis (r)estart")
+	public void restart(final MessageReceiver caller, final String[] parameters)
+			throws DatabaseWriteException {
+		if (caller instanceof Player) {
+			final Player player = caller.asPlayer();
+			if (player.getWorld() == worldManager.getWorld()) {
+				final XPlayer xPlayer = playerManager.getXPlayer(player);
+				if (xPlayer.practice) {
+					xPlayer.practice = false;
+					xPlayer.setLocation(null);
+					
+					final Location playerLocation = player.getLocation();
+					final IZown zown = zownManager.getZown(playerLocation).getData();
+					zown.getConfiguration().addCommandRestriction("/home");
+					zown.getConfiguration().addCommandRestriction("/sethome");
+					zownManager.saveZownConfiguration(playerLocation.getWorld(), zown.getName());
+				}
+				playerManager.persist(xPlayer);
+				
+				player.kill();
+			}
 		}
 	}
 }

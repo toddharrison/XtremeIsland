@@ -20,6 +20,7 @@ public class XPlayer extends DataAccess {
 	public static final String RETURN_LOCATION = "return_location";
 	public static final String LOCATION = "location";
 	public static final String CHALLENGES_COMPLETED = "challenges_completed";
+	public static final String PRACTICE = "practice";
 	
 	public static XPlayer getXPlayer(final Player player) throws DatabaseReadException,
 			DatabaseWriteException {
@@ -64,6 +65,9 @@ public class XPlayer extends DataAccess {
 	
 	@Column(columnName = CHALLENGES_COMPLETED, dataType = DataType.STRING, isList = true)
 	public List<String> challengesCompleted;
+	
+	@Column(columnName = PRACTICE, dataType = DataType.BOOLEAN)
+	public boolean practice;
 	
 	public Location getReturnLocation() {
 		if (returnLocationObj == null && returnLocation != null && !returnLocation.equals("null")) {

@@ -201,13 +201,15 @@ public class XChallengeManager implements PluginListener {
 		if (success) {
 			final XPlayer xPlayer = playerManager.getXPlayer(player);
 			
-			// Add value to the scoreboard for the value of the challenge
-			if (xPlayer.challengesCompleted.contains(name)) {
-				// Repeat reward
-				scoreboard.addToScore(player, xChallenge.scoreRepeatReward);
-			} else {
-				// First time reward
-				scoreboard.addToScore(player, xChallenge.scoreReward);
+			if (!xPlayer.practice) {
+				// Add value to the scoreboard for the value of the challenge
+				if (xPlayer.challengesCompleted.contains(name)) {
+					// Repeat reward
+					scoreboard.addToScore(player, xChallenge.scoreRepeatReward);
+				} else {
+					// First time reward
+					scoreboard.addToScore(player, xChallenge.scoreReward);
+				}
 			}
 			
 			// Record that the player completed this challenge

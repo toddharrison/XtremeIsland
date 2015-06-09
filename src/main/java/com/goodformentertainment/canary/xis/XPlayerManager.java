@@ -131,16 +131,18 @@ public class XPlayerManager implements PluginListener {
 		final Player player = hook.getPlayer();
 		final World world = player.getWorld();
 		if (world == worldManager.getWorld()) {
-			deadPlayers.add(player.getUUIDString());
 			final XPlayer xPlayer = XPlayer.getXPlayer(player);
-			
-			xPlayer.setLocation(null);
-			challengeManager.resetMenu(player);
-			xPlayer.challengesCompleted.clear();
-			persist(xPlayer);
-			islandManager.clearIsland(world, player, xPlayer.islandId);
-			
-			XPlugin.LOG.debug("DIED, CLEAR ISLAND");
+			if (!xPlayer.practice) {
+				deadPlayers.add(player.getUUIDString());
+				
+				xPlayer.setLocation(null);
+				challengeManager.resetMenu(player);
+				xPlayer.challengesCompleted.clear();
+				persist(xPlayer);
+				islandManager.clearIsland(world, player, xPlayer.islandId);
+				
+				XPlugin.LOG.debug("DIED, CLEAR ISLAND");
+			}
 		}
 	}
 	
@@ -151,7 +153,6 @@ public class XPlayerManager implements PluginListener {
 			final Player player = hook.getPlayer();
 			final XPlayer xPlayer = XPlayer.getXPlayer(player);
 			hook.setSpawnLocation(xPlayer.getReturnLocation());
-			
 			XPlugin.LOG.debug("RESET DEATH RESPAWN LOCATION " + xPlayer.getReturnLocation());
 		}
 	}
@@ -163,10 +164,12 @@ public class XPlayerManager implements PluginListener {
 			final Player player = hook.getPlayer();
 			final XPlayer xPlayer = addPlayer(player);
 			
-			final Location fromLocation = hook.getFromLocation();
-			if (fromLocation != null) {
-				xPlayer.setReturnLocation(fromLocation);
-				persist(xPlayer);
+			if (!xPlayer.practice) {
+				final Location fromLocation = hook.getFromLocation();
+				if (fromLocation != null) {
+					xPlayer.setReturnLocation(fromLocation);
+					persist(xPlayer);
+				}
 			}
 			
 			XPlugin.LOG.debug(player.getName() + " entered XIS");
@@ -181,7 +184,12 @@ public class XPlayerManager implements PluginListener {
 			final XPlayer xPlayer = removePlayer(player);
 			
 			if (!deadPlayers.remove(player.getUUIDString())) {
-				final Location fromLocation = hook.getFromLocation();
+				final Location fromLocation;
+				if (xPlayer.practice) {
+					fromLocation = player.getHome();
+				} else {
+					fromLocation = hook.getFromLocation();
+				}
 				if (fromLocation != null) {
 					xPlayer.setLocation(fromLocation);
 					persist(xPlayer);
@@ -196,10 +204,13 @@ public class XPlayerManager implements PluginListener {
 	public void onHealthChange(final HealthChangeHook hook) {
 		final Player player = hook.getPlayer();
 		if (player.getWorld() == worldManager.getWorld()) {
-			final float oldHealth = hook.getOldValue();
-			final float newHealth = hook.getNewValue();
-			if (oldHealth > 0 && oldHealth < newHealth) {
-				hook.setCanceled();
+			final XPlayer xPlayer = getXPlayer(player);
+			if (xPlayer != null && !xPlayer.practice) {
+				final float oldHealth = hook.getOldValue();
+				final float newHealth = hook.getNewValue();
+				if (oldHealth > 0 && oldHealth < newHealth) {
+					hook.setCanceled();
+				}
 			}
 		}
 	}
