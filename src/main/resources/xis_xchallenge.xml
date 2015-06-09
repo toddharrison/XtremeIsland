@@ -831,9 +831,70 @@
     <type>onPlayer</type>
   </entry>
   <entry>
+    <consume_items>true</consume_items>
+    <description>Collect 64 carrots and 64 potatoes.</description>
+    <id>32</id>
+    <items_repeat_reward>
+      <list-element>minecraft:gold_ore:1</list-element>
+    </items_repeat_reward>
+    <items_required>
+      <list-element>minecraft:carrot:64</list-element>
+      <list-element>minecraft:potato:64</list-element>
+    </items_required>
+    <items_reward>
+      <list-element>minecraft:gold_ore:5</list-element>
+      <list-element>minecraft:diamond:1</list-element>    
+    </items_reward>
+    <level>Builder</level>
+    <min_player_score>-1</min_player_score>
+    <name>CorprateFarming</name>
+    <repeat_reward_description>1 gold ore</repeat_reward_description>
+    <repeatable>true</repeatable>
+    <reward_description>5 gold ore and 1 diamond</reward_description>
+    <score_repeat_reward>40</score_repeat_reward>
+    <score_reward>320</score_reward>
+    <type>onPlayer</type>
+  </entry>
+  <entry>
+    <consume_items>true</consume_items>
+    <description>Somehow procure: 1 golden apple, 1 watch, 6 poisonous potatoes, 1 glowstone block, 6 double tall grass, 1 blank map, 1 chainmail boots, 1 rabbit foot, 1 eye of ender and 640 ink sacs types.</description>
+    <id>33</id>
+    <items_repeat_reward>
+      <list-element>minecraft:emerald_ore:1</list-element>
+    </items_repeat_reward>
+    <items_required>
+      <list-element>minecraft:golden_apple:1</list-element>
+      <list-element>minecraft:clock:1</list-element>
+      <list-element>minecraft:poisonous_potato:6</list-element>
+      <list-element>minecraft:glowstone:1</list-element>    
+      <list-element>minecraft:double_plant:6:2</list-element>
+      <list-element>minecraft:map:1</list-element>
+      <list-element>minecraft:chainmail_boots:1</list-element>
+      <list-element>minecraft:rabbit_foot:1</list-element>    
+      <list-element>minecraft:ender_eye:1</list-element>
+      <list-element>minecraft:dye:1:0</list-element>        
+    </items_required>
+    <items_reward>
+      <list-element>minecraft:spawn_egg:2:120</list-element>
+      <list-element>minecraft:emerald_ore:1</list-element>    
+    </items_reward>
+    <level>Xtreme</level>
+    <min_player_score>-1</min_player_score>
+    <name>Oddities</name>
+    <repeat_reward_description>1 emerald ore</repeat_reward_description>
+    <repeatable>true</repeatable>
+    <reward_description>2 villager spawn eggs and 1 emerald ore</reward_description>
+    <score_repeat_reward>60</score_repeat_reward>
+    <score_reward>1280</score_reward>
+    <type>onPlayer</type>
+  </entry>
+
+
+
+  <entry>
     <consume_items>false</consume_items>
     <description>Reach a score of 5000.</description>
-    <id>32</id>
+    <id>100</id>
     <items_repeat_reward />
     <items_required />
     <items_reward>
@@ -855,7 +916,7 @@
   <entry>
     <consume_items>false</consume_items>
     <description>Reach a score of 10000.</description>
-    <id>33</id>
+    <id>101</id>
     <items_repeat_reward />
     <items_required />
     <items_reward>
@@ -878,7 +939,7 @@
   <entry>
     <consume_items>false</consume_items>
     <description>Reach a score of 20000.</description>
-    <id>34</id>
+    <id>102</id>
     <items_repeat_reward />
     <items_required />
     <items_reward>
@@ -898,7 +959,7 @@
   <entry>
     <consume_items>false</consume_items>
     <description>Reach a score of 40000.</description>
-    <id>35</id>
+    <id>103</id>
     <items_repeat_reward />
     <items_required />
     <items_reward>
@@ -919,7 +980,7 @@
   <entry>
     <consume_items>false</consume_items>
     <description>Reach a score of 80000.</description>
-    <id>36</id>
+    <id>104</id>
     <items_repeat_reward />
     <items_required />
     <items_reward>
@@ -940,7 +1001,7 @@
   <entry>
     <consume_items>false</consume_items>
     <description>Reach a score of 160000.</description>
-    <id>37</id>
+    <id>105</id>
     <items_repeat_reward />
     <items_required />
     <items_reward>
@@ -954,64 +1015,6 @@
     <reward_description>1 beacon</reward_description>
     <score_repeat_reward>0</score_repeat_reward>
     <score_reward>0</score_reward>
-    <type>onPlayer</type>
-  </entry>
-  <entry>
-    <consume_items>true</consume_items>
-    <description>Collect 64 carrots and 64 potatoes.</description>
-    <id>38</id>
-    <items_repeat_reward>
-      <list-element>minecraft:gold_ore:1</list-element>
-    </items_repeat_reward>
-    <items_required>
-      <list-element>minecraft:carrot:64</list-element>
-      <list-element>minecraft:potato:64</list-element>
-    </items_required>
-    <items_reward>
-      <list-element>minecraft:gold_ore:5</list-element>
-      <list-element>minecraft:diamond:1</list-element>	  
-    </items_reward>
-    <level>Builder</level>
-    <min_player_score>-1</min_player_score>
-    <name>CorprateFarming</name>
-    <repeat_reward_description>1 gold ore</repeat_reward_description>
-    <repeatable>true</repeatable>
-    <reward_description>5 gold ore and 1 diamond</reward_description>
-    <score_repeat_reward>40</score_repeat_reward>
-    <score_reward>320</score_reward>
-    <type>onPlayer</type>
-  </entry>
-  <entry>
-    <consume_items>true</consume_items>
-    <description>Somehow procure: 1 golden apple, 1 watch, 6 poisonous potatoes, 1 glowstone block, 6 double tall grass, 1 blank map, 1 chainmail boots, 1 rabbit foot, 1 eye of ender and 640 ink sacs types.</description>
-    <id>39</id>
-    <items_repeat_reward>
-      <list-element>minecraft:emerald_ore:1</list-element>
-    </items_repeat_reward>
-    <items_required>
-      <list-element>minecraft:golden_apple:1</list-element>
-      <list-element>minecraft:clock:1</list-element>
-      <list-element>minecraft:poisonous_potato:6</list-element>
-      <list-element>minecraft:glowstone:1</list-element>	  
-      <list-element>minecraft:double_plant:6:2</list-element>
-      <list-element>minecraft:map:1</list-element>
-      <list-element>minecraft:chainmail_boots:1</list-element>
-      <list-element>minecraft:rabbit_foot:1</list-element>	  
-      <list-element>minecraft:ender_eye:1</list-element>
-      <list-element>minecraft:dye:1:0</list-element>	  	  
-    </items_required>
-    <items_reward>
-      <list-element>minecraft:spawn_egg:2:120</list-element>
-      <list-element>minecraft:emerald_ore:1</list-element>	  
-    </items_reward>
-    <level>Xtreme</level>
-    <min_player_score>-1</min_player_score>
-    <name>Oddities</name>
-    <repeat_reward_description>1 emerald ore</repeat_reward_description>
-    <repeatable>true</repeatable>
-    <reward_description>2 villager spawn eggs and 1 emerald ore</reward_description>
-    <score_repeat_reward>60</score_repeat_reward>
-    <score_reward>1280</score_reward>
     <type>onPlayer</type>
   </entry>
 </xis_xchallenge>
