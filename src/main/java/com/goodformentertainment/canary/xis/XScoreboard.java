@@ -14,6 +14,7 @@ import net.canarymod.api.scoreboard.ScorePosition;
 import net.canarymod.api.scoreboard.Scoreboard;
 import net.canarymod.api.world.blocks.Block;
 import net.canarymod.api.world.blocks.BlockType;
+import net.canarymod.chat.ChatFormat;
 import net.canarymod.database.exceptions.DatabaseReadException;
 import net.canarymod.database.exceptions.DatabaseWriteException;
 import net.canarymod.hook.HookHandler;
@@ -49,13 +50,9 @@ public class XScoreboard implements PluginListener {
 		scoreObjective = scoreboard.getScoreObjective("xScore");
 		if (scoreObjective == null) {
 			scoreObjective = scoreboard.addScoreObjective("xScore");
-			scoreObjective.setDisplayName("Score");
 		}
-		// highScoreObjective = scoreboard.getScoreObjective("xHighScore");
-		// if (highScoreObjective == null) {
-		// highScoreObjective = scoreboard.addScoreObjective("xHighScore");
-		// highScoreObjective.setDisplayName("High Score");
-		// }
+		scoreObjective.setDisplayName(ChatFormat.GOLD + "Current Scores");
+		
 		highScores = new HashMap<String, XHighScore>();
 		try {
 			for (final XHighScore xHighScore : XHighScore.getAllXHighScores()) {
