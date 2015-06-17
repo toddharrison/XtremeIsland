@@ -5,7 +5,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+import net.canarymod.api.entity.living.animal.EntityAnimal;
 import net.canarymod.api.entity.living.humanoid.Player;
+import net.canarymod.api.entity.living.monster.EntityMob;
 import net.canarymod.api.inventory.Inventory;
 import net.canarymod.api.inventory.ItemType;
 import net.canarymod.api.world.World;
@@ -153,15 +155,41 @@ public class XIslandManager {
 				final int centerX = islandId * maxSize;
 				final int centerZ = 0;
 				
-				for (int x = maxSize / -2; x <= maxSize / 2; x++) {
+				// Get island dimensions
+				final int radius = maxSize / 2;
+				final int minX = centerX - radius;
+				final int maxX = centerX + radius;
+				final int minZ = centerZ - radius;
+				final int maxZ = centerZ + radius;
+				
+				// Remove all animals
+				for (final EntityAnimal animal : world.getAnimalList()) {
+					final int blockX = animal.getLocation().getBlockX();
+					final int blockZ = animal.getLocation().getBlockZ();
+					if (blockX >= minX && blockX <= maxX && blockZ >= minZ && blockZ <= maxZ) {
+						animal.destroy();
+					}
+				}
+				
+				// Remove all mobs
+				for (final EntityMob mob : world.getMobList()) {
+					final int blockX = mob.getLocation().getBlockX();
+					final int blockZ = mob.getLocation().getBlockZ();
+					if (blockX >= minX && blockX <= maxX && blockZ >= minZ && blockZ <= maxZ) {
+						mob.destroy();
+					}
+				}
+				
+				// Set all blocks to air
+				for (int x = minX; x <= maxX; x++) {
 					for (int y = 0; y <= 255; y++) {
-						for (int z = maxSize / -2; z <= maxSize / 2; z++) {
-							final Block block = world.getBlockAt(centerX + x, y, centerZ + z);
+						for (int z = minZ; z <= maxZ; z++) {
+							final Block block = world.getBlockAt(x, y, z);
 							if (block.getTileEntity() instanceof Inventory) {
 								final Inventory inv = (Inventory) block.getTileEntity();
 								inv.clearContents();
 							}
-							world.setBlockAt(centerX + x, y, centerZ + z, BlockType.Air);
+							world.setBlockAt(x, y, z, BlockType.Air);
 						}
 					}
 				}
