@@ -276,7 +276,8 @@ public class BlockScoreValue {
 		} else if (type == BlockType.DarkPrismarine || type == BlockType.EndStone
 				|| type == BlockType.GlowStone || type == BlockType.Gravel || type == BlockType.Prismarine
 				|| type == BlockType.PrismarineBricks || type == BlockType.SeaLantern
-				|| type == BlockType.SoulSand || type == BlockType.Sponge || type == BlockType.SnowBlock) {
+				|| type == BlockType.SoulSand || type == BlockType.Sponge || type == BlockType.SnowBlock
+				|| type == BlockType.Netherrack) {
 			valueType = TYPE_FANCY;
 		} else if (type == BlockType.RedstoneTorchOff || type == BlockType.RedstoneTorchOn
 				|| type == BlockType.RedstoneLampOff || type == BlockType.RedstoneLampOn
