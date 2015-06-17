@@ -162,11 +162,8 @@ public class XChallengeManager implements PluginListener {
 							for (int z = zMin; z < zMax; z++) {
 								final Block block = world.getBlockAt(x, y, z);
 								if (!block.isAir()) {
-									final int typeId = block.getTypeId();
-									final int data = block.getData();
-									final ItemType itemType = ItemType.fromIdAndData(typeId, data);
+									final ItemType itemType = ItemType.fromString(block.getType().getMachineName());
 									if (requiredItems.containsKey(itemType)) {
-										// TODO check oak door
 										int neededCount = requiredItems.get(itemType);
 										if (--neededCount <= 0) {
 											requiredItems.remove(itemType);

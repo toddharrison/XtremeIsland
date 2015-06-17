@@ -119,9 +119,7 @@
     <id>5</id>
     <items_repeat_reward />
     <items_required>
-      <!--
       <list-element>minecraft:wooden_door:1</list-element>
-      -->
       <list-element>minecraft:crafting_table:1</list-element>
       <list-element>minecraft:furnace:1</list-element>
       <list-element>minecraft:chest:1</list-element>
