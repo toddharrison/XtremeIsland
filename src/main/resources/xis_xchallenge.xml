@@ -399,7 +399,7 @@
     </items_reward>
     <level>Hunter</level>
     <min_player_score>-1</min_player_score>
-    <name>fisherman</name>
+    <name>Fisherman</name>
     <repeat_reward_description>1 netherrack block</repeat_reward_description>
     <repeatable>true</repeatable>
     <reward_description>5 netherrack blocks</reward_description>
