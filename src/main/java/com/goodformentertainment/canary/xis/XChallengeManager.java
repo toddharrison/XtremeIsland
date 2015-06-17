@@ -210,6 +210,8 @@ public class XChallengeManager implements PluginListener {
 				} else {
 					// First time reward
 					scoreboard.addToScore(player, xChallenge.scoreReward);
+					player.getWorld().broadcastMessage(player.getName() + " has completed " + name);
+					XPlugin.LOG.debug(player.getName() + " completed " + name);
 				}
 			}
 			
@@ -231,9 +233,6 @@ public class XChallengeManager implements PluginListener {
 			final Player player = hook.getPlayer();
 			final MenuItem menuItem = hook.getMenuItem();
 			if (completeChallenge(player, menuItem.getName())) {
-				player.getWorld().broadcastMessage(
-						player.getName() + " has completed " + menuItem.getName());
-				XPlugin.LOG.debug(player.getName() + " completed " + menuItem.getName());
 				menuItem.update();
 			}
 		}
