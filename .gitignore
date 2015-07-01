@@ -1,2 +1,7 @@
-target
+target/
+.gradle
+.idea
+build/
+gradle.properties
+xis.iml
 
