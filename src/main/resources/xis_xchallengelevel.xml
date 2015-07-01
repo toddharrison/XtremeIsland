@@ -1,37 +1,37 @@
 <xis_xchallengelevel>
-  <tableProperties>
-    <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false" not-null="false" />
-    <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false" not-null="false" />
-    <order auto-increment="true" data-type="INTEGER" column-type="UNIQUE" is-list="false" not-null="false" />
-  </tableProperties>
-  <entry>
-    <id>1</id>
-    <name>Survivalist</name>
-    <order>1</order>
-  </entry>
-  <entry>
-    <id>2</id>
-    <name>Gatherer</name>
-    <order>2</order>
-  </entry>
-  <entry>
-    <id>3</id>
-    <name>Hunter</name>
-    <order>3</order>
-  </entry>
-  <entry>
-    <id>4</id>
-    <name>Builder</name>
-    <order>4</order>
-  </entry>
-  <entry>
-    <id>5</id>
-    <name>Conqueror</name>
-    <order>5</order>
-  </entry>
-  <entry>
-    <id>6</id>
-    <name>Xtreme</name>
-    <order>6</order>
-  </entry>
+    <tableProperties>
+        <id auto-increment="true" data-type="INTEGER" column-type="PRIMARY" is-list="false" not-null="false"/>
+        <name auto-increment="false" data-type="STRING" column-type="UNIQUE" is-list="false" not-null="false"/>
+        <order auto-increment="true" data-type="INTEGER" column-type="UNIQUE" is-list="false" not-null="false"/>
+    </tableProperties>
+    <entry>
+        <id>1</id>
+        <name>Survivalist</name>
+        <order>1</order>
+    </entry>
+    <entry>
+        <id>2</id>
+        <name>Gatherer</name>
+        <order>2</order>
+    </entry>
+    <entry>
+        <id>3</id>
+        <name>Hunter</name>
+        <order>3</order>
+    </entry>
+    <entry>
+        <id>4</id>
+        <name>Builder</name>
+        <order>4</order>
+    </entry>
+    <entry>
+        <id>5</id>
+        <name>Conqueror</name>
+        <order>5</order>
+    </entry>
+    <entry>
+        <id>6</id>
+        <name>Xtreme</name>
+        <order>6</order>
+    </entry>
 </xis_xchallengelevel>
