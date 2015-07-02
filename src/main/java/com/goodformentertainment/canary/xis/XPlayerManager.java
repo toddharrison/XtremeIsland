@@ -79,11 +79,12 @@ public class XPlayerManager implements PluginListener {
         if (location == null) {
             XPlugin.LOG.debug("CREATING ISLAND");
 
-            // Spiral algorithm for island placement
-            final Point islandRelativePoint = islandManager.getIslandSpiralLocation(xPlayer.islandId);
-            final int x = islandRelativePoint.x * config.getMaxSize();
+            // Spiral algorithm for island placement (-1 starting index is at 0,0)
+            // TODO combine into common method in IslandManager
+            final Point islandRelativePoint = islandManager.getIslandSpiralLocation(xPlayer.islandId - 2);
+            final int x = islandRelativePoint.x * config.getMaxSize() + XIslandManager.xOffset;
             final int y = config.getHeight();
-            final int z = islandRelativePoint.z * config.getMaxSize();
+            final int z = islandRelativePoint.z * config.getMaxSize() + XIslandManager.zOffset;
             islandManager.generateIsland(world, x, y, z);
             location = new Location(world, x, y + 5, z - 1, 0, 0);
 
@@ -96,6 +97,10 @@ public class XPlayerManager implements PluginListener {
                 final Point maxPoint = new Point(x + zownRadius, 255, z + zownRadius);
 
                 final String name = "XIS_Player_" + player.getUUIDString();
+
+                // Remove the player's zown if it exists somewhere else in the world
+                zownManager.removeZown(world, name);
+
                 playerZown = zownManager.createZown(world, name, null, minPoint, maxPoint);
                 final IConfiguration playerZownConfig = playerZown.getData().getConfiguration();
                 playerZownConfig.addCommandRestriction("/spawn");

@@ -15,8 +15,8 @@ targetCompatibility = 1.6
 jar {
     manifest {
         attributes 'Created-By': 'Gradle',
-                'Implementation-Title': project.name,
-                'Implementation-Version': version
+                   'Implementation-Title': project.name,
+                   'Implementation-Version': version
     }
 }
 

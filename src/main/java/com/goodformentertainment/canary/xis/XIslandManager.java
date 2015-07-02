@@ -18,6 +18,10 @@ import java.util.Set;
 import java.util.UUID;
 
 public class XIslandManager {
+    // TODO make configurable
+    public static final int xOffset = 5000;
+    public static final int zOffset = 5000;
+
     private final XConfig config;
 
     private final Set<UUID> islandsDeleting;
@@ -182,15 +186,15 @@ public class XIslandManager {
             @Override
             public void run() {
                 final int maxSize = config.getMaxSize();
-                final int centerX = islandId * maxSize;
-                final int centerZ = 0;
+
+                // TODO combine into common method in IslandManager
+                final Point islandRelativePoint = getIslandSpiralLocation(islandId - 2);
 
                 // Get island dimensions
-                final int radius = maxSize / 2;
-                final int minX = centerX - radius;
-                final int maxX = centerX + radius;
-                final int minZ = centerZ - radius;
-                final int maxZ = centerZ + radius;
+                final int minX = islandRelativePoint.x * config.getMaxSize() + xOffset;
+                final int maxX = minX + maxSize;
+                final int minZ = islandRelativePoint.z * config.getMaxSize() + zOffset;
+                final int maxZ = minZ + maxSize;
 
                 // Remove all animals
                 for (final EntityAnimal animal : world.getAnimalList()) {
