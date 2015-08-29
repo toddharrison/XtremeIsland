@@ -191,9 +191,9 @@ public class XIslandManager {
                 final Point islandRelativePoint = getIslandSpiralLocation(islandId - 2);
 
                 // Get island dimensions
-                final int minX = islandRelativePoint.x * config.getMaxSize() + xOffset;
+                final int minX = (islandRelativePoint.x * maxSize + xOffset) - (maxSize / 2);
                 final int maxX = minX + maxSize;
-                final int minZ = islandRelativePoint.z * config.getMaxSize() + zOffset;
+                final int minZ = (islandRelativePoint.z * maxSize + zOffset) - (maxSize / 2);
                 final int maxZ = minZ + maxSize;
 
                 // Remove all animals
