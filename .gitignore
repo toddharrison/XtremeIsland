@@ -5,3 +5,8 @@ build/
 gradle.properties
 xis.iml
 
+.classpath
+.project
+.settings/
+bin/
+

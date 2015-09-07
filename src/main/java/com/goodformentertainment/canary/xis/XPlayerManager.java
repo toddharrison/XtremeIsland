@@ -1,5 +1,12 @@
 package com.goodformentertainment.canary.xis;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 import com.goodformentertainment.canary.playerstate.hook.WorldDeathHook;
 import com.goodformentertainment.canary.playerstate.hook.WorldEnterHook;
 import com.goodformentertainment.canary.playerstate.hook.WorldExitHook;
@@ -10,6 +17,7 @@ import com.goodformentertainment.canary.zown.api.IZown;
 import com.goodformentertainment.canary.zown.api.IZownManager;
 import com.goodformentertainment.canary.zown.api.Point;
 import com.goodformentertainment.canary.zown.api.impl.Tree;
+
 import net.canarymod.Canary;
 import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.api.inventory.Item;
@@ -27,13 +35,6 @@ import net.canarymod.hook.player.PlayerDeathHook;
 import net.canarymod.plugin.PluginListener;
 import net.canarymod.plugin.Priority;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 public class XPlayerManager implements PluginListener {
     private final XConfig config;
     private final XWorldManager worldManager;
@@ -45,8 +46,8 @@ public class XPlayerManager implements PluginListener {
     private final IZownManager zownManager;
 
     public XPlayerManager(final XConfig config, final XWorldManager worldManager,
-                          final XIslandManager islandManager, final XChallengeManager challengeManager,
-                          final IZownManager zownManager) {
+            final XIslandManager islandManager, final XChallengeManager challengeManager,
+            final IZownManager zownManager) {
         this.config = config;
         this.worldManager = worldManager;
         this.islandManager = islandManager;
@@ -69,8 +70,8 @@ public class XPlayerManager implements PluginListener {
         return xPlayer;
     }
 
-    public Location getIslandLocation(final Player player) throws DatabaseReadException,
-            DatabaseWriteException {
+    public Location getIslandLocation(final Player player)
+            throws DatabaseReadException, DatabaseWriteException {
         XPlugin.LOG.debug("GETTING ISLAND LOCATION");
 
         final World world = worldManager.getWorld();
@@ -81,7 +82,8 @@ public class XPlayerManager implements PluginListener {
 
             // Spiral algorithm for island placement (-1 starting index is at 0,0)
             // TODO combine into common method in IslandManager
-            final Point islandRelativePoint = islandManager.getIslandSpiralLocation(xPlayer.islandId - 2);
+            final Point islandRelativePoint = islandManager
+                    .getIslandSpiralLocation(xPlayer.islandId - 2);
             final int x = islandRelativePoint.x * config.getMaxSize() + XIslandManager.xOffset;
             final int y = config.getHeight();
             final int z = islandRelativePoint.z * config.getMaxSize() + XIslandManager.zOffset;
@@ -92,7 +94,7 @@ public class XPlayerManager implements PluginListener {
             Tree<? extends IZown> playerZown = zownManager.getZown(location);
             if (playerZown == zownManager.getZown(world)) {
                 // Location is in the world zown, create player zown
-                int zownRadius = (config.getMaxSize() - 10) / 2;
+                final int zownRadius = (config.getMaxSize() - 10) / 2;
                 final Point minPoint = new Point(x - zownRadius, -100, z - zownRadius);
                 final Point maxPoint = new Point(x + zownRadius, 255, z + zownRadius);
 
@@ -116,8 +118,8 @@ public class XPlayerManager implements PluginListener {
         return location;
     }
 
-    public XPlayer addPlayer(final Player player) throws DatabaseReadException,
-            DatabaseWriteException {
+    public XPlayer addPlayer(final Player player)
+            throws DatabaseReadException, DatabaseWriteException {
         final XPlayer xPlayer = XPlayer.getXPlayer(player);
         players.put(player.getUUIDString(), xPlayer);
         return xPlayer;
@@ -132,8 +134,8 @@ public class XPlayerManager implements PluginListener {
     }
 
     @HookHandler(priority = Priority.PASSIVE)
-    public void onDeath(final PlayerDeathHook hook) throws DatabaseReadException,
-            DatabaseWriteException {
+    public void onDeath(final PlayerDeathHook hook)
+            throws DatabaseReadException, DatabaseWriteException {
         final Player player = hook.getPlayer();
         final World world = player.getWorld();
         if (world == worldManager.getWorld()) {
@@ -153,8 +155,8 @@ public class XPlayerManager implements PluginListener {
     }
 
     @HookHandler(priority = Priority.PASSIVE)
-    public void onXisDeath(final WorldDeathHook hook) throws DatabaseReadException,
-            DatabaseWriteException {
+    public void onXisDeath(final WorldDeathHook hook)
+            throws DatabaseReadException, DatabaseWriteException {
         if (hook.getDeathLocation().getWorld() == worldManager.getWorld()) {
             final Player player = hook.getPlayer();
             final XPlayer xPlayer = XPlayer.getXPlayer(player);
@@ -164,18 +166,16 @@ public class XPlayerManager implements PluginListener {
     }
 
     @HookHandler(priority = Priority.PASSIVE)
-    public void onWorldEnter(final WorldEnterHook hook) throws DatabaseReadException,
-            DatabaseWriteException {
+    public void onWorldEnter(final WorldEnterHook hook)
+            throws DatabaseReadException, DatabaseWriteException {
         if (hook.getWorld() == worldManager.getWorld()) {
             final Player player = hook.getPlayer();
             final XPlayer xPlayer = addPlayer(player);
 
-            if (!xPlayer.practice) {
-                final Location fromLocation = hook.getFromLocation();
-                if (fromLocation != null) {
-                    xPlayer.setReturnLocation(fromLocation);
-                    persist(xPlayer);
-                }
+            final Location fromLocation = hook.getFromLocation();
+            if (fromLocation != null) {
+                xPlayer.setReturnLocation(fromLocation);
+                persist(xPlayer);
             }
 
             XPlugin.LOG.debug(player.getName() + " entered XIS");
@@ -183,8 +183,8 @@ public class XPlayerManager implements PluginListener {
     }
 
     @HookHandler(priority = Priority.PASSIVE)
-    public void onWorldExit(final WorldExitHook hook) throws DatabaseReadException,
-            DatabaseWriteException {
+    public void onWorldExit(final WorldExitHook hook)
+            throws DatabaseReadException, DatabaseWriteException {
         if (hook.getWorld() == worldManager.getWorld()) {
             final Player player = hook.getPlayer();
             final XPlayer xPlayer = removePlayer(player);
