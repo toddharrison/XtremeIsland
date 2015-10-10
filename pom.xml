@@ -2,15 +2,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.goodformentertainment.canary</groupId>
-        <artifactId>plugin</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-    </parent>
-
     <groupId>com.goodformentertainment.canary.plugin</groupId>
     <artifactId>XtremeIsland</artifactId>
-    <version>1.2.2</version>
+    <version>1.2.3-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
