@@ -106,6 +106,7 @@ public class XPlayerManager implements PluginListener {
                 playerZown = zownManager.createZown(world, name, null, minPoint, maxPoint);
                 final IConfiguration playerZownConfig = playerZown.getData().getConfiguration();
                 playerZownConfig.addCommandRestriction("/spawn");
+                playerZownConfig.addCommandRestriction("/kit");
                 playerZownConfig.addCommandRestriction("/sethome");
                 playerZownConfig.addCommandRestriction("/home");
                 playerZownConfig.setFlag(Flag.playerexit.name(), false);
@@ -187,7 +188,7 @@ public class XPlayerManager implements PluginListener {
             throws DatabaseReadException, DatabaseWriteException {
         if (hook.getWorld() == worldManager.getWorld()) {
             final Player player = hook.getPlayer();
-            final XPlayer xPlayer = removePlayer(player);
+            final XPlayer xPlayer = getXPlayer(player);
 
             if (!deadPlayers.remove(player.getUUIDString())) {
                 final Location fromLocation;
@@ -201,6 +202,8 @@ public class XPlayerManager implements PluginListener {
                     persist(xPlayer);
                 }
             }
+
+            removePlayer(player);
 
             XPlugin.LOG.debug(player.getName() + " left XIS");
         }

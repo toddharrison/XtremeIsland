@@ -7,8 +7,10 @@ import com.goodformentertainment.canary.zown.Flag;
 import com.goodformentertainment.canary.zown.api.IConfiguration;
 import com.goodformentertainment.canary.zown.api.IZown;
 import com.goodformentertainment.canary.zown.api.IZownManager;
+
 import net.canarymod.Canary;
 import net.canarymod.api.world.DimensionType;
+import net.canarymod.api.world.UnknownWorldException;
 import net.canarymod.api.world.World;
 import net.canarymod.api.world.WorldManager;
 import net.canarymod.api.world.WorldType;
@@ -39,11 +41,15 @@ public class XWorldManager {
 
     public boolean createWorld() {
         boolean success = false;
-        if (!worldManager.worldExists(config.getWorldName())) {
+
+        try {
+            world = worldManager.getWorld(config.getWorldName(), true);
+            success = true;
+        } catch (final UnknownWorldException e) {
             XPlugin.LOG.debug("Creating XtremeIsland world " + config.getWorldName());
 
-            final WorldConfiguration worldConfig = Configuration.getWorldConfig(config.getWorldName()
-                    + "_" + X_DIMENSION.getName());
+            final WorldConfiguration worldConfig = Configuration
+                    .getWorldConfig(config.getWorldName() + "_" + X_DIMENSION.getName());
             final PropertiesFile file = worldConfig.getFile();
             file.setInt("difficulty", World.Difficulty.HARD.getId());
             file.setBoolean("generate-structures", false);
@@ -58,20 +64,19 @@ public class XWorldManager {
             // file.setString("generator-settings", "3;minecraft:air;0;");
             file.save();
 
-            success = worldManager.createWorld(config.getWorldName(), 0, X_DIMENSION, X_TYPE);
-        } else {
-            success = true;
+            if (worldManager.createWorld(config.getWorldName(), 0, X_DIMENSION, X_TYPE)) {
+                world = worldManager.getWorld(config.getWorldName(), true);
+                success = true;
+            }
         }
         return success;
     }
 
     public boolean load() {
-        world = worldManager.getWorld(config.getWorldName(), true);
         final IWorldStateManager worldStateManager = PlayerStatePlugin.getWorldManager();
 
-        worldStateManager.registerWorld(world, new SaveState[]{
-                SaveState.CONDITIONS, SaveState.INVENTORY, SaveState.LOCATIONS
-        });
+        worldStateManager.registerWorld(world,
+                new SaveState[] { SaveState.CONDITIONS, SaveState.INVENTORY, SaveState.LOCATIONS });
 
         // Configure xis world zown
         final IZown zown = zownManager.getZown(world).getData();
@@ -80,6 +85,7 @@ public class XWorldManager {
                 || !zownConfig.hasCommandRestriction("/sethome")
                 || !zownConfig.hasCommandRestriction("/home")) {
             zownConfig.addCommandRestriction("/spawn");
+            zownConfig.addCommandRestriction("/kit");
             zownConfig.addCommandRestriction("/sethome");
             zownConfig.addCommandRestriction("/home");
             zownConfig.setFlag(Flag.build.name(), false);
