@@ -1,9 +1,13 @@
 package com.goodformentertainment.canary.xis;
 
+import java.util.Set;
+import java.util.SortedSet;
+
 import com.goodformentertainment.canary.xis.dao.XHighScore;
 import com.goodformentertainment.canary.xis.dao.XPlayer;
 import com.goodformentertainment.canary.zown.api.IZown;
 import com.goodformentertainment.canary.zown.api.IZownManager;
+
 import net.canarymod.Canary;
 import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.api.world.position.Location;
@@ -12,9 +16,6 @@ import net.canarymod.commandsys.Command;
 import net.canarymod.commandsys.CommandListener;
 import net.canarymod.database.exceptions.DatabaseReadException;
 import net.canarymod.database.exceptions.DatabaseWriteException;
-
-import java.util.Set;
-import java.util.SortedSet;
 
 public class XCommand implements CommandListener {
     private final XWorldManager worldManager;
@@ -25,8 +26,8 @@ public class XCommand implements CommandListener {
     private final IZownManager zownManager;
 
     public XCommand(final XWorldManager worldManager, final XPlayerManager playerManager,
-                    final XChallengeManager challengeManager, final XIslandManager islandManager,
-                    final XScoreboard scoreboard, final IZownManager zownManager) {
+            final XChallengeManager challengeManager, final XIslandManager islandManager,
+            final XScoreboard scoreboard, final IZownManager zownManager) {
         this.worldManager = worldManager;
         this.playerManager = playerManager;
         this.challengeManager = challengeManager;
@@ -35,28 +36,23 @@ public class XCommand implements CommandListener {
         this.zownManager = zownManager;
     }
 
-    @Command(aliases = {
-            "xis"
-    }, description = "Get help for XtremeIsland", permissions = {
-            "xis.command"
-    }, toolTip = "/xis")
+    @Command(aliases = { "xis" }, description = "Get help for XtremeIsland", permissions = {
+            "xis.command" }, toolTip = "/xis")
     public void help(final MessageReceiver caller, final String[] parameters) {
         if (caller instanceof Player) {
             final Player player = caller.asPlayer();
             player.message("XtremeIsland Challenge!");
-            player
-                    .message("Usage: /xis <(g)o | (c)hallenge | (e)xit | (l)istplayers | (t)opscores | practice | restart>");
+            player.message(
+                    "Usage: /xis <(g)o | (c)hallenge | (e)xit | (l)istplayers | (t)opscores | practice | restart>");
         } else {
-            XPlugin.LOG
-                    .info("Usage: /xis <(g)o | (c)hallenge | (e)xit | (l)istplayers | (t)opscores | practice | restart>");
+            XPlugin.LOG.info(
+                    "Usage: /xis <(g)o | (c)hallenge | (e)xit | (l)istplayers | (t)opscores | practice | restart>");
         }
     }
 
-    @Command(aliases = {
-            "go", "g"
-    }, parent = "xis", description = "Go to your XtremeIsland", permissions = {
-            "xis.command.go"
-    }, toolTip = "/xis (g)o")
+    @Command(aliases = { "go",
+            "g" }, parent = "xis", description = "Go to your XtremeIsland", permissions = {
+                    "xis.command.go" }, toolTip = "/xis (g)o")
     public void go(final MessageReceiver caller, final String[] parameters)
             throws DatabaseReadException, DatabaseWriteException {
         if (caller instanceof Player) {
@@ -73,11 +69,9 @@ public class XCommand implements CommandListener {
         }
     }
 
-    @Command(aliases = {
-            "challenge", "c"
-    }, parent = "xis", description = "Compete a XtremeIsland Challenge", permissions = {
-            "xis.command.challenge"
-    }, toolTip = "/xis (c)hallenge")
+    @Command(aliases = { "challenge",
+            "c" }, parent = "xis", description = "Compete a XtremeIsland Challenge", permissions = {
+                    "xis.command.challenge" }, toolTip = "/xis (c)hallenge")
     public void challenge(final MessageReceiver caller, final String[] parameters) {
         if (caller instanceof Player) {
             final Player player = caller.asPlayer();
@@ -89,11 +83,9 @@ public class XCommand implements CommandListener {
         }
     }
 
-    @Command(aliases = {
-            "exit", "e"
-    }, parent = "xis", description = "Exit your XtremeIsland", permissions = {
-            "xis.command.exit"
-    }, toolTip = "/xis (e)xit")
+    @Command(aliases = { "exit",
+            "e" }, parent = "xis", description = "Exit your XtremeIsland", permissions = {
+                    "xis.command.exit" }, toolTip = "/xis (e)xit")
     public void exit(final MessageReceiver caller, final String[] parameters)
             throws DatabaseReadException, DatabaseWriteException {
         if (caller instanceof Player) {
@@ -111,11 +103,9 @@ public class XCommand implements CommandListener {
         }
     }
 
-    @Command(aliases = {
-            "listplayers", "l"
-    }, parent = "xis", description = "List the current Players in XtremeIsland", permissions = {
-            "xis.command.list"
-    }, toolTip = "/xis (l)istplayers")
+    @Command(aliases = { "listplayers",
+            "l" }, parent = "xis", description = "List the current Players in XtremeIsland", permissions = {
+                    "xis.command.list" }, toolTip = "/xis (l)istplayers")
     public void listPlayers(final MessageReceiver caller, final String[] parameters) {
         final StringBuilder sb = new StringBuilder();
         sb.append("Current XtremeIsland Players: ");
@@ -143,11 +133,9 @@ public class XCommand implements CommandListener {
         }
     }
 
-    @Command(aliases = {
-            "topscores", "t"
-    }, parent = "xis", description = "List the top scores in XtremeIsland", permissions = {
-            "xis.command.top"
-    }, toolTip = "/xis (t)opscores")
+    @Command(aliases = { "topscores",
+            "t" }, parent = "xis", description = "List the top scores in XtremeIsland", permissions = {
+                    "xis.command.top" }, toolTip = "/xis (t)opscores")
     public void topScores(final MessageReceiver caller, final String[] parameters) {
         final StringBuilder sb = new StringBuilder();
         sb.append("XtremeIsland Top Scores:");
@@ -173,10 +161,8 @@ public class XCommand implements CommandListener {
     }
 
     @Command(aliases = {
-            "practice"
-    }, parent = "xis", description = "Change an island to practice", permissions = {
-            "xis.command.practice"
-    }, toolTip = "/xis practice")
+            "practice" }, parent = "xis", description = "Change an island to practice", permissions = {
+                    "xis.command.practice" }, toolTip = "/xis practice")
     public void practice(final MessageReceiver caller, final String[] parameters)
             throws DatabaseWriteException {
         if (caller instanceof Player) {
@@ -197,7 +183,8 @@ public class XCommand implements CommandListener {
                     zownManager.saveZownConfiguration(playerLocation.getWorld(), zown.getName());
 
                     player.message("Set XtremeIsland to practice mode.");
-                    player.message("/home is available. Score is frozen. Use /xis restart to clear.");
+                    player.message(
+                            "/home is available. Score is frozen. Use /xis restart to clear.");
                 } else {
                     player.message("You are already in practice mode.");
                 }
@@ -208,10 +195,8 @@ public class XCommand implements CommandListener {
     }
 
     @Command(aliases = {
-            "restart"
-    }, parent = "xis", description = "Restart your island", permissions = {
-            "xis.command.restart"
-    }, toolTip = "/xis restart")
+            "restart" }, parent = "xis", description = "Restart your island", permissions = {
+                    "xis.command.restart" }, toolTip = "/xis restart")
     public void restart(final MessageReceiver caller, final String[] parameters)
             throws DatabaseWriteException {
         if (caller instanceof Player) {
@@ -224,8 +209,10 @@ public class XCommand implements CommandListener {
 
                     final Location playerLocation = player.getLocation();
                     final IZown zown = zownManager.getZown(playerLocation).getData();
-                    zown.getConfiguration().addCommandRestriction("/home");
+                    zown.getConfiguration().addCommandRestriction("/spawn");
+                    zown.getConfiguration().addCommandRestriction("/kit");
                     zown.getConfiguration().addCommandRestriction("/sethome");
+                    zown.getConfiguration().addCommandRestriction("/home");
                     zownManager.saveZownConfiguration(playerLocation.getWorld(), zown.getName());
                 }
                 playerManager.persist(xPlayer);
